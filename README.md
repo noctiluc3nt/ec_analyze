@@ -1,2 +1,1 @@
-# ec_analyze
-Tutorial: Analzing Eddy-Covariance Data
+# Analzing Eddy-Covariance Data
