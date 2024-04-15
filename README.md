@@ -1,4 +1,4 @@
-# Anal,yzing Eddy-Covariance Data
+# Analyzing Eddy-Covariance Data
 
 Collection of teaching material to explain how eddy-covariance measurements work and how they are used to learn something about turbulent fluxes, their properties and relation to surface energy balance.
 
