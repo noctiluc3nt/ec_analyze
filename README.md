@@ -1,10 +1,10 @@
-# Analzing Eddy-Covariance Data
+# Anal,yzing Eddy-Covariance Data
 
 Collection of teaching material to explain how eddy-covariance measurements work and how they are used to learn something about turbulent fluxes, their properties and relation to surface energy balance.
 
 ## Notebooks
 Notebooks showcasing the application of the [Reddy](https://github.com/noctiluc3nt/Reddy) package -- used for processing the field trip data.
-- [01_post-processing.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/01_postprocessing.ipynb): Post-processing of raw eddy-covariance measurements
+- [01_post-processing.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/01_post-processing.ipynb): Post-processing of raw eddy-covariance measurements
 - [02_basic-turbulence-diagnostics.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/02_basic-turbulence-diagnostics.ipynb): Calculation and plotting of some turbulence diagnostics
 - [03_quadrant-analysis.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/03_quadrant-analysis.ipynb): Calculation and plotting of quadrant analysis
 - [04_multiresolution-decomposition.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/04_multiresolution-decomposition.ipynb): Calculation and plotting of multiresolution decomposition (MRD)
