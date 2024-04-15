@@ -14,3 +14,5 @@ Notebooks showcasing the application of the [Reddy](https://github.com/noctiluc3
 
 ## Data and Field Trip
 The example data is from our station in Finse, Hardangervidda, which will be visited during the field trip. It contains raw eddy-covariance measurements (here 10 Hz, recent 20 Hz), the radiative fluxes and the soil heat flux (biomet data). 
+
+<image src="./teaching/assignment/pic_finse.png">
