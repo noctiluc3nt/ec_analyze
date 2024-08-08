@@ -1,7 +1,7 @@
-# Step 1: Post-processing of the raw eddy-covariance data
+# Post-processing of the raw eddy-covariance data
 Example for basic post-processing of raw eddy-covariance measurements (from CSAT3/Campbell Scientific and Li-7200/LI-COR closed-path IR gas analyzer) including despiking, rotation, averaging and flagging. The following notebooks (e.g., [02_basic-turbulence-diagnostics.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/02_basic-turbulence-diagnostics.ipynb)) build upon this and allow for a more detailed analysis (e.g., [03_quadrant-analysis.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/03_quadrant-analysis.ipynb)).
 
-### Eddy-covariance method
+## Eddy-covariance method
 In the eddy-covariance method, the Reynolds decomposition is applied to every measured quantity $x$ through
 $$
 x = \overline{x} + x' \quad \textrm{with} \quad \overline{x}:= \frac{1}{t_s} \int_0^{t_s} x \: dt,
@@ -12,6 +12,24 @@ $$
     \overline{xw} = \overline{x}\:\overline{w} + \overline{x'w'},
 $$
 where $\overline{x'w'}$ represents the vertical flux ($w$: vertical wind speed) of the quantity $x$ with $\overline{xw} = \overline{x'w'}$ for $\overline{w}=0$ (which is intended by the applied coordinate rotation). In the post-processing, quality checks, rotation, averaging and flagging are applied, so that the high-resolution measurements can be analyzed using the eddy-covariance method. A detailed description of the measurement devices and methods can be found in Foken, 2017.
+
+## Raw data handling and corrections
+
+
+### Choosing a suitable averaging time
+As we have seen above, for calculating the fluxes with the eddy-covariance method, a suitable averaging time ($t_s$) should be chosen. For this several things need to be considered: Generally, one can say that the longer the averaging time, the less likely it is that the conditions are steady (which is an assumption in method), but short averaging times miss low frequency contributions. So usually, an averaging time of 30 minutes is chosen. However, this averaging time can still be too long if the turbulence is very intermittent, which is the case for very stable conditions. Consequently, some studies use the 30 minutes average just for unstable stratification and an averaging time of 1 to 10 minutes for stable conditions. It is recommendable to first study the characteristics of the sampled raw data and then chose an averaging time.<br>
+
+
+### Overview of correction procedures applied to the raw data
+- **Despiking** (`despiking`): Removing from spikes in the raw data. For this usually three methods are applied: (1) based on pre-defined thresholds (i.e., an expected temperature or wind speed interval), (2) median deviation (MAD) test, i.e., all measurements lie within a pre-defined range around the median, and (3) based on skewness (3. moment) and kurtosis (4. moment), i.e., the skewness and kurtosis of the considered interval do not exceed pre-defined values
+- **Detrending** (`pracma::detrending`): Linear detrending by substracting the mean value
+- **Rotation** (`rotate_double` or `rotate_planar`): Rotation of the sonic coordinate system. Since the orientation of the sonic is arbitrary, the measurements have to be interpreted in a suitable coordinate system. For this the natural coordinate systems is used, which means that it follows the stream lines and with the streamwise velocity component $u$, the crosswise velocity component $v$ and the vertical velocity component $w$. To determine the orientation, two main approaches exist: Double rotation (`rotate_double`) alignes the sonic coordinate system with the streamlines for every averaging interval. Hence, this method can be applied near-real time. Planar fit rotation (`rotate_planar`) aligns the sonic coordinate system with the mean streamlines under the conditions that the mean vertical velocity $\overline{w}$ vanishes. For this, a time series is required and thus near-real time processing not possible. Generally, it is recommended to use double rotation in relatively simple topography, but planar fit in complex (micro-)topogaphy. The angles around which the sonic coordinate system was rotated also allow to estimate the quality of the measurements (the smaller the angle of rotation, the better).
+- **Quality Flagging** (`stationarity_flag`,`flag_w`,`flag_distortion`,`flag_most`): Several quality flags (ranging from 0: the best to 2: the worst) can be applied. Common flags are: a stationarity flag (`stationarity_flag`), that test the alignment with the stationarity assumption of the eddy-covariance method, a vertical velocity flag (`flag_w`), which checks that remaining vertical velocity after the rotation is small, a flow distortion flag (`flag_distortion`), which removes the pre-defined wind directions that are possible affected/blocked by the mast, an integral turbulence characteristics flag (`flag_itc`), which test for the agreement with Monin-Obukhov similarity theory. However, these flags have to be applied purpose-oriented and interpreted with caution. Sometimes particularly "poorly flagged" measurements are interesting for investigating turbulence under challenging (and therefore interesting) conditions, e.g. under very stable stratification.
+- **SND (and cross-wind) correction** (`SNDcorrection`): Converts the buoyancy flux to sensible heat flux. Since the sonics usually measure the sound velocity, the measured temperature (so called sonic temperature) is similar to the virtual temperature $T_s$ and thus the resulting flux $\overline{w'T_s'}$ represents the buoyancy flux, which is about 10-20 % larger than the sensible heat flux $\overline{w'T'}$.
+- **WPL correction** (`WPLcorrection`): Converts volume- to mass-related quantities for trace gas fluxes. This correction only applies to trace gas concentration (water vapor, carbon dioxide, methane, ...) measured with a gas analyzer.
+- **Unit conversion** (`ppt2rho`): Converts ppt to density. Closed-path gas analyzer measure trace gas concentrations in parts-per-... (ppt: ... thousand, ppm: ... million) and have to be converted to a density based on the respective molar mass.
+
+## An example post-processing routine
 
 
 ```R
@@ -201,5 +219,5 @@ saveRDS(dat,file="../data/ec-data_30min_processed/processed_data_example.rds")
 
 Note, different sensors may require different correction methods, see also Foken, 2017. Additionally, the angles in the rotation can also be checked to verify if the applied rotation method is suitable (for longer time periods planar fit would be an alternative, e.g., if there is a systematic topographically induced vertical wind speed, and for stable stratification it should be checked whether the angles stay somehow constant and do not flip due to sign changes of the close-to-zero fluxes).
 
-### Literature
+## Literature
 - Foken, T. (2017). Micrometeorology, Springer-Verlag Berlin Heidelberg, DOI: 10.1007/978-3-642-25440-6.
