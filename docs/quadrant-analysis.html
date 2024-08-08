@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reddy: An open-source package for analyzing eddy-covariance data</title>
-  <meta name="description" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <title>4 Quadrant Analysis | Reddy: An open-source package for analyzing eddy-covariance data</title>
+  <meta name="description" content="4 Quadrant Analysis | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:title" content="4 Quadrant Analysis | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="twitter:title" content="4 Quadrant Analysis | Reddy: An open-source package for analyzing eddy-covariance data" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="post-processing-of-the-raw-eddy-covariance-data.html"/>
+<link rel="prev" href="calculation-of-some-basic-turbulence-quantities.html"/>
+<link rel="next" href="spectra.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -218,24 +218,435 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reddy: An open-source package for analyzing eddy-covariance data</h1>
-<p class="author"><em></em></p>
+<div id="quadrant-analysis" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Quadrant Analysis<a href="quadrant-analysis.html#quadrant-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Quadrant analysis is a simple conditional sampling method to detect coherent structures directly from the high-frequency measurements. For this, the Reddy package provides two functions: <code>calc_quadrant_analysis</code> for calculating occurrence frequency and strength of the four quadrants and <code>plot_quadrant_analysis</code> for plotting the two variables as scatter plot with a 2d kernel density estimation and a linear regression.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="quadrant-analysis.html#cb16-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb16-2"><a href="quadrant-analysis.html#cb16-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-3"><a href="quadrant-analysis.html#cb16-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb16-4"><a href="quadrant-analysis.html#cb16-4" aria-hidden="true"></a></span>
+<span id="cb16-5"><a href="quadrant-analysis.html#cb16-5" aria-hidden="true"></a><span class="co">#ec data files</span></span>
+<span id="cb16-6"><a href="quadrant-analysis.html#cb16-6" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
+<span id="cb16-7"><a href="quadrant-analysis.html#cb16-7" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-8"><a href="quadrant-analysis.html#cb16-8" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span></code></pre></div>
+<pre><code>Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
+(as ‘lib’ is unspecified)</code></pre>
+<div id="calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Calculation of occurrence frequencies and strengths of the four quadrants with <code>calc_quadrant_analysis</code><a href="quadrant-analysis.html#calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The two variables are normalized (if <code>do_normalization = TRUE</code>) through
+<span class="math display">\[ \hat{x} = \frac{x-\overline{x}}{\sigma_x}\]</span>
+by substracting the mean value <span class="math inline">\(\overline{x}\)</span> and dividing by <span class="math inline">\(\sigma_x\)</span> to make different variables with different value ranges comparable and centered around zero. The function counts the occurrence frequency of each quadrant, calculates their strength as product <span class="math inline">\(\hat{x}\hat{y}\)</span> and as covariance <span class="math inline">\(\overline{\hat{x}&#39;\hat{y}&#39;}\)</span>. The parameter <code>hole_sizes</code>can be used to filter out very strong events by applying the filter conditions <span class="math inline">\(\vert \hat{x}\hat{y} \vert \le H \cdot \vert \overline{\hat{x}&#39;\hat{y}&#39;}\vert\)</span>. Usually, <span class="math inline">\(y\)</span> is chosen to be the vertical velocity <span class="math inline">\(w\)</span>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="quadrant-analysis.html#cb18-1" aria-hidden="true"></a>i=<span class="dv">8</span> <span class="co">#select a file</span></span>
+<span id="cb18-2"><a href="quadrant-analysis.html#cb18-2" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb18-3"><a href="quadrant-analysis.html#cb18-3" aria-hidden="true"></a></span>
+<span id="cb18-4"><a href="quadrant-analysis.html#cb18-4" aria-hidden="true"></a>qa_Tw=<span class="kw">calc_quadrant_analysis</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s) <span class="co">#based on the raw data (10 Hz) directly (i.e., unrotated)</span></span>
+<span id="cb18-5"><a href="quadrant-analysis.html#cb18-5" aria-hidden="true"></a>qa_Tw</span></code></pre></div>
+<dl>
+<dt>
+<span class="math inline">\(hole_sizes&lt;/dt&gt;  &lt;dd&gt;&lt;style&gt; .list-inline {list-style: none; margin:0; padding: 0} .list-inline&gt;li {display: inline-block} .list-inline&gt;li:not(:last-child)::after {content: &quot;\00b7&quot;; padding: 0 .5ex} &lt;/style&gt; &lt;ol class=list-inline&gt;&lt;li&gt;0&lt;/li&gt;&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt;&lt;li&gt;5&lt;/li&gt;&lt;li&gt;6&lt;/li&gt;&lt;li&gt;7&lt;/li&gt;&lt;li&gt;8&lt;/li&gt;&lt;li&gt;9&lt;/li&gt;&lt;li&gt;10&lt;/li&gt;&lt;/ol&gt; &lt;/dd&gt;  &lt;dt&gt;\)</span>occurrence
+</dt>
+<pre><code>&lt;dd&gt;&lt;table class=&quot;dataframe&quot;&gt;</code></pre>
+<caption>
+A matrix: 4 × 11 of type int
+</caption>
+<tbody>
+<tr>
+<td>
+5448
+</td>
+<td>
+4689
+</td>
+<td>
+4232
+</td>
+<td>
+3829
+</td>
+<td>
+3542
+</td>
+<td>
+3355
+</td>
+<td>
+3214
+</td>
+<td>
+3120
+</td>
+<td>
+3071
+</td>
+<td>
+3043
+</td>
+<td>
+3017
+</td>
+</tr>
+<tr>
+<td>
+2975
+</td>
+<td>
+144
+</td>
+<td>
+8
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+6619
+</td>
+<td>
+3812
+</td>
+<td>
+3732
+</td>
+<td>
+4177
+</td>
+<td>
+4539
+</td>
+<td>
+4821
+</td>
+<td>
+5015
+</td>
+<td>
+5153
+</td>
+<td>
+5238
+</td>
+<td>
+5302
+</td>
+<td>
+5345
+</td>
+</tr>
+<tr>
+<td>
+2958
+</td>
+<td>
+300
+</td>
+<td>
+71
+</td>
+<td>
+19
+</td>
+<td>
+4
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<span class="math inline">\(product&lt;/dt&gt;  &lt;dd&gt;&lt;table class=&quot;dataframe&quot;&gt; &lt;caption&gt;A matrix: 4 × 11 of type dbl&lt;/caption&gt; &lt;tbody&gt;  &lt;tr&gt;&lt;td&gt; 1.0680473&lt;/td&gt;&lt;td&gt; 0.8157981&lt;/td&gt;&lt;td&gt; 0.5926998&lt;/td&gt;&lt;td&gt; 0.4160602&lt;/td&gt;&lt;td&gt; 0.2595930&lt;/td&gt;&lt;td&gt; 0.128415&lt;/td&gt;&lt;td&gt;0.00496475&lt;/td&gt;&lt;td&gt;-0.09889583&lt;/td&gt;&lt;td&gt;-0.1580028&lt;/td&gt;&lt;td&gt;-0.1941919&lt;/td&gt;&lt;td&gt;-0.2292195&lt;/td&gt;&lt;/tr&gt;  &lt;tr&gt;&lt;td&gt;-0.2913532&lt;/td&gt;&lt;td&gt;-1.3388982&lt;/td&gt;&lt;td&gt;-2.3107778&lt;/td&gt;&lt;td&gt;-3.0595706&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;/tr&gt;  &lt;tr&gt;&lt;td&gt; 0.6190221&lt;/td&gt;&lt;td&gt; 0.3023105&lt;/td&gt;&lt;td&gt; 0.3188273&lt;/td&gt;&lt;td&gt; 0.4780481&lt;/td&gt;&lt;td&gt; 0.6247966&lt;/td&gt;&lt;td&gt; 0.729391&lt;/td&gt;&lt;td&gt;0.81096819&lt;/td&gt;&lt;td&gt; 0.88180372&lt;/td&gt;&lt;td&gt; 0.9271087&lt;/td&gt;&lt;td&gt; 0.9649898&lt;/td&gt;&lt;td&gt; 0.9919303&lt;/td&gt;&lt;/tr&gt;  &lt;tr&gt;&lt;td&gt;-0.4200449&lt;/td&gt;&lt;td&gt;-1.6791768&lt;/td&gt;&lt;td&gt;-2.7216259&lt;/td&gt;&lt;td&gt;-3.5668925&lt;/td&gt;&lt;td&gt;-4.3541217&lt;/td&gt;&lt;td&gt;-5.200543&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;td&gt; NaN&lt;/td&gt;&lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;/dd&gt;  &lt;dt&gt;\)</span>covariance
+</dt>
+<pre><code>&lt;dd&gt;&lt;table class=&quot;dataframe&quot;&gt;</code></pre>
+<caption>
+A matrix: 4 × 11 of type dbl
+</caption>
+<tbody>
+<tr>
+<td>
+0.106717873
+</td>
+<td>
+0.3190217
+</td>
+<td>
+0.3943558
+</td>
+<td>
+0.39175959
+</td>
+<td>
+0.33878042
+</td>
+<td>
+0.28464356
+</td>
+<td>
+0.22478907
+</td>
+<td>
+0.16509696
+</td>
+<td>
+0.13053088
+</td>
+<td>
+0.10926006
+</td>
+<td>
+0.08895242
+</td>
+</tr>
+<tr>
+<td>
+0.053090898
+</td>
+<td>
+0.1180140
+</td>
+<td>
+0.1147860
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+</tr>
+<tr>
+<td>
+-0.009141232
+</td>
+<td>
+0.2882998
+</td>
+<td>
+0.1194031
+</td>
+<td>
+0.04190299
+</td>
+<td>
+0.05120756
+</td>
+<td>
+0.06056233
+</td>
+<td>
+0.06900792
+</td>
+<td>
+0.07814975
+</td>
+<td>
+0.08542762
+</td>
+<td>
+0.09238304
+</td>
+<td>
+0.09700542
+</td>
+</tr>
+<tr>
+<td>
+0.032263914
+</td>
+<td>
+0.1706475
+</td>
+<td>
+0.2092321
+</td>
+<td>
+0.09659086
+</td>
+<td>
+0.05461222
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>
+<span class="math inline">\(covariance_total&lt;/dt&gt;  &lt;dd&gt;0.149572439233721&lt;/dd&gt;  &lt;dt&gt;\)</span>correlation_total
+</dt>
+<pre><code>&lt;dd&gt;0.433733025048198&lt;/dd&gt;
+&lt;dt&gt;$meta&lt;/dt&gt;
+    &lt;dd&gt;&#39;Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns: selected hole sizes&#39;&lt;/dd&gt;</code></pre>
+</dl>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<hr>
-<span style="color: darkblue;"><strong>An introduction to eddy-covariance measurements and their meteorological evaluation</strong></span> <br>
-<strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-<strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
-<hr>
-<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span></p>
+<div id="plotting-quadrant-analysis-with-plot_quadrant_analysis" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Plotting quadrant analysis with <code>plot_quadrant_analysis</code><a href="quadrant-analysis.html#plotting-quadrant-analysis-with-plot_quadrant_analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>plot_quadrant_analysis</code> plots a scatter plot of two variables with a 2d kernel density estimation (<code>MASS::kde2d</code>) and a linear regression (<code>lm()</code>) to allow for a visual inspection.</p>
+<p><strong>Example: Quadrant Analysis (T,w) during daytime</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="quadrant-analysis.html#cb22-1" aria-hidden="true"></a>i=<span class="dv">8</span> <span class="co">#select a file -- a daytime example</span></span>
+<span id="cb22-2"><a href="quadrant-analysis.html#cb22-2" aria-hidden="true"></a><span class="kw">print</span>(files[i])</span>
+<span id="cb22-3"><a href="quadrant-analysis.html#cb22-3" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb22-4"><a href="quadrant-analysis.html#cb22-4" aria-hidden="true"></a></span>
+<span id="cb22-5"><a href="quadrant-analysis.html#cb22-5" aria-hidden="true"></a><span class="kw">plot_quadrant_analysis</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s,<span class="dt">xlab=</span><span class="st">&quot;T (normalized)&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;w (normalized)&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Quadrant Analysis (T,w)&quot;</span>)</span></code></pre></div>
+<pre><code>[1] &quot;../data/ec-data_10Hz_raw/2018-07-20T120000.csv&quot;
 
+Call:
+lm(formula = yval ~ xval)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5818 -0.5491  0.0005  0.5471  4.1136 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -3.849e-16  6.716e-03    0.00        1    
+xval         4.337e-01  6.716e-03   64.58   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9011 on 17998 degrees of freedom
+Multiple R-squared:  0.1881,    Adjusted R-squared:  0.1881 
+F-statistic:  4170 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="figure">
+<img src="output_6_1.png" alt="" />
+<p class="caption">png</p>
 </div>
-<h3>References</h3>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Foken2017">
-<p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>.</p>
+<p><strong>Example: Quadrant Analysis (T,w) during nighttime</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="quadrant-analysis.html#cb24-1" aria-hidden="true"></a>i=<span class="dv">38</span> <span class="co">#select a file -- a nighttime example</span></span>
+<span id="cb24-2"><a href="quadrant-analysis.html#cb24-2" aria-hidden="true"></a><span class="kw">print</span>(files[i])</span>
+<span id="cb24-3"><a href="quadrant-analysis.html#cb24-3" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb24-4"><a href="quadrant-analysis.html#cb24-4" aria-hidden="true"></a><span class="kw">plot_quadrant_analysis</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s) <span class="co">#based on the raw data (10 Hz) directly (i.e., unrotated)</span></span></code></pre></div>
+<pre><code>[1] &quot;../data/ec-data_10Hz_raw/2018-07-21T030000.csv&quot;
+
+Call:
+lm(formula = yval ~ xval)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.8334 -0.5262  0.0022  0.5425  6.2520 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -3.006e-17  7.120e-03    0.00        1    
+xval        -2.957e-01  7.121e-03  -41.53   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9553 on 17998 degrees of freedom
+Multiple R-squared:  0.08745,   Adjusted R-squared:  0.0874 
+F-statistic:  1725 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="figure">
+<img src="output_8_1.png" alt="" />
+<p class="caption">png</p>
+</div>
+<p><strong>Example: Quadrant Analysis (u,w) during nighttime</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="quadrant-analysis.html#cb26-1" aria-hidden="true"></a><span class="kw">plot_quadrant_analysis</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s) <span class="co">#based on the raw data (10 Hz) directly (i.e., unrotated)</span></span></code></pre></div>
+<pre><code>Call:
+lm(formula = yval ~ xval)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9799 -0.5474 -0.0342  0.5301  6.6338 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -3.749e-16  7.326e-03    0.00        1    
+xval        -1.843e-01  7.326e-03  -25.15   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9829 on 17998 degrees of freedom
+Multiple R-squared:  0.03395,   Adjusted R-squared:  0.0339 
+F-statistic: 632.5 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="figure">
+<img src="output_10_1.png" alt="" />
+<p class="caption">png</p>
+</div>
+<p>Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., <code>rotate_double</code>) visually.</p>
+</div>
+<div id="literature-2" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Literature<a href="quadrant-analysis.html#literature-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Li, D. and Bou-Zeid, E. (2011). Coherent Structures and the Dissimilarity of
+Turbulent Transport of Momentum and Scalars in the Unstable Atmospheric
+Surface Layer. Boundary-Layer Meteorol, 140:243–262.</li>
+<li>Wallace, J. (2016). Quadrant Analysis in Turbulence Research: History and
+Evolution. Annu Rev Fluid Mech, 48:131–158.</li>
+</ul>
+
 </div>
 </div>
             </section>
@@ -243,8 +654,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="post-processing-of-the-raw-eddy-covariance-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="calculation-of-some-basic-turbulence-quantities.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spectra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

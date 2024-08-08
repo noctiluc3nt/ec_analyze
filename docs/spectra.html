@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reddy: An open-source package for analyzing eddy-covariance data</title>
-  <meta name="description" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <title>5 Spectra | Reddy: An open-source package for analyzing eddy-covariance data</title>
+  <meta name="description" content="5 Spectra | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:title" content="5 Spectra | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="twitter:title" content="5 Spectra | Reddy: An open-source package for analyzing eddy-covariance data" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="post-processing-of-the-raw-eddy-covariance-data.html"/>
+<link rel="prev" href="quadrant-analysis.html"/>
+<link rel="next" href="flux-footprint.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -218,24 +218,521 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reddy: An open-source package for analyzing eddy-covariance data</h1>
-<p class="author"><em></em></p>
+<div id="spectra" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Spectra<a href="spectra.html#spectra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Multiresolution decomposition (MRD) is a method to characterize the timescale dependence of variances (spectrum) or covariances (cospectrum) and to find scale gaps between turbulent and submeso-scale motions. It uses Haar wavelets, which have the advantage over Fourier analysis that no periodicity is assumed.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spectra.html#cb28-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb28-2"><a href="spectra.html#cb28-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
+<span id="cb28-3"><a href="spectra.html#cb28-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb28-4"><a href="spectra.html#cb28-4" aria-hidden="true"></a></span>
+<span id="cb28-5"><a href="spectra.html#cb28-5" aria-hidden="true"></a><span class="co">#ec data files</span></span>
+<span id="cb28-6"><a href="spectra.html#cb28-6" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
+<span id="cb28-7"><a href="spectra.html#cb28-7" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb28-8"><a href="spectra.html#cb28-8" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span></code></pre></div>
+<pre><code>Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
+(as ‘lib’ is unspecified)</code></pre>
+<div id="multiresolution-decomposition-mrd" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Multiresolution decomposition (MRD)<a href="spectra.html#multiresolution-decomposition-mrd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="calculating-multiresolution-decomposition-with-calc_mrd" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Calculating multiresolution decomposition with <code>calc_mrd</code><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spectra.html#cb30-1" aria-hidden="true"></a>i=<span class="dv">8</span> <span class="co">#select a file</span></span>
+<span id="cb30-2"><a href="spectra.html#cb30-2" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb30-3"><a href="spectra.html#cb30-3" aria-hidden="true"></a></span>
+<span id="cb30-4"><a href="spectra.html#cb30-4" aria-hidden="true"></a><span class="co">#cospectra</span></span>
+<span id="cb30-5"><a href="spectra.html#cb30-5" aria-hidden="true"></a>mrd_uw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#momentum flux</span></span>
+<span id="cb30-6"><a href="spectra.html#cb30-6" aria-hidden="true"></a>mrd_Tw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#sensible heat flux</span></span>
+<span id="cb30-7"><a href="spectra.html#cb30-7" aria-hidden="true"></a></span>
+<span id="cb30-8"><a href="spectra.html#cb30-8" aria-hidden="true"></a><span class="co">#spectra</span></span>
+<span id="cb30-9"><a href="spectra.html#cb30-9" aria-hidden="true"></a>mrd_ww=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>w_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#vertical veloctiy</span></span>
+<span id="cb30-10"><a href="spectra.html#cb30-10" aria-hidden="true"></a>mrd_TT=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>T_degC,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#temperature</span></span></code></pre></div>
+<p>The function returns a dataframe containing index, exponent <span class="math inline">\(m\)</span>, scale (i.e. <span class="math inline">\(2^{m}\)</span>), time [s], mean, median, 25% and 75% quartiles as columns. The number of rows is given by <span class="math inline">\(M\)</span> fulfilling $2^M $ #measurements.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="spectra.html#cb31-1" aria-hidden="true"></a><span class="co">#look into output</span></span>
+<span id="cb31-2"><a href="spectra.html#cb31-2" aria-hidden="true"></a>mrd_uw</span></code></pre></div>
+<table class="dataframe">
+<caption>
+A data.frame: 15 × 8
+</caption>
+<thead>
+<tr>
+<th scope="col">
+index
+</th>
+<th scope="col">
+m
+</th>
+<th scope="col">
+scale
+</th>
+<th scope="col">
+time
+</th>
+<th scope="col">
+mean
+</th>
+<th scope="col">
+median
+</th>
+<th scope="col">
+q25
+</th>
+<th scope="col">
+q75
+</th>
+</tr>
+<tr>
+<th scope="col">
+&lt;int&gt;
+</th>
+<th scope="col">
+&lt;int&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+<th scope="col">
+&lt;dbl&gt;
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+1
+</td>
+<td>
+14
+</td>
+<td>
+16384
+</td>
+<td>
+1638.4
+</td>
+<td>
+2.009888e-03
+</td>
+<td>
+6.411861e-05
+</td>
+<td>
+-5.739598e-03
+</td>
+<td>
+7.411443e-03
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+13
+</td>
+<td>
+8192
+</td>
+<td>
+819.2
+</td>
+<td>
+3.723193e-03
+</td>
+<td>
+3.046532e-04
+</td>
+<td>
+-7.508746e-03
+</td>
+<td>
+1.040180e-02
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+12
+</td>
+<td>
+4096
+</td>
+<td>
+409.6
+</td>
+<td>
+5.007376e-03
+</td>
+<td>
+6.024576e-04
+</td>
+<td>
+-9.401348e-03
+</td>
+<td>
+1.487008e-02
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+11
+</td>
+<td>
+2048
+</td>
+<td>
+204.8
+</td>
+<td>
+5.831290e-03
+</td>
+<td>
+6.054180e-04
+</td>
+<td>
+-9.164119e-03
+</td>
+<td>
+1.592909e-02
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+10
+</td>
+<td>
+1024
+</td>
+<td>
+102.4
+</td>
+<td>
+9.752098e-03
+</td>
+<td>
+1.325413e-03
+</td>
+<td>
+-6.967310e-03
+</td>
+<td>
+1.938746e-02
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+9
+</td>
+<td>
+512
+</td>
+<td>
+51.2
+</td>
+<td>
+1.090534e-02
+</td>
+<td>
+2.818075e-03
+</td>
+<td>
+-4.432612e-03
+</td>
+<td>
+1.858083e-02
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+8
+</td>
+<td>
+256
+</td>
+<td>
+25.6
+</td>
+<td>
+1.465273e-02
+</td>
+<td>
+3.577008e-03
+</td>
+<td>
+-3.271827e-03
+</td>
+<td>
+2.213298e-02
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+7
+</td>
+<td>
+128
+</td>
+<td>
+12.8
+</td>
+<td>
+1.157982e-02
+</td>
+<td>
+3.560662e-03
+</td>
+<td>
+-6.819690e-03
+</td>
+<td>
+1.801111e-02
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+6
+</td>
+<td>
+64
+</td>
+<td>
+6.4
+</td>
+<td>
+9.264997e-03
+</td>
+<td>
+5.478194e-04
+</td>
+<td>
+-8.774036e-03
+</td>
+<td>
+9.014596e-03
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+5
+</td>
+<td>
+32
+</td>
+<td>
+3.2
+</td>
+<td>
+6.077250e-03
+</td>
+<td>
+4.486199e-03
+</td>
+<td>
+-2.698569e-03
+</td>
+<td>
+9.425087e-03
+</td>
+</tr>
+<tr>
+<td>
+11
+</td>
+<td>
+4
+</td>
+<td>
+16
+</td>
+<td>
+1.6
+</td>
+<td>
+4.209757e-03
+</td>
+<td>
+-5.068024e-04
+</td>
+<td>
+-4.568223e-03
+</td>
+<td>
+7.532330e-03
+</td>
+</tr>
+<tr>
+<td>
+12
+</td>
+<td>
+3
+</td>
+<td>
+8
+</td>
+<td>
+0.8
+</td>
+<td>
+-3.430667e-03
+</td>
+<td>
+-4.011748e-03
+</td>
+<td>
+-6.571402e-03
+</td>
+<td>
+-8.710123e-04
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+2
+</td>
+<td>
+4
+</td>
+<td>
+0.4
+</td>
+<td>
+-6.626465e-03
+</td>
+<td>
+-6.626465e-03
+</td>
+<td>
+-7.390707e-03
+</td>
+<td>
+-5.862222e-03
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+1
+</td>
+<td>
+2
+</td>
+<td>
+0.2
+</td>
+<td>
+-4.079521e-03
+</td>
+<td>
+-4.079521e-03
+</td>
+<td>
+-4.079521e-03
+</td>
+<td>
+-4.079521e-03
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0.1
+</td>
+<td>
+-8.838739e-34
+</td>
+<td>
+-8.838739e-34
+</td>
+<td>
+-8.838739e-34
+</td>
+<td>
+-8.838739e-34
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<hr>
-<span style="color: darkblue;"><strong>An introduction to eddy-covariance measurements and their meteorological evaluation</strong></span> <br>
-<strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-<strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
-<hr>
-<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span></p>
+<div id="plotting-multiresolution-decomposition-with-plot_mrd" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Plotting multiresolution decomposition with <code>plot_mrd</code><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>plot_mrd</code> takes an object returned by <code>calc_mrd</code> and plots mean, median and quartiles versus time.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="spectra.html#cb32-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_uw, <span class="dt">main=</span><span class="st">&quot;Cospectrum (u,w)&quot;</span>)</span></code></pre></div>
+<div class="figure">
+<img src="output_8_0.png" alt="" />
+<p class="caption">png</p>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="spectra.html#cb33-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_Tw, <span class="dt">main=</span><span class="st">&quot;Cospectrum (T,w)&quot;</span>)</span></code></pre></div>
+<div class="figure">
+<img src="output_9_0.png" alt="" />
+<p class="caption">png</p>
+</div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="spectra.html#cb34-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_ww, <span class="dt">main=</span><span class="st">&quot;Spectrum (w,w)&quot;</span>)</span></code></pre></div>
+<div class="figure">
+<img src="output_10_0.png" alt="" />
+<p class="caption">png</p>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="spectra.html#cb35-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_TT, <span class="dt">main=</span><span class="st">&quot;Spectrum (T,T)&quot;</span>)</span></code></pre></div>
+<div class="figure">
+<img src="output_11_0.png" alt="" />
+<p class="caption">png</p>
+</div>
+<p>Composite MRDs can be created by averaging over several MRDs (also possible to distinguish different flow regimes, e.g., based on the stability parameter <code>calc_zeta</code>) and can be used to find long-term characteristic (e.g., scale gaps). Scale(s) gap(s) are defined as the the zero-crossings of the spectrum or cospectrum (larger than the first zero-crossing at the measurement frequency itself).</p>
+</div>
+</div>
+<div id="literature-3" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Literature<a href="spectra.html#literature-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Vickers, D. and Mahrt, L. (2003). The Cospectral Gap and Turbulent Flux
+Calculations. J Atmos Ocean Technol, 20:660–672.</li>
+</ul>
 
-</div>
-<h3>References</h3>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Foken2017">
-<p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>.</p>
 </div>
 </div>
             </section>
@@ -243,8 +740,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="post-processing-of-the-raw-eddy-covariance-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="quadrant-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flux-footprint.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

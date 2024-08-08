@@ -1,15 +1,24 @@
 --- 
-title: "Introduction"
+title: "Reddy: An open-source package for analyzing eddy-covariance data"
 author: ""
-date: "`r Sys.Date()`"
+date: "" #"`r Sys.Date()`"
 site: bookdown::bookdown_site
 # output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: openscapes/series
+github-repo: noctiluc3nt/Reddy
 description: ""
 ---
 
-# Welcome {#welcome}
+
+# Introduction
+
+<hr>
+<span style="color: darkblue;">**An introduction to eddy-covariance measurements and their meteorological evaluation**</span> <br>
+**Package**: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
+**Gitbook**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
+<hr>
+
+Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. @Foken2017

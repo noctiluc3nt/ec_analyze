@@ -4,26 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Step 1: Post-processing of the raw eddy-covariance data | Introduction</title>
-  <meta name="description" content="2 Step 1: Post-processing of the raw eddy-covariance data | Introduction" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <title>2 Post-processing of the raw eddy-covariance data | Reddy: An open-source package for analyzing eddy-covariance data</title>
+  <meta name="description" content="2 Post-processing of the raw eddy-covariance data | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Step 1: Post-processing of the raw eddy-covariance data | Introduction" />
+  <meta property="og:title" content="2 Post-processing of the raw eddy-covariance data | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta property="og:type" content="book" />
   
   
-  <meta name="github-repo" content="openscapes/series" />
+  <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Step 1: Post-processing of the raw eddy-covariance data | Introduction" />
+  <meta name="twitter:title" content="2 Post-processing of the raw eddy-covariance data | Reddy: An open-source package for analyzing eddy-covariance data" />
   
   
   
 
-<meta name="author" content="" />
 
 
-<meta name="date" content="2024-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -56,9 +55,8 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +90,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +103,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -136,14 +134,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Field Tutorials</a></li>
+<li><a href="https://github.com/noctiluc3nt/Reddy" target="blank"><bf>Reddy<bf></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
-<li class="chapter" data-level="2" data-path="step-1-post-processing-of-the-raw-eddy-covariance-data.html"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Step 1: Post-processing of the raw eddy-covariance data</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Post-processing of the raw eddy-covariance data</a>
 <ul>
-<li class="chapter" data-level="2.0.1" data-path="step-1-post-processing-of-the-raw-eddy-covariance-data.html"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.0.1</b> Eddy-covariance method</a></li>
-<li class="chapter" data-level="2.0.2" data-path="step-1-post-processing-of-the-raw-eddy-covariance-data.html"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#literature"><i class="fa fa-check"></i><b>2.0.2</b> Literature</a></li>
+<li class="chapter" data-level="2.1" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.1</b> Eddy-covariance method</a></li>
+<li class="chapter" data-level="2.2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#raw-data-handling-and-corrections"><i class="fa fa-check"></i><b>2.2</b> Raw data handling and corrections</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time"><i class="fa fa-check"></i><b>2.2.1</b> Choosing a suitable averaging time</a></li>
+<li class="chapter" data-level="2.2.2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data"><i class="fa fa-check"></i><b>2.2.2</b> Overview of correction procedures applied to the raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#an-example-post-processing-routine"><i class="fa fa-check"></i><b>2.3</b> An example post-processing routine</a></li>
+<li class="chapter" data-level="2.4" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#literature"><i class="fa fa-check"></i><b>2.4</b> Literature</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="calculation-of-some-basic-turbulence-quantities.html"><a href="calculation-of-some-basic-turbulence-quantities.html"><i class="fa fa-check"></i><b>3</b> Calculation of some basic turbulence quantities</a>
 <ul>
@@ -152,8 +156,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="calculation-of-some-basic-turbulence-quantities.html"><a href="calculation-of-some-basic-turbulence-quantities.html#stability-dependence-with-discrete-binning-binning"><i class="fa fa-check"></i><b>3.3</b> Stability dependence with discrete binning (<code>binning</code>)</a></li>
 <li class="chapter" data-level="3.4" data-path="calculation-of-some-basic-turbulence-quantities.html"><a href="calculation-of-some-basic-turbulence-quantities.html#literature-1"><i class="fa fa-check"></i><b>3.4</b> Literature</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html#calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis"><i class="fa fa-check"></i><b>4.1</b> Calculation of occurrence frequencies and strengths of the four quadrants with <code>calc_quadrant_analysis</code></a></li>
+<li class="chapter" data-level="4.2" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html#plotting-quadrant-analysis-with-plot_quadrant_analysis"><i class="fa fa-check"></i><b>4.2</b> Plotting quadrant analysis with <code>plot_quadrant_analysis</code></a></li>
+<li class="chapter" data-level="4.3" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html#literature-2"><i class="fa fa-check"></i><b>4.3</b> Literature</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.1</b> Multiresolution decomposition (MRD)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.1.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.1.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#literature-3"><i class="fa fa-check"></i><b>5.2</b> Literature</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="flux-footprint.html"><a href="flux-footprint.html"><i class="fa fa-check"></i><b>6</b> Flux Footprint</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="flux-footprint.html"><a href="flux-footprint.html#d-flux-footprint"><i class="fa fa-check"></i><b>6.1</b> 2d flux footprint</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>6.1.1</b> Calculate 2d flux footprint estimate with <code>calc_flux_footprint</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>6.1.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
+<li class="chapter" data-level="6.1.3" data-path="flux-footprint.html"><a href="flux-footprint.html#literature-4"><i class="fa fa-check"></i><b>6.1.3</b> Literature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>7</b> Reynolds stress tensor</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#invariant-analysis-of-the-reynolds-stress-tensor"><i class="fa fa-check"></i><b>7.1</b> Invariant analysis of the Reynolds stress tensor</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy"><i class="fa fa-check"></i><b>7.1.1</b> Performing the invariant analysis of the Reynolds stress tensor with <code>calc_anisotropy</code></a></li>
+<li class="chapter" data-level="7.1.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#plotting-the-barycentric-map-using-plot_barycentric_map"><i class="fa fa-check"></i><b>7.1.2</b> Plotting the barycentric map using <code>plot_barycentric_map</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var"><i class="fa fa-check"></i><b>7.2</b> Anisotropy and velocity aspect ratio (VAR)</a></li>
+<li class="chapter" data-level="7.3" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#literature-5"><i class="fa fa-check"></i><b>7.3</b> Literature</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance (SEB)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#background"><i class="fa fa-check"></i><b>8.1</b> Background</a></li>
+<li class="chapter" data-level="8.2" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
+<li class="chapter" data-level="8.3" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Bowen ratio and evaporative fraction</a></li>
+<li class="chapter" data-level="8.4" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#clear-sky-index-csi-for-contextualization-calc_csi"><i class="fa fa-check"></i><b>8.4</b> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)</a></li>
+<li class="chapter" data-level="8.5" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#literature-6"><i class="fa fa-check"></i><b>8.5</b> Literature</a></li>
+</ul></li>
 <li class="divider"></li>
-<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown<br> &#169 Laura Mack 2024</a></li>
 
 </ul>
 
@@ -164,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source package for analyzing eddy-covariance data</a>
           </h1>
         </div>
 
@@ -172,11 +218,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="step-1-post-processing-of-the-raw-eddy-covariance-data" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Step 1: Post-processing of the raw eddy-covariance data<a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#step-1-post-processing-of-the-raw-eddy-covariance-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="post-processing-of-the-raw-eddy-covariance-data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Post-processing of the raw eddy-covariance data<a href="post-processing-of-the-raw-eddy-covariance-data.html#post-processing-of-the-raw-eddy-covariance-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Example for basic post-processing of raw eddy-covariance measurements (from CSAT3/Campbell Scientific and Li-7200/LI-COR closed-path IR gas analyzer) including despiking, rotation, averaging and flagging. The following notebooks (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/02_basic-turbulence-diagnostics.ipynb">02_basic-turbulence-diagnostics.ipynb</a>) build upon this and allow for a more detailed analysis (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/03_quadrant-analysis.ipynb">03_quadrant-analysis.ipynb</a>).</p>
-<div id="eddy-covariance-method" class="section level3 hasAnchor" number="2.0.1">
-<h3><span class="header-section-number">2.0.1</span> Eddy-covariance method<a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="eddy-covariance-method" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Eddy-covariance method<a href="post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the eddy-covariance method, the Reynolds decomposition is applied to every measured quantity <span class="math inline">\(x\)</span> through
 <span class="math display">\[
 x = \overline{x} + x&#39; \quad \textrm{with} \quad \overline{x}:= \frac{1}{t_s} \int_0^{t_s} x \: dt,
@@ -187,83 +233,105 @@ With the Reynolds postulates (in particular <span class="math inline">\(\overlin
     \overline{xw} = \overline{x}\:\overline{w} + \overline{x&#39;w&#39;},
 \]</span>
 where <span class="math inline">\(\overline{x&#39;w&#39;}\)</span> represents the vertical flux (<span class="math inline">\(w\)</span>: vertical wind speed) of the quantity <span class="math inline">\(x\)</span> with <span class="math inline">\(\overline{xw} = \overline{x&#39;w&#39;}\)</span> for <span class="math inline">\(\overline{w}=0\)</span> (which is intended by the applied coordinate rotation). In the post-processing, quality checks, rotation, averaging and flagging are applied, so that the high-resolution measurements can be analyzed using the eddy-covariance method. A detailed description of the measurement devices and methods can be found in Foken, 2017.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb1-1" tabindex="-1"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb1-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="at">repos=</span><span class="cn">NULL</span>,<span class="at">source=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(Reddy)</span></code></pre></div>
+</div>
+<div id="raw-data-handling-and-corrections" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Raw data handling and corrections<a href="post-processing-of-the-raw-eddy-covariance-data.html#raw-data-handling-and-corrections" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="choosing-a-suitable-averaging-time" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Choosing a suitable averaging time<a href="post-processing-of-the-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we have seen above, for calculating the fluxes with the eddy-covariance method, a suitable averaging time (<span class="math inline">\(t_s\)</span>) should be chosen. For this several things need to be considered: Generally, one can say that the longer the averaging time, the less likely it is that the conditions are steady (which is an assumption in method), but short averaging times miss low frequency contributions. So usually, an averaging time of 30 minutes is chosen. However, this averaging time can still be too long if the turbulence is very intermittent, which is the case for very stable conditions. Consequently, some studies use the 30 minutes average just for unstable stratification and an averaging time of 1 to 10 minutes for stable conditions. It is recommendable to first study the characteristics of the sampled raw data and then chose an averaging time.<br></p>
+</div>
+<div id="overview-of-correction-procedures-applied-to-the-raw-data" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Overview of correction procedures applied to the raw data<a href="post-processing-of-the-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Despiking</strong> (<code>despiking</code>): Removing from spikes in the raw data. For this usually three methods are applied: (1) based on pre-defined thresholds (i.e., an expected temperature or wind speed interval), (2) median deviation (MAD) test, i.e., all measurements lie within a pre-defined range around the median, and (3) based on skewness (3. moment) and kurtosis (4. moment), i.e., the skewness and kurtosis of the considered interval do not exceed pre-defined values</li>
+<li><strong>Detrending</strong> (<code>pracma::detrending</code>): Linear detrending by substracting the mean value</li>
+<li><strong>Rotation</strong> (<code>rotate_double</code> or <code>rotate_planar</code>): Rotation of the sonic coordinate system. Since the orientation of the sonic is arbitrary, the measurements have to be interpreted in a suitable coordinate system. For this the natural coordinate systems is used, which means that it follows the stream lines and with the streamwise velocity component <span class="math inline">\(u\)</span>, the crosswise velocity component <span class="math inline">\(v\)</span> and the vertical velocity component <span class="math inline">\(w\)</span>. To determine the orientation, two main approaches exist: Double rotation (<code>rotate_double</code>) alignes the sonic coordinate system with the streamlines for every averaging interval. Hence, this method can be applied near-real time. Planar fit rotation (<code>rotate_planar</code>) aligns the sonic coordinate system with the mean streamlines under the conditions that the mean vertical velocity <span class="math inline">\(\overline{w}\)</span> vanishes. For this, a time series is required and thus near-real time processing not possible. Generally, it is recommended to use double rotation in relatively simple topography, but planar fit in complex (micro-)topogaphy. The angles around which the sonic coordinate system was rotated also allow to estimate the quality of the measurements (the smaller the angle of rotation, the better).</li>
+<li><strong>Quality Flagging</strong> (<code>stationarity_flag</code>,<code>flag_w</code>,<code>flag_distortion</code>,<code>flag_most</code>): Several quality flags (ranging from 0: the best to 2: the worst) can be applied. Common flags are: a stationarity flag (<code>stationarity_flag</code>), that test the alignment with the stationarity assumption of the eddy-covariance method, a vertical velocity flag (<code>flag_w</code>), which checks that remaining vertical velocity after the rotation is small, a flow distortion flag (<code>flag_distortion</code>), which removes the pre-defined wind directions that are possible affected/blocked by the mast, an integral turbulence characteristics flag (<code>flag_itc</code>), which test for the agreement with Monin-Obukhov similarity theory. However, these flags have to be applied purpose-oriented and interpreted with caution. Sometimes particularly “poorly flagged” measurements are interesting for investigating turbulence under challenging (and therefore interesting) conditions, e.g. under very stable stratification.</li>
+<li><strong>SND (and cross-wind) correction</strong> (<code>SNDcorrection</code>): Converts the buoyancy flux to sensible heat flux. Since the sonics usually measure the sound velocity, the measured temperature (so called sonic temperature) is similar to the virtual temperature <span class="math inline">\(T_s\)</span> and thus the resulting flux <span class="math inline">\(\overline{w&#39;T_s&#39;}\)</span> represents the buoyancy flux, which is about 10-20 % larger than the sensible heat flux <span class="math inline">\(\overline{w&#39;T&#39;}\)</span>.</li>
+<li><strong>WPL correction</strong> (<code>WPLcorrection</code>): Converts volume- to mass-related quantities for trace gas fluxes. This correction only applies to trace gas concentration (water vapor, carbon dioxide, methane, …) measured with a gas analyzer.</li>
+<li><strong>Unit conversion</strong> (<code>ppt2rho</code>): Converts ppt to density. Closed-path gas analyzer measure trace gas concentrations in parts-per-… (ppt: … thousand, ppm: … million) and have to be converted to a density based on the respective molar mass.</li>
+</ul>
+</div>
+</div>
+<div id="an-example-post-processing-routine" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> An example post-processing routine<a href="post-processing-of-the-raw-eddy-covariance-data.html#an-example-post-processing-routine" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb1-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb1-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb1-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
+<span id="cb1-3"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb1-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span></code></pre></div>
 <pre><code>Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
 (as ‘lib’ is unspecified)</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb3-1" tabindex="-1"></a><span class="co">#ec data files</span></span>
-<span id="cb3-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb3-2" tabindex="-1"></a>dir_in<span class="ot">=</span><span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
-<span id="cb3-3"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb3-3" tabindex="-1"></a>files<span class="ot">=</span><span class="fu">list.files</span>(dir_in,<span class="at">full.names=</span><span class="cn">TRUE</span>)</span>
-<span id="cb3-4"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb3-4" tabindex="-1"></a>nf<span class="ot">=</span><span class="fu">length</span>(files)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb3-1" aria-hidden="true"></a><span class="co">#ec data files</span></span>
+<span id="cb3-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb3-2" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
+<span id="cb3-3"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb3-3" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb3-4"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb3-4" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span></code></pre></div>
 <p>Each given file contains 30 minutes of measurements, such that we just need to average over one file to get the 30 minutes averages and fluxes. However, in the notebook <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/04_multiresolution-decomposition.ipynb">04_multiresolution-decomposition.ipynb</a> we will have a look at method that allows to determine suitable averaging times more accurately.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-1" tabindex="-1"></a><span class="co">#allocate output</span></span>
-<span id="cb4-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-2" tabindex="-1"></a>var_out<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;u_mean&quot;</span>,<span class="st">&quot;v_mean&quot;</span>,<span class="st">&quot;w_mean&quot;</span>,<span class="st">&quot;ws_mean&quot;</span>,<span class="st">&quot;wd_mean&quot;</span>,<span class="st">&quot;T_mean&quot;</span>,<span class="st">&quot;h2o_mean&quot;</span>,<span class="st">&quot;co2_mean&quot;</span>,</span>
-<span id="cb4-3"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-3" tabindex="-1"></a>          <span class="st">&quot;u_sd&quot;</span>,<span class="st">&quot;v_sd&quot;</span>,<span class="st">&quot;w_sd&quot;</span>,<span class="st">&quot;T_sd&quot;</span>,<span class="st">&quot;h2o_sd&quot;</span>,<span class="st">&quot;co2_sd&quot;</span>,</span>
-<span id="cb4-4"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-4" tabindex="-1"></a>          <span class="st">&quot;cov_uv&quot;</span>,<span class="st">&quot;cov_uw&quot;</span>,<span class="st">&quot;cov_vw&quot;</span>,<span class="st">&quot;cov_wT&quot;</span>,<span class="st">&quot;cov_h2ow&quot;</span>,<span class="st">&quot;cov_co2w&quot;</span>,<span class="st">&quot;cov_wT_snd&quot;</span>,<span class="st">&quot;cov_rhoH2Ow_wpl&quot;</span>,</span>
-<span id="cb4-5"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-5" tabindex="-1"></a>          <span class="st">&quot;rot_angle1&quot;</span>,<span class="st">&quot;rot_angle2&quot;</span>,<span class="st">&quot;flag_stationarity&quot;</span>,<span class="st">&quot;flag_w&quot;</span>,<span class="st">&quot;flag_distortion&quot;</span>)</span>
-<span id="cb4-6"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-6" tabindex="-1"></a>nv<span class="ot">=</span><span class="fu">length</span>(var_out)</span>
-<span id="cb4-7"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-7" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(nf,nv)))</span>
-<span id="cb4-8"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb4-8" tabindex="-1"></a><span class="fu">colnames</span>(dat)<span class="ot">=</span>var_out</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-1" tabindex="-1"></a><span class="co">#postprocessing per file (30 mins)</span></span>
-<span id="cb5-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nf) {</span>
-<span id="cb5-3"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-3" tabindex="-1"></a>    tmp<span class="ot">=</span><span class="fu">read.table</span>(files[i],<span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header=</span>T)</span>
-<span id="cb5-4"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-4" tabindex="-1"></a>    dat<span class="sc">$</span>time[i]<span class="ot">=</span>tmp<span class="sc">$</span>X[<span class="dv">1</span>]</span>
-<span id="cb5-5"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-5" tabindex="-1"></a>    <span class="co">#despiking</span></span>
-<span id="cb5-6"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-6" tabindex="-1"></a>    tmp<span class="sc">$</span>T_degC<span class="ot">=</span><span class="fu">despiking</span>(tmp<span class="sc">$</span>T_degC,<span class="sc">-</span><span class="dv">40</span>,<span class="dv">30</span>)</span>
-<span id="cb5-7"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-7" tabindex="-1"></a>    tmp<span class="sc">$</span>u_m.s<span class="ot">=</span><span class="fu">despiking</span>(tmp<span class="sc">$</span>u_m.s,<span class="sc">-</span><span class="dv">25</span>,<span class="dv">25</span>)</span>
-<span id="cb5-8"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-8" tabindex="-1"></a>    tmp<span class="sc">$</span>v_m.s<span class="ot">=</span><span class="fu">despiking</span>(tmp<span class="sc">$</span>v_m.s,<span class="sc">-</span><span class="dv">25</span>,<span class="dv">25</span>)</span>
-<span id="cb5-9"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-9" tabindex="-1"></a>    tmp<span class="sc">$</span>w_m.s<span class="ot">=</span><span class="fu">despiking</span>(tmp<span class="sc">$</span>w_m.s,<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
-<span id="cb5-10"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-10" tabindex="-1"></a>    <span class="co">#wind before rotation</span></span>
-<span id="cb5-11"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-11" tabindex="-1"></a>    dat<span class="sc">$</span>ws_mean[i]<span class="ot">=</span><span class="fu">sqrt</span>(<span class="fu">mean</span>(tmp<span class="sc">$</span>u_m.s,<span class="at">na.rm=</span>T)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="fu">mean</span>(tmp<span class="sc">$</span>v_m.s,<span class="at">na.rm=</span>T)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb5-12"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-12" tabindex="-1"></a>    dat<span class="sc">$</span>wd_mean[i]<span class="ot">=</span><span class="fu">atan2</span>(<span class="fu">mean</span>(tmp<span class="sc">$</span>v_m.s,<span class="at">na.rm=</span>T),<span class="fu">mean</span>(tmp<span class="sc">$</span>u_m.s,<span class="at">na.rm=</span>T))</span>
-<span id="cb5-13"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-13" tabindex="-1"></a>    <span class="co">#rotation</span></span>
-<span id="cb5-14"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-14" tabindex="-1"></a>    rot_wind<span class="ot">=</span><span class="fu">rotate_double</span>(tmp<span class="sc">$</span>u_m.s,tmp<span class="sc">$</span>v_m.s,tmp<span class="sc">$</span>w_m.s)</span>
-<span id="cb5-15"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-15" tabindex="-1"></a>    tmp<span class="sc">$</span>u_m.s<span class="ot">=</span>rot_wind<span class="sc">$</span>u</span>
-<span id="cb5-16"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-16" tabindex="-1"></a>    tmp<span class="sc">$</span>v_m.s<span class="ot">=</span>rot_wind<span class="sc">$</span>v</span>
-<span id="cb5-17"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-17" tabindex="-1"></a>    tmp<span class="sc">$</span>w_m.s<span class="ot">=</span>rot_wind<span class="sc">$</span>w</span>
-<span id="cb5-18"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-18" tabindex="-1"></a>    dat<span class="sc">$</span>rot_angle1[i]<span class="ot">=</span>rot_wind<span class="sc">$</span>theta</span>
-<span id="cb5-19"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-19" tabindex="-1"></a>    dat<span class="sc">$</span>rot_angle2[i]<span class="ot">=</span>rot_wind<span class="sc">$</span>phi</span>
-<span id="cb5-20"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-20" tabindex="-1"></a>    <span class="co">#averaging</span></span>
-<span id="cb5-21"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-21" tabindex="-1"></a>    dat<span class="sc">$</span>u_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>u_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-22"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-22" tabindex="-1"></a>    dat<span class="sc">$</span>v_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>v_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-23"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-23" tabindex="-1"></a>    dat<span class="sc">$</span>w_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>w_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-24"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-24" tabindex="-1"></a>    dat<span class="sc">$</span>T_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>T_degC,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-25"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-25" tabindex="-1"></a>    <span class="co">#unit conversion for gases</span></span>
-<span id="cb5-26"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-26" tabindex="-1"></a>    tmp<span class="sc">$</span>rhoH2O<span class="ot">=</span><span class="fu">ppt2rho</span>(tmp<span class="sc">$</span>H2O_ppt,dat<span class="sc">$</span>T_mean[i]<span class="sc">+</span><span class="fl">273.15</span>,<span class="dv">87000</span>)</span>
-<span id="cb5-27"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-27" tabindex="-1"></a>    tmp<span class="sc">$</span>rhoCO2<span class="ot">=</span><span class="fu">ppt2rho</span>(tmp<span class="sc">$</span>CO2_ppm<span class="sc">/</span><span class="dv">1000</span>,dat<span class="sc">$</span>T_mean[i]<span class="sc">+</span><span class="fl">273.15</span>,<span class="dv">87000</span>,<span class="at">gas=</span><span class="st">&quot;CO2&quot;</span>)</span>
-<span id="cb5-28"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-28" tabindex="-1"></a>    dat<span class="sc">$</span>h2o_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>rhoH2O,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-29"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-29" tabindex="-1"></a>    dat<span class="sc">$</span>co2_mean[i]<span class="ot">=</span><span class="fu">mean</span>(tmp<span class="sc">$</span>rhoCO2,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-30"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-30" tabindex="-1"></a>    <span class="co">#sds</span></span>
-<span id="cb5-31"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-31" tabindex="-1"></a>    dat<span class="sc">$</span>u_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>u_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-32"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-32" tabindex="-1"></a>    dat<span class="sc">$</span>v_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>v_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-33"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-33" tabindex="-1"></a>    dat<span class="sc">$</span>w_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>w_m.s,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-34"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-34" tabindex="-1"></a>    dat<span class="sc">$</span>T_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>T_degC,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-35"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-35" tabindex="-1"></a>    dat<span class="sc">$</span>h2o_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>rhoH2O,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-36"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-36" tabindex="-1"></a>    dat<span class="sc">$</span>co2_sd[i]<span class="ot">=</span><span class="fu">sd</span>(tmp<span class="sc">$</span>rhoCO2,<span class="at">na.rm=</span>T)</span>
-<span id="cb5-37"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-37" tabindex="-1"></a>    <span class="co">#covs</span></span>
-<span id="cb5-38"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-38" tabindex="-1"></a>    dat<span class="sc">$</span>cov_uw[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>u_m.s,tmp<span class="sc">$</span>w_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-39"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-39" tabindex="-1"></a>    dat<span class="sc">$</span>cov_uv[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>u_m.s,tmp<span class="sc">$</span>v_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-40"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-40" tabindex="-1"></a>    dat<span class="sc">$</span>cov_vw[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>v_m.s,tmp<span class="sc">$</span>w_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-41"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-41" tabindex="-1"></a>    dat<span class="sc">$</span>cov_wT[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>T_degC,tmp<span class="sc">$</span>w_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-42"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-42" tabindex="-1"></a>    dat<span class="sc">$</span>cov_h2ow[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>rhoH2O,tmp<span class="sc">$</span>w_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-43"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-43" tabindex="-1"></a>    dat<span class="sc">$</span>cov_co2w[i]<span class="ot">=</span><span class="fu">cov</span>(tmp<span class="sc">$</span>rhoCO2,tmp<span class="sc">$</span>w_m.s,<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
-<span id="cb5-44"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-44" tabindex="-1"></a>    <span class="co">#SND correction</span></span>
-<span id="cb5-45"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-45" tabindex="-1"></a>    dat<span class="sc">$</span>cov_wT_snd[i]<span class="ot">=</span><span class="fu">SNDcorrection</span>(tmp<span class="sc">$</span>u_m.s,tmp<span class="sc">$</span>v_m.s,tmp<span class="sc">$</span>w_m.s,tmp<span class="sc">$</span>T_degC<span class="fl">+273.15</span>)</span>
-<span id="cb5-46"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-46" tabindex="-1"></a>    <span class="co">#WPL correction</span></span>
-<span id="cb5-47"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-47" tabindex="-1"></a>    <span class="co">#dat$cov_rhoH2Ow_wpl[i]=WPLcorrection(tmp$rhoH2O,w=tmp$w_m.s,Ts=tmp$T_degC+273.15,q=tmp$q)</span></span>
-<span id="cb5-48"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-48" tabindex="-1"></a>    <span class="co">#flagging</span></span>
-<span id="cb5-49"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-49" tabindex="-1"></a>    dat<span class="sc">$</span>flag_stationarity[i]<span class="ot">=</span><span class="fu">flag_stationarity</span>(tmp<span class="sc">$</span>w_m.s,tmp<span class="sc">$</span>T_degC,<span class="at">nsub=</span><span class="dv">3000</span>)</span>
-<span id="cb5-50"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-50" tabindex="-1"></a>    dat<span class="sc">$</span>flag_w[i]<span class="ot">=</span><span class="fu">flag_w</span>(dat<span class="sc">$</span>w_mean[i])</span>
-<span id="cb5-51"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-51" tabindex="-1"></a>    dat<span class="sc">$</span>flag_distortion[i]<span class="ot">=</span><span class="fu">flag_distortion</span>(tmp<span class="sc">$</span>u_m.s,tmp<span class="sc">$</span>v_m.s,<span class="at">dir_blocked=</span><span class="fu">c</span>(<span class="dv">340</span>,<span class="dv">360</span>))</span>
-<span id="cb5-52"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb5-52" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-1" aria-hidden="true"></a><span class="co">#allocate output</span></span>
+<span id="cb4-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-2" aria-hidden="true"></a>var_out=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;u_mean&quot;</span>,<span class="st">&quot;v_mean&quot;</span>,<span class="st">&quot;w_mean&quot;</span>,<span class="st">&quot;ws_mean&quot;</span>,<span class="st">&quot;wd_mean&quot;</span>,<span class="st">&quot;T_mean&quot;</span>,<span class="st">&quot;h2o_mean&quot;</span>,<span class="st">&quot;co2_mean&quot;</span>,</span>
+<span id="cb4-3"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-3" aria-hidden="true"></a>          <span class="st">&quot;u_sd&quot;</span>,<span class="st">&quot;v_sd&quot;</span>,<span class="st">&quot;w_sd&quot;</span>,<span class="st">&quot;T_sd&quot;</span>,<span class="st">&quot;h2o_sd&quot;</span>,<span class="st">&quot;co2_sd&quot;</span>,</span>
+<span id="cb4-4"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-4" aria-hidden="true"></a>          <span class="st">&quot;cov_uv&quot;</span>,<span class="st">&quot;cov_uw&quot;</span>,<span class="st">&quot;cov_vw&quot;</span>,<span class="st">&quot;cov_wT&quot;</span>,<span class="st">&quot;cov_h2ow&quot;</span>,<span class="st">&quot;cov_co2w&quot;</span>,<span class="st">&quot;cov_wT_snd&quot;</span>,<span class="st">&quot;cov_rhoH2Ow_wpl&quot;</span>,</span>
+<span id="cb4-5"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-5" aria-hidden="true"></a>          <span class="st">&quot;rot_angle1&quot;</span>,<span class="st">&quot;rot_angle2&quot;</span>,<span class="st">&quot;flag_stationarity&quot;</span>,<span class="st">&quot;flag_w&quot;</span>,<span class="st">&quot;flag_distortion&quot;</span>)</span>
+<span id="cb4-6"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-6" aria-hidden="true"></a>nv=<span class="kw">length</span>(var_out)</span>
+<span id="cb4-7"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-7" aria-hidden="true"></a>dat=<span class="kw">data.frame</span>(<span class="kw">array</span>(<span class="ot">NA</span>,<span class="dt">dim=</span><span class="kw">c</span>(nf,nv)))</span>
+<span id="cb4-8"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb4-8" aria-hidden="true"></a><span class="kw">colnames</span>(dat)=var_out</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-1" aria-hidden="true"></a><span class="co">#postprocessing per file (30 mins)</span></span>
+<span id="cb5-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nf) {</span>
+<span id="cb5-3"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-3" aria-hidden="true"></a>    tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb5-4"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-4" aria-hidden="true"></a>    dat<span class="op">$</span>time[i]=tmp<span class="op">$</span>X[<span class="dv">1</span>]</span>
+<span id="cb5-5"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-5" aria-hidden="true"></a>    <span class="co">#despiking</span></span>
+<span id="cb5-6"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-6" aria-hidden="true"></a>    tmp<span class="op">$</span>T_degC=<span class="kw">despiking</span>(tmp<span class="op">$</span>T_degC,<span class="op">-</span><span class="dv">40</span>,<span class="dv">30</span>)</span>
+<span id="cb5-7"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-7" aria-hidden="true"></a>    tmp<span class="op">$</span>u_m.s=<span class="kw">despiking</span>(tmp<span class="op">$</span>u_m.s,<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>)</span>
+<span id="cb5-8"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-8" aria-hidden="true"></a>    tmp<span class="op">$</span>v_m.s=<span class="kw">despiking</span>(tmp<span class="op">$</span>v_m.s,<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>)</span>
+<span id="cb5-9"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-9" aria-hidden="true"></a>    tmp<span class="op">$</span>w_m.s=<span class="kw">despiking</span>(tmp<span class="op">$</span>w_m.s,<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
+<span id="cb5-10"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-10" aria-hidden="true"></a>    <span class="co">#wind before rotation</span></span>
+<span id="cb5-11"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-11" aria-hidden="true"></a>    dat<span class="op">$</span>ws_mean[i]=<span class="kw">sqrt</span>(<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb5-12"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-12" aria-hidden="true"></a>    dat<span class="op">$</span>wd_mean[i]=<span class="kw">atan2</span>(<span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T),<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T))</span>
+<span id="cb5-13"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-13" aria-hidden="true"></a>    <span class="co">#rotation</span></span>
+<span id="cb5-14"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-14" aria-hidden="true"></a>    rot_wind=<span class="kw">rotate_double</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>v_m.s,tmp<span class="op">$</span>w_m.s)</span>
+<span id="cb5-15"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-15" aria-hidden="true"></a>    tmp<span class="op">$</span>u_m.s=rot_wind<span class="op">$</span>u</span>
+<span id="cb5-16"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-16" aria-hidden="true"></a>    tmp<span class="op">$</span>v_m.s=rot_wind<span class="op">$</span>v</span>
+<span id="cb5-17"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-17" aria-hidden="true"></a>    tmp<span class="op">$</span>w_m.s=rot_wind<span class="op">$</span>w</span>
+<span id="cb5-18"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-18" aria-hidden="true"></a>    dat<span class="op">$</span>rot_angle1[i]=rot_wind<span class="op">$</span>theta</span>
+<span id="cb5-19"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-19" aria-hidden="true"></a>    dat<span class="op">$</span>rot_angle2[i]=rot_wind<span class="op">$</span>phi</span>
+<span id="cb5-20"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-20" aria-hidden="true"></a>    <span class="co">#averaging</span></span>
+<span id="cb5-21"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-21" aria-hidden="true"></a>    dat<span class="op">$</span>u_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-22"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-22" aria-hidden="true"></a>    dat<span class="op">$</span>v_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-23"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-23" aria-hidden="true"></a>    dat<span class="op">$</span>w_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>w_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-24"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-24" aria-hidden="true"></a>    dat<span class="op">$</span>T_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>T_degC,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-25"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-25" aria-hidden="true"></a>    <span class="co">#unit conversion for gases</span></span>
+<span id="cb5-26"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-26" aria-hidden="true"></a>    tmp<span class="op">$</span>rhoH2O=<span class="kw">ppt2rho</span>(tmp<span class="op">$</span>H2O_ppt,dat<span class="op">$</span>T_mean[i]<span class="op">+</span><span class="fl">273.15</span>,<span class="dv">87000</span>)</span>
+<span id="cb5-27"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-27" aria-hidden="true"></a>    tmp<span class="op">$</span>rhoCO2=<span class="kw">ppt2rho</span>(tmp<span class="op">$</span>CO2_ppm<span class="op">/</span><span class="dv">1000</span>,dat<span class="op">$</span>T_mean[i]<span class="op">+</span><span class="fl">273.15</span>,<span class="dv">87000</span>,<span class="dt">gas=</span><span class="st">&quot;CO2&quot;</span>)</span>
+<span id="cb5-28"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-28" aria-hidden="true"></a>    dat<span class="op">$</span>h2o_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>rhoH2O,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-29"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-29" aria-hidden="true"></a>    dat<span class="op">$</span>co2_mean[i]=<span class="kw">mean</span>(tmp<span class="op">$</span>rhoCO2,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-30"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-30" aria-hidden="true"></a>    <span class="co">#sds</span></span>
+<span id="cb5-31"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-31" aria-hidden="true"></a>    dat<span class="op">$</span>u_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-32"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-32" aria-hidden="true"></a>    dat<span class="op">$</span>v_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-33"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-33" aria-hidden="true"></a>    dat<span class="op">$</span>w_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>w_m.s,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-34"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-34" aria-hidden="true"></a>    dat<span class="op">$</span>T_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>T_degC,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-35"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-35" aria-hidden="true"></a>    dat<span class="op">$</span>h2o_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>rhoH2O,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-36"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-36" aria-hidden="true"></a>    dat<span class="op">$</span>co2_sd[i]=<span class="kw">sd</span>(tmp<span class="op">$</span>rhoCO2,<span class="dt">na.rm=</span>T)</span>
+<span id="cb5-37"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-37" aria-hidden="true"></a>    <span class="co">#covs</span></span>
+<span id="cb5-38"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-38" aria-hidden="true"></a>    dat<span class="op">$</span>cov_uw[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-39"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-39" aria-hidden="true"></a>    dat<span class="op">$</span>cov_uv[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>v_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-40"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-40" aria-hidden="true"></a>    dat<span class="op">$</span>cov_vw[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>v_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-41"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-41" aria-hidden="true"></a>    dat<span class="op">$</span>cov_wT[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-42"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-42" aria-hidden="true"></a>    dat<span class="op">$</span>cov_h2ow[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>rhoH2O,tmp<span class="op">$</span>w_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-43"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-43" aria-hidden="true"></a>    dat<span class="op">$</span>cov_co2w[i]=<span class="kw">cov</span>(tmp<span class="op">$</span>rhoCO2,tmp<span class="op">$</span>w_m.s,<span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span>
+<span id="cb5-44"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-44" aria-hidden="true"></a>    <span class="co">#SND correction</span></span>
+<span id="cb5-45"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-45" aria-hidden="true"></a>    dat<span class="op">$</span>cov_wT_snd[i]=<span class="kw">SNDcorrection</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>v_m.s,tmp<span class="op">$</span>w_m.s,tmp<span class="op">$</span>T_degC<span class="fl">+273.15</span>)</span>
+<span id="cb5-46"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-46" aria-hidden="true"></a>    <span class="co">#WPL correction</span></span>
+<span id="cb5-47"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-47" aria-hidden="true"></a>    <span class="co">#dat$cov_rhoH2Ow_wpl[i]=WPLcorrection(tmp$rhoH2O,w=tmp$w_m.s,Ts=tmp$T_degC+273.15,q=tmp$q)</span></span>
+<span id="cb5-48"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-48" aria-hidden="true"></a>    <span class="co">#flagging</span></span>
+<span id="cb5-49"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-49" aria-hidden="true"></a>    dat<span class="op">$</span>flag_stationarity[i]=<span class="kw">flag_stationarity</span>(tmp<span class="op">$</span>w_m.s,tmp<span class="op">$</span>T_degC,<span class="dt">nsub=</span><span class="dv">3000</span>)</span>
+<span id="cb5-50"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-50" aria-hidden="true"></a>    dat<span class="op">$</span>flag_w[i]=<span class="kw">flag_w</span>(dat<span class="op">$</span>w_mean[i])</span>
+<span id="cb5-51"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-51" aria-hidden="true"></a>    dat<span class="op">$</span>flag_distortion[i]=<span class="kw">flag_distortion</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>v_m.s,<span class="dt">dir_blocked=</span><span class="kw">c</span>(<span class="dv">340</span>,<span class="dv">360</span>))</span>
+<span id="cb5-52"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb5-52" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The covariances have to be converted to the fluxes (unit W/m<span class="math inline">\(^2\)</span>). Since the measured temperature (“sonic temperature”) is approximately equal to the virtual temperature, the respective flux <code>cov_wT</code> represents the buoyancy flux. To derive the sensible heat flux from this, the so called SND-corrected flux <code>cov_wT_snd</code> should be used. For the latent heat flux a density correction (WPL correction) is recommended to be applied.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb6-1" tabindex="-1"></a><span class="co">#calculate fluxes</span></span>
-<span id="cb6-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb6-2" tabindex="-1"></a>dat<span class="sc">$</span>sh<span class="ot">=</span><span class="fu">cov2sh</span>(dat<span class="sc">$</span>cov_wT_snd)</span>
-<span id="cb6-3"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb6-3" tabindex="-1"></a>dat<span class="sc">$</span>lh<span class="ot">=</span><span class="fu">cov2lh</span>(dat<span class="sc">$</span>cov_h2ow)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb6-1" aria-hidden="true"></a><span class="co">#calculate fluxes</span></span>
+<span id="cb6-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb6-2" aria-hidden="true"></a>dat<span class="op">$</span>sh=<span class="kw">cov2sh</span>(dat<span class="op">$</span>cov_wT_snd)</span>
+<span id="cb6-3"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb6-3" aria-hidden="true"></a>dat<span class="op">$</span>lh=<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow)</span></code></pre></div>
 <p>The output contains the 30 minutes averages, standard deviations and covariances of the measured quantities, which will be used in the following notebooks for some more detailed analysis.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb7-1" tabindex="-1"></a><span class="co">#look at output</span></span>
-<span id="cb7-2"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb7-2" tabindex="-1"></a>dat</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb7-1" aria-hidden="true"></a><span class="co">#look at output</span></span>
+<span id="cb7-2"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb7-2" aria-hidden="true"></a>dat</span></code></pre></div>
 <table class="dataframe">
 <caption>
 A data.frame: 127 × 30
@@ -4368,11 +4436,11 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#cb8-1" tabindex="-1"></a><span class="fu">saveRDS</span>(dat,<span class="at">file=</span><span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="post-processing-of-the-raw-eddy-covariance-data.html#cb8-1" aria-hidden="true"></a><span class="kw">saveRDS</span>(dat,<span class="dt">file=</span><span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
 <p>Note, different sensors may require different correction methods, see also Foken, 2017. Additionally, the angles in the rotation can also be checked to verify if the applied rotation method is suitable (for longer time periods planar fit would be an alternative, e.g., if there is a systematic topographically induced vertical wind speed, and for stable stratification it should be checked whether the angles stay somehow constant and do not flip due to sign changes of the close-to-zero fluxes).</p>
 </div>
-<div id="literature" class="section level3 hasAnchor" number="2.0.2">
-<h3><span class="header-section-number">2.0.2</span> Literature<a href="step-1-post-processing-of-the-raw-eddy-covariance-data.html#literature" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="literature" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Literature<a href="post-processing-of-the-raw-eddy-covariance-data.html#literature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Foken, T. (2017). Micrometeorology, Springer-Verlag Berlin Heidelberg, DOI: 10.1007/978-3-642-25440-6.</li>
 </ul>
@@ -4430,8 +4498,10 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection"
+"collapse": "section",
+"scroll_highlight": true
 },
+"toc depth": 2,
 "github-repo": "noctiluc3nt/ec_analyze"
 });
 });

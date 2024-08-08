@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reddy: An open-source package for analyzing eddy-covariance data</title>
-  <meta name="description" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <title>7 Reynolds stress tensor | Reddy: An open-source package for analyzing eddy-covariance data</title>
+  <meta name="description" content="7 Reynolds stress tensor | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:title" content="7 Reynolds stress tensor | Reddy: An open-source package for analyzing eddy-covariance data" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="twitter:title" content="7 Reynolds stress tensor | Reddy: An open-source package for analyzing eddy-covariance data" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="post-processing-of-the-raw-eddy-covariance-data.html"/>
+<link rel="prev" href="flux-footprint.html"/>
+<link rel="next" href="surface-energy-balance-seb.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -218,24 +218,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reddy: An open-source package for analyzing eddy-covariance data</h1>
-<p class="author"><em></em></p>
+<div id="reynolds-stress-tensor" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Reynolds stress tensor<a href="reynolds-stress-tensor.html#reynolds-stress-tensor" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The Reynolds stress tensor
+<span class="math display">\[ R := \overline{u_i &#39; u_j &#39;} = \begin{pmatrix}
+            u&#39;^2 &amp; \overline{u&#39;v&#39;} &amp; \overline{u&#39;w&#39;} \\
+            \overline{v&#39;u&#39;} &amp; v&#39;^2 &amp; \overline{v&#39;w&#39;} \\
+            \overline{w&#39;u&#39;} &amp; \overline{w&#39;v&#39;} &amp; w&#39;^2 
+        \end{pmatrix}, \quad \textrm{with} \quad R = R^T\]</span>
+summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle – called <em>barycentric map</em> – with the coordinates <span class="math inline">\((x_B,y_B)\)</span>, can be constructed, which allows to characterize the anisotropy (<span class="math inline">\(y_B\)</span>) and the limiting states.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="reynolds-stress-tensor.html#cb41-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb41-2"><a href="reynolds-stress-tensor.html#cb41-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
+<span id="cb41-3"><a href="reynolds-stress-tensor.html#cb41-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb41-4"><a href="reynolds-stress-tensor.html#cb41-4" aria-hidden="true"></a></span>
+<span id="cb41-5"><a href="reynolds-stress-tensor.html#cb41-5" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
+<span id="cb41-6"><a href="reynolds-stress-tensor.html#cb41-6" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
+<pre><code>Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
+(as ‘lib’ is unspecified)</code></pre>
+<div id="invariant-analysis-of-the-reynolds-stress-tensor" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Invariant analysis of the Reynolds stress tensor<a href="reynolds-stress-tensor.html#invariant-analysis-of-the-reynolds-stress-tensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Performing the invariant analysis of the Reynolds stress tensor with <code>calc_anisotropy</code><a href="reynolds-stress-tensor.html#performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>calc_anisotropy</code> calculates the invariant analysis and takes for this vectors for all six independent components of the Reynolds stress tensor as input (since it is symmetric there are only six not nine independent entries) in the form
+<span class="math display">\[ R  = \begin{pmatrix}
+            a_{11} &amp; a_{12} &amp; a_{13}\\
+            a_{12} &amp; a_{22} &amp; a_{23} \\
+            a_{13} &amp; a_{23} &amp; a_{33} 
+        \end{pmatrix}
+\]</span>
+and in the order <span class="math inline">\(a_{11}, a_{12}, a_{13}, a_{22}, a_{23}, a_{33}\)</span>.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="reynolds-stress-tensor.html#cb43-1" aria-hidden="true"></a>rey_ana =<span class="st"> </span><span class="kw">calc_anisotropy</span>(dat<span class="op">$</span>u_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_uv,dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>v_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_vw,dat<span class="op">$</span>w_sd<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb43-2"><a href="reynolds-stress-tensor.html#cb43-2" aria-hidden="true"></a><span class="kw">str</span>(rey_ana)</span></code></pre></div>
+<pre><code>List of 6
+ $ xb          : num [1:127] 0.348 0.249 0.326 0.257 0.188 ...
+ $ yb          : num [1:127] 0.119 0.124 0.101 0.103 0.117 ...
+ $ eta         : num [1:127] 0.165 0.152 0.166 0.157 0.148 ...
+ $ xi          : num [1:127] -0.0562 -0.1214 -0.0821 -0.1202 -0.1353 ...
+ $ eigenvalues : num [1:127, 1:3] 0.283 0.232 0.281 0.245 0.204 ...
+ $ eigenvectors: num [1:127, 1:3, 1:3] 0.89759 0.93931 0.86082 0.00664 -0.64731 ...</code></pre>
+<p>The output contains the coordinates of the barycentric map (<code>xb, yb</code>) and of the Lumley triangle (<code>eta, xi</code>) as well as all eigenvalues and eigenvectors.</p>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<hr>
-<span style="color: darkblue;"><strong>An introduction to eddy-covariance measurements and their meteorological evaluation</strong></span> <br>
-<strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-<strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
-<hr>
-<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span></p>
+<div id="plotting-the-barycentric-map-using-plot_barycentric_map" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Plotting the barycentric map using <code>plot_barycentric_map</code><a href="reynolds-stress-tensor.html#plotting-the-barycentric-map-using-plot_barycentric_map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>plot_barycentric_map</code> takes <code>xb, yb</code> as input (as calculated in the invariant analysis before) and plots them in the barycentric map.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="reynolds-stress-tensor.html#cb45-1" aria-hidden="true"></a><span class="kw">plot_barycentric_map</span>(rey_ana<span class="op">$</span>xb,rey_ana<span class="op">$</span>yb)</span></code></pre></div>
+<div class="figure">
+<img src="output_6_0.png" alt="" />
+<p class="caption">png</p>
+</div>
+<p>The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, “sphere-like”) at <span class="math inline">\((0.5,\sqrt{3}/2\)</span>), 2-component limit (“disk-like”) at <span class="math inline">\((0,0)\)</span> and 1-component limit (“rod-like”) at <span class="math inline">\((1,0)\)</span>. <span class="math inline">\(y_B\)</span> is a measure for anisotropy (from <span class="math inline">\(y_B = 0\)</span> completely anisotropic to <span class="math inline">\(y_B = \sqrt(3)/2\)</span> perfectly isotropic.</p>
+</div>
+</div>
+<div id="anisotropy-and-velocity-aspect-ratio-var" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Anisotropy and velocity aspect ratio (VAR)<a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The velocity aspect ratio VAR (<code>calc_var</code>) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., <span class="math inline">\(\sigma_u, \sigma_v,\sigma_w\)</span>, into account. A deviation from a linear regression between VAR and <span class="math inline">\(y_B\)</span> allows quantify the effect of shear stresses. As seen in the plot below, for small values of <span class="math inline">\(y_B\)</span>, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of <span class="math inline">\(y_B\)</span>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="reynolds-stress-tensor.html#cb46-1" aria-hidden="true"></a>var=<span class="kw">calc_var</span>(dat<span class="op">$</span>u_sd,dat<span class="op">$</span>v_sd,dat<span class="op">$</span>w_sd)</span>
+<span id="cb46-2"><a href="reynolds-stress-tensor.html#cb46-2" aria-hidden="true"></a><span class="kw">plot</span>(var,rey_ana<span class="op">$</span>yb,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">xlab=</span><span class="st">&quot;VAR&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;yb&quot;</span>)</span>
+<span id="cb46-3"><a href="reynolds-stress-tensor.html#cb46-3" aria-hidden="true"></a><span class="kw">grid</span>()</span>
+<span id="cb46-4"><a href="reynolds-stress-tensor.html#cb46-4" aria-hidden="true"></a>fit=<span class="kw">lm</span>(rey_ana<span class="op">$</span>yb<span class="op">~</span>var)</span>
+<span id="cb46-5"><a href="reynolds-stress-tensor.html#cb46-5" aria-hidden="true"></a><span class="kw">abline</span>(fit,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
+<span id="cb46-6"><a href="reynolds-stress-tensor.html#cb46-6" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">summary</span>(fit))</span></code></pre></div>
+<pre><code>Call:
+lm(formula = rey_ana$yb ~ var)
 
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.011421 -0.003373 -0.001110  0.003227  0.021316 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.08683    0.00265  -32.77   &lt;2e-16 ***
+var          0.64442    0.00660   97.64   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.005629 on 125 degrees of freedom
+Multiple R-squared:  0.9871,    Adjusted R-squared:  0.987 
+F-statistic:  9534 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="figure">
+<img src="output_9_1.png" alt="" />
+<p class="caption">png</p>
 </div>
-<h3>References</h3>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Foken2017">
-<p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>.</p>
+</div>
+<div id="literature-5" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Literature<a href="reynolds-stress-tensor.html#literature-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Banerjee, S., Krahl, R., Durst, F., and Zenger, C. (2007). Presentation of
+anisotropy properties of turbulence, invariants versus eigenvalue approaches.
+J Turb, 8(N32).</li>
+</ul>
+
 </div>
 </div>
             </section>
@@ -243,8 +315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="post-processing-of-the-raw-eddy-covariance-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="flux-footprint.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="surface-energy-balance-seb.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

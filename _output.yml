@@ -5,11 +5,14 @@ bookdown::gitbook:
    # - lib/css/lesson.css
   includes:
   config:
+    toc depth: 2
     toc:
+      collapse: section
+      scroll_highlight: yes
       before: |
-        <li><a href="./">Field Tutorials</a></li>
+        <li><a href="https://github.com/noctiluc3nt/Reddy" target="blank"><bf>Reddy<bf></a></li>
       after: |
-        <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+        <li><a href="https://bookdown.org" target="blank">Published with bookdown<br> &#169 Laura Mack 2024</a></li>
     edit: 
     download: ["pdf"]
     sharing:
