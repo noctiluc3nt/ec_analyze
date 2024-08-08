@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.1 Calculation of standard turbulence diagnostics and simple timeseries plots | Introduction" />
+<meta property="og:type" content="book" />
+
+
+<meta name="github-repo" content="openscapes/series" />
+
+<meta name="author" content="" />
+
+<meta name="date" content="2024-06-04" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="description" content="3.1 Calculation of standard turbulence diagnostics and simple timeseries plots | Introduction">
+
+<title>3.1 Calculation of standard turbulence diagnostics and simple timeseries plots | Introduction</title>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if bootstrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome" id="toc-welcome"><span class="toc-section-number">1</span> Welcome</a></li>
+<li class="has-sub"><a href="2-step-1-post-processing-of-the-raw-eddy-covariance-data.html#step-1-post-processing-of-the-raw-eddy-covariance-data" id="toc-step-1-post-processing-of-the-raw-eddy-covariance-data"><span class="toc-section-number">2</span> Step 1: Post-processing of the raw eddy-covariance data</a>
+<ul>
+<li><a href="2-step-1-post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method" id="toc-eddy-covariance-method"><span class="toc-section-number">2.0.1</span> Eddy-covariance method</a></li>
+<li><a href="2-step-1-post-processing-of-the-raw-eddy-covariance-data.html#literature" id="toc-literature"><span class="toc-section-number">2.0.2</span> Literature</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-calculation-of-some-basic-turbulence-quantities.html#calculation-of-some-basic-turbulence-quantities" id="toc-calculation-of-some-basic-turbulence-quantities"><span class="toc-section-number">3</span> Calculation of some basic turbulence quantities</a>
+<ul>
+<li><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots" id="toc-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots"><span class="toc-section-number">3.1</span> Calculation of standard turbulence diagnostics and simple timeseries plots</a></li>
+<li><a href="3.2-regime-plots.html#regime-plots" id="toc-regime-plots"><span class="toc-section-number">3.2</span> Regime plots</a></li>
+<li><a href="3.3-stability-dependence-with-discrete-binning-binning.html#stability-dependence-with-discrete-binning-binning" id="toc-stability-dependence-with-discrete-binning-binning"><span class="toc-section-number">3.3</span> Stability dependence with discrete binning (<code>binning</code>)</a></li>
+<li><a href="3.4-literature-1.html#literature-1" id="toc-literature-1"><span class="toc-section-number">3.4</span> Literature</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Calculation of standard turbulence diagnostics and simple timeseries plots</h2>
+<p>Here, some functions from the Reddy package are used to calculate turbulent kinetic energy <span class="math inline">\(TKE\)</span>, velocity scale of TKE <span class="math inline">\(V_{TKE}\)</span>, horizontal turbulence intensity <span class="math inline">\(TI\)</span>, vertical turbulence intensity <span class="math inline">\(I_w\)</span>, friction velocity <span class="math inline">\(u_*\)</span>, Obukhov length <span class="math inline">\(L\)</span>, stability parameter <span class="math inline">\(\zeta\)</span> and directional shear angle and plot their timeseries for the previously post-processed example data.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-1" tabindex="-1"></a><span class="co">#calculation of some useful turbulence diagnostics</span></span>
+<span id="cb12-2"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-2" tabindex="-1"></a>dat<span class="sc">$</span>tke<span class="ot">=</span><span class="fu">calc_tke</span>(dat<span class="sc">$</span>u_sd,dat<span class="sc">$</span>v_sd,dat<span class="sc">$</span>w_sd)</span>
+<span id="cb12-3"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-3" tabindex="-1"></a>dat<span class="sc">$</span>vtke<span class="ot">=</span><span class="fu">calc_vtke</span>(dat<span class="sc">$</span>u_sd,dat<span class="sc">$</span>v_sd,dat<span class="sc">$</span>w_sd)</span>
+<span id="cb12-4"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-4" tabindex="-1"></a>dat<span class="sc">$</span>ti<span class="ot">=</span><span class="fu">calc_ti</span>(dat<span class="sc">$</span>u_sd,dat<span class="sc">$</span>v_sd,dat<span class="sc">$</span>ws_mean)</span>
+<span id="cb12-5"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-5" tabindex="-1"></a>dat<span class="sc">$</span>iw<span class="ot">=</span><span class="fu">calc_iw</span>(dat<span class="sc">$</span>w_sd,dat<span class="sc">$</span>ws_mean)</span>
+<span id="cb12-6"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-6" tabindex="-1"></a>dat<span class="sc">$</span>ustar<span class="ot">=</span><span class="fu">calc_ustar</span>(dat<span class="sc">$</span>cov_uw,dat<span class="sc">$</span>cov_vw)</span>
+<span id="cb12-7"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-7" tabindex="-1"></a>dat<span class="sc">$</span>L<span class="ot">=</span><span class="fu">calc_L</span>(dat<span class="sc">$</span>ustar,dat<span class="sc">$</span>T_mean,dat<span class="sc">$</span>cov_wT)</span>
+<span id="cb12-8"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-8" tabindex="-1"></a>dat<span class="sc">$</span>zeta<span class="ot">=</span><span class="fu">calc_zeta</span>(<span class="fl">4.4</span>,dat<span class="sc">$</span>L)</span>
+<span id="cb12-9"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb12-9" tabindex="-1"></a>dat<span class="sc">$</span>alpha_uw<span class="ot">=</span><span class="fu">calc_dshear</span>(dat<span class="sc">$</span>cov_uw,dat<span class="sc">$</span>cov_vw)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-1" tabindex="-1"></a><span class="co">#basic timeseries plots</span></span>
+<span id="cb13-2"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-2" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>T_mean,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;temperature [°C]&quot;</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb13-3"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>ws_mean,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>)</span>
+<span id="cb13-4"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-4" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>tke,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="fu">TeX</span>(<span class="st">&quot;TKE [$m^2/s^2$]&quot;</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-5" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>zeta,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;stability parameter [-]&quot;</span>)</span>
+<span id="cb13-6"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb13-7"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-7" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>ti,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;turbulence intensity [-]&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb13-8"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-8" tabindex="-1"></a><span class="fu">points</span>(dat<span class="sc">$</span>iw,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">col=</span><span class="st">&quot;gray50&quot;</span>)</span>
+<span id="cb13-9"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-9" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>cov_uw,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="fu">TeX</span>(<span class="st">&quot;cov(u,w) [$m^2/s^2$]&quot;</span>))</span>
+<span id="cb13-10"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-10" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>cov_wT,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="fu">TeX</span>(<span class="st">&quot;cov(T,w) [$K m/s$]&quot;</span>))</span>
+<span id="cb13-11"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-11" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>cov_h2ow,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="fu">TeX</span>(<span class="st">&quot;cov(q,w) [$mmol m/s$]&quot;</span>))</span>
+<span id="cb13-12"><a href="3.1-calculation-of-standard-turbulence-diagnostics-and-simple-timeseries-plots.html#cb13-12" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>cov_co2w,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="fu">TeX</span>(<span class="st">&quot;cov(c,w) [$ppm m/s$]&quot;</span>))</span></code></pre></div>
+<div class="float">
+<img src="output_5_0.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_1.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_2.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_3.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_4.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_5.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_6.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_7.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+<div class="float">
+<img src="output_5_8.png" alt="png" />
+<div class="figcaption">png</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="3-calculation-of-some-basic-turbulence-quantities.html"><button class="btn btn-default">Previous</button></a>
+<a href="3.2-regime-plots.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
