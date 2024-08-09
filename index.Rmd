@@ -21,4 +21,22 @@ description: ""
 **Gitbook**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
 <hr>
 
-Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. @Foken2017
+Eddy-covariance measurements represent the standard approach to measure turbulent fluxes, which are central in exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere. 
+<br>
+
+
+
+**Measurement setup:** <br>
+The measurements are performed with a fast-sampling sonic, that measures all three wind components and temperature based on the propagation speed of sound. 
+Additionally, gas analyzers can be used to measure trace gas fluxes (water vapor, carbon, dioxide, methane, ...). 
+The instruments can be mounted at a tower or mast with one or several heights.
+
+
+[Figure]
+
+
+**Data sources:** <br>
+There are several coordinated FLUXNETs, which coordinate and standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br>
+
+- FLUXNET
+- ICOS (Integrated Carbon Observation System)

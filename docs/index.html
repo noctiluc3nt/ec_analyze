@@ -29,7 +29,7 @@
   
   
 
-<link rel="next" href="post-processing-of-the-raw-eddy-covariance-data.html"/>
+<link rel="next" href="post-processing-of-raw-eddy-covariance-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -138,16 +138,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Post-processing of the raw eddy-covariance data</a>
+<li class="chapter" data-level="2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Post-processing of raw eddy-covariance data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.1</b> Eddy-covariance method</a></li>
-<li class="chapter" data-level="2.2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#raw-data-handling-and-corrections"><i class="fa fa-check"></i><b>2.2</b> Raw data handling and corrections</a>
+<li class="chapter" data-level="2.1" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.1</b> Eddy-covariance method</a></li>
+<li class="chapter" data-level="2.2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#raw-data-handling-and-corrections"><i class="fa fa-check"></i><b>2.2</b> Raw data handling and corrections</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time"><i class="fa fa-check"></i><b>2.2.1</b> Choosing a suitable averaging time</a></li>
-<li class="chapter" data-level="2.2.2" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data"><i class="fa fa-check"></i><b>2.2.2</b> Overview of correction procedures applied to the raw data</a></li>
+<li class="chapter" data-level="2.2.1" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time"><i class="fa fa-check"></i><b>2.2.1</b> Choosing a suitable averaging time</a></li>
+<li class="chapter" data-level="2.2.2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data"><i class="fa fa-check"></i><b>2.2.2</b> Overview of correction procedures applied to the raw data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#an-example-post-processing-routine"><i class="fa fa-check"></i><b>2.3</b> An example post-processing routine</a></li>
-<li class="chapter" data-level="2.4" data-path="post-processing-of-the-raw-eddy-covariance-data.html"><a href="post-processing-of-the-raw-eddy-covariance-data.html#literature"><i class="fa fa-check"></i><b>2.4</b> Literature</a></li>
+<li class="chapter" data-level="2.3" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#an-example-post-processing-routine"><i class="fa fa-check"></i><b>2.3</b> An example post-processing routine</a></li>
+<li class="chapter" data-level="2.4" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#literature"><i class="fa fa-check"></i><b>2.4</b> Literature</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="calculation-of-some-basic-turbulence-quantities.html"><a href="calculation-of-some-basic-turbulence-quantities.html"><i class="fa fa-check"></i><b>3</b> Calculation of some basic turbulence quantities</a>
 <ul>
@@ -229,14 +229,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
 <strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
 <hr>
-<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes. <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span></p>
+<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes, which are central in exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere.
+<br></p>
+<p><strong>Measurement setup:</strong> <br>
+The measurements are performed with a fast-sampling sonic, that measures all three wind components and temperature based on the propagation speed of sound.
+Additionally, gas analyzers can be used to measure trace gas fluxes (water vapor, carbon, dioxide, methane, …).
+The instruments can be mounted at a tower or mast with one or several heights.</p>
+<p>[Figure]</p>
+<p><strong>Data sources:</strong> <br>
+There are several coordinated FLUXNETs, which coordinate and standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br></p>
+<ul>
+<li>FLUXNET</li>
+<li>ICOS (Integrated Carbon Observation System)</li>
+</ul>
 
-</div>
-<h3>References</h3>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Foken2017">
-<p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>.</p>
-</div>
 </div>
             </section>
 
@@ -244,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="post-processing-of-the-raw-eddy-covariance-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="post-processing-of-raw-eddy-covariance-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

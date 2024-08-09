@@ -1,5 +1,5 @@
 introduction
-post-processing-of-the-raw-eddy-covariance-data
+post-processing-of-raw-eddy-covariance-data
 eddy-covariance-method
 raw-data-handling-and-corrections
 choosing-a-suitable-averaging-time
