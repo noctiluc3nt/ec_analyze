@@ -192,6 +192,3 @@ saveRDS(dat,file="../data/ec-data_30min_processed/processed_data_example.rds")
 ```
 
 Note, different sensors may require different correction methods, see also Foken, 2017.
-
-## Literature
-- Foken, T. (2017). Micrometeorology, Springer-Verlag Berlin Heidelberg, DOI: 10.1007/978-3-642-25440-6.

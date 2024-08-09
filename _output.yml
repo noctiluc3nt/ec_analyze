@@ -12,7 +12,7 @@ bookdown::gitbook:
       before: |
         <li><a href="https://github.com/noctiluc3nt/Reddy" target="blank"><bf>Reddy<bf></a></li>
       after: |
-        <li><a href="https://bookdown.org" target="blank">Published with bookdown<br> &#169 Laura Mack 2024</a></li>
+        <li><a href="https://bookdown.org" target="blank">Published with bookdown<br> (Laura Mack, 2024)</a></li>
     edit: 
     download: ["pdf"]
     sharing:
