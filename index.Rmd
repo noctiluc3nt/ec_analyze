@@ -30,7 +30,7 @@ This gitbook provides an overview about the setup, post-processing and meteorolo
 
 ## Measurement setup and instrumentation
 
-** Setup**
+**Setup**
 An EC setup has two main components: the sonic anemometer (for the wind vector and temperature) and a gasanalyzer (for water vapor, carbon dioxide, methane, ...). 
 The sonic usually consists of three pairs of transducers, that transmit and receive ultra-sonic sound waves whose propagation speed depends on wind speed, temperature and humidity. Therefrom, the three wind components and the sonic temperature, which is approximately the virtual temperature, can be derived.
 The gasanalyzers utilize usually an absorption line in the near- or mid-infrared of the respective trace gas, to measure their number density (IRGA - infrared gas analyzer). There are different types of infrared gasanalyzer, the most common difference beeing between gasanalyzers with closed or open measuring path.
@@ -39,14 +39,12 @@ The instruments can be mounted on a tower or mast with one or several measuremen
 
 [Figure of several sites] Sodankylä, Finse, Kuivajärvi (with setup considerations?)
 
-[Figure of setup considerations and gas analzyer] Hyytiälä test setup, opened IRGA
-
-
 **Calibration and Maintainance**
 The EC system requires regular maintainance, in particular the gasanalyzers. The gasanalyzers are calibrated regularly in-field and, more rarely, intensively by the manufacturer. For this prupose, reference measurements are carried out with gas cylinders containing a fixed amount of the gas, e.g. zero-gas or 450 ppm CO$_2$. For water vapor, usually only the zero-gas calibration is performed, since fixed water vapor concentrations are difficult to maintain. For other trace gases, the in-field calibration is performed with a zero-gas and another fixed concentration, while the manufacturer calibrates for several fixed gas concentrations.
 The optics of the gasanalyzer have to be cleaned regulary depending on the environmental conditions, whereby open-path gasanalyzers require more maintainance than closed-path gasanalyzers.
 Additionally, the inlet filters should be cleaned or replaced regulary as well as the sampling tube.
 
+![Components of an eddy-covariance system](./figures/setup/ec-setup-all-labelled_upscaled.png)
 
 ## Data sources
 There are several coordinated FLUXNETs, which standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br>
