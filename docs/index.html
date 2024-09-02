@@ -137,7 +137,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/noctiluc3nt/Reddy" target="blank"><bf>Reddy<bf></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#measurement-setup-and-instrumentation"><i class="fa fa-check"></i><b>1.1</b> Measurement setup and instrumentation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-sources"><i class="fa fa-check"></i><b>1.2</b> Data sources</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Post-processing of raw eddy-covariance data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.1</b> Eddy-covariance method</a></li>
@@ -227,22 +231,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
 <strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
 <hr>
-<p>Eddy-covariance measurements represent the standard approach to measure turbulent fluxes, which are central in exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere.
-<br></p>
-<p><strong>Measurement setup:</strong> <br>
-The measurements are performed with a fast-sampling sonic, that measures all three wind components and temperature based on the propagation speed of sound.
-Additionally, gas analyzers can be used to measure trace gas fluxes (water vapor, carbon, dioxide, methane, …).
-The instruments can be mounted at a tower or mast with one or several heights.</p>
-<p>[Figure]</p>
-<p><strong>Data sources:</strong> <br>
-There are several coordinated FLUXNETs, which coordinate and standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br></p>
+<p>Eddy-covariance (EC) measurements allow to <em>measure turbulent fluxes directly and non-invasively over long periods of time</em>, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere.
+<br>
+However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out.
+This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.</p>
+<div class="figure">
+<img src="figures/schema/schema_prelim.png" alt="" />
+<p class="caption">Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package</p>
+</div>
+<div id="measurement-setup-and-instrumentation" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Measurement setup and instrumentation<a href="index.html#measurement-setup-and-instrumentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Setup:</strong>
+An EC setup has two main components: the sonic anemometer (for the wind vector and temperature) and a gasanalyzer (for water vapor, carbon dioxide, methane, …).
+The sonic usually consists of three pairs of transducers, that transmit and receive ultra-sonic sound waves whose propagation speed depends on wind speed, temperature and humidity. Therefrom, the three wind components and the sonic temperature, which is approximately the virtual temperature, can be derived.
+The gasanalyzers utilize usually an absorption line in the near- or mid-infrared of the respective trace gas, to measure their number density (IRGA - infrared gas analyzer). There are different types of infrared gasanalyzer, the most common difference beeing between gasanalyzers with closed or open measuring path.
+Further possible methods for gasanalyzers are laser spectroscopy, mass spectroscopy, chromatography and chemiluminescence (often used for NOx) and also particle flux measurements can be combined with sonic measurements to derive particle fluxes.
+The instruments can be mounted on a tower or mast with one or several measurement heights. For choosing the location and measurement height, the surface roughness and the flux footprint (i.e., the area where the flux originates from) are examined. Since the mast or tower disturb the EC measurements, the orientation of the system is chosen based on the prevailing wind direction. The main wind direction(s) should not be disturbed by the tower structures, as exemplified in figure 3.</p>
+<p>[Figure 2: Eddy-covariance systems in a boreal forest (Sodankylä, Finland), an alpine tundra environment (Finse, Norway) and over a lake (Kuivajärvi, Finland).]</p>
+<p><strong>Calibration and Maintainance:</strong>
+The EC system requires regular maintainance, in particular the gasanalyzers. The gasanalyzers are calibrated regularly in-field and, more rarely, intensively by the manufacturer. For this prupose, reference measurements are carried out with gas cylinders containing a fixed amount of the gas, e.g. zero-gas or 450 ppm CO<span class="math inline">\(_2\)</span>. For water vapor, usually only the zero-gas calibration is performed, since fixed water vapor concentrations are difficult to maintain. For other trace gases, the in-field calibration is performed with a zero-gas and another fixed concentration, while the manufacturer calibrates for several fixed gas concentrations.
+The optics of the gasanalyzer have to be cleaned regulary depending on the environmental conditions, whereby open-path gasanalyzers require more maintainance than closed-path gasanalyzers.
+Additionally, the inlet filters should be cleaned or replaced regulary as well as the sampling tube.</p>
+<div class="figure">
+<img src="figures/setup/ec-setup-all-labelled_upscaled.png" alt="" />
+<p class="caption">Figure 3: Components of an eddy-covariance system (demonstration setup)</p>
+</div>
+</div>
+<div id="data-sources" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Data sources<a href="index.html#data-sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are several coordinated FLUXNETs, which standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br></p>
 <ul>
-<li>FLUXNET</li>
-<li>ICOS (Integrated Carbon Observation System)</li>
+<li><a href="https://fluxnet.org">FLUXNET</a>: data set <a href="https://fluxnet.org/data/fluxnet2015-dataset/"> FLUXNET2015</a></li>
+<li><a href="https://www.icos-cp.eu/">ICOS (Integrated Carbon Observation System)</a>: data portal for <a href="https://data.icos-cp.eu/portal/#%7B%22filterCategories%22:%7B%22project%22:%5B%22icos%22%5D,%22level%22:%5B1,2%5D,%22stationclass%22:%5B%22ICOS%22%5D%7D%7D">data download</a></li>
 </ul>
-<p><strong>Other micrometeorological measurements</strong>
-<!-- chamber flux measurements, drones, fods, lidar, scintilometer--></p>
+<!--
+## Other micrometeorological measurement methods
+ chamber flux measurements, drones, fods, lidar, scintilometer-->
 
+</div>
 </div>
             </section>
 

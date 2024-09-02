@@ -21,30 +21,31 @@ description: ""
 **Gitbook**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
 <hr>
 
-Eddy-covariance (EC) measurements allow to measure turbulent fluxes directly and non-invasively over long periods of time, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere. 
+Eddy-covariance (EC) measurements allow to *measure turbulent fluxes directly and non-invasively over long periods of time*, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere. 
 <br>
 However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out. 
-This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in the figure. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
+This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
 
-[Figure overview]
+![Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package](./figures/schema/schema_prelim.png)
+
 
 ## Measurement setup and instrumentation
 
-**Setup**
+**Setup:**
 An EC setup has two main components: the sonic anemometer (for the wind vector and temperature) and a gasanalyzer (for water vapor, carbon dioxide, methane, ...). 
 The sonic usually consists of three pairs of transducers, that transmit and receive ultra-sonic sound waves whose propagation speed depends on wind speed, temperature and humidity. Therefrom, the three wind components and the sonic temperature, which is approximately the virtual temperature, can be derived.
 The gasanalyzers utilize usually an absorption line in the near- or mid-infrared of the respective trace gas, to measure their number density (IRGA - infrared gas analyzer). There are different types of infrared gasanalyzer, the most common difference beeing between gasanalyzers with closed or open measuring path.
 Further possible methods for gasanalyzers are laser spectroscopy, mass spectroscopy, chromatography and chemiluminescence (often used for NOx) and also particle flux measurements can be combined with sonic measurements to derive particle fluxes.
-The instruments can be mounted on a tower or mast with one or several measurement heights. For choosing the location and measurement height, the surface roughness and the flux footprint (i.e., the area where the flux originates from) are examined. Since the mast or tower disturb the EC measurements, the orientation of the system is chosen based on the prevailing wind direction. The main wind direction(s) should not be disturbed by the tower structures, as exemplified in the figure.
+The instruments can be mounted on a tower or mast with one or several measurement heights. For choosing the location and measurement height, the surface roughness and the flux footprint (i.e., the area where the flux originates from) are examined. Since the mast or tower disturb the EC measurements, the orientation of the system is chosen based on the prevailing wind direction. The main wind direction(s) should not be disturbed by the tower structures, as exemplified in figure 3.
 
-[Figure of several sites] Sodankylä, Finse, Kuivajärvi (with setup considerations?)
+[Figure 2: Eddy-covariance systems in a boreal forest (Sodankylä, Finland), an alpine tundra environment (Finse, Norway) and over a lake (Kuivajärvi, Finland).]
 
-**Calibration and Maintainance**
+**Calibration and Maintainance:**
 The EC system requires regular maintainance, in particular the gasanalyzers. The gasanalyzers are calibrated regularly in-field and, more rarely, intensively by the manufacturer. For this prupose, reference measurements are carried out with gas cylinders containing a fixed amount of the gas, e.g. zero-gas or 450 ppm CO$_2$. For water vapor, usually only the zero-gas calibration is performed, since fixed water vapor concentrations are difficult to maintain. For other trace gases, the in-field calibration is performed with a zero-gas and another fixed concentration, while the manufacturer calibrates for several fixed gas concentrations.
 The optics of the gasanalyzer have to be cleaned regulary depending on the environmental conditions, whereby open-path gasanalyzers require more maintainance than closed-path gasanalyzers.
 Additionally, the inlet filters should be cleaned or replaced regulary as well as the sampling tube.
 
-![Components of an eddy-covariance system](./figures/setup/ec-setup-all-labelled_upscaled.png)
+![Figure 3: Components of an eddy-covariance system (demonstration setup)](./figures/setup/ec-setup-all-labelled_upscaled.png)
 
 ## Data sources
 There are several coordinated FLUXNETs, which standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br>

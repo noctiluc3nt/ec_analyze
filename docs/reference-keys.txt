@@ -1,4 +1,6 @@
 introduction
+measurement-setup-and-instrumentation
+data-sources
 post-processing-of-raw-eddy-covariance-data
 eddy-covariance-method
 raw-data-handling-and-corrections
