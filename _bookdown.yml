@@ -1,0 +1,15 @@
+book_filename: "series"
+language:
+  ui:
+    chapter_name: ""
+rmd_files: [
+  "index.Rmd",
+  "01_post-processing.Rmd",
+  "02_basic-turbulence-diagnostics.Rmd",
+  "03_quadrant-analysis.Rmd",
+  "04_spectra.Rmd",
+  "05_flux-footprint.Rmd",
+  "06_reynolds-stress-tensor.Rmd",
+  "07_surface-energy-balance.Rmd"]
+delete_merged_file: true 
+output_dir: "docs"

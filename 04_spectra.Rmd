@@ -1,0 +1,191 @@
+# Spectra
+
+## Spectral analysis of timeseries
+
+Turbulence is associated with different scales, which interact in a complex manner and to investigate them spectra can be examined. Thereby, the measurements are transformed from time to frequency domain. The most common approach is to represent the timeseries with a series of sine and cosine function (with different frequencies), which is referred to as Fourier analysis. A numerical optimized way to calculate the Fourier transformation is to use Fast Fourier Transform (FFT, in rbase: `fft`). However, periodicity is not always a suitable assumption, such that other basis functions and approaches might be more applicable. With a wavelet transform information in time and frequency domain is retained and different wavelet basis functions (e.g., Morlet wavelets or Haar-wavelets) allow to represent localized and not periodic behaviour (`WaveletComp::wt.image`). A very practical discrete wavelet transform is multiresolution decomposition (MRD, @Vickers2003), which is routinley applied in the analysis of eddy-covariance data (see details below). <br>
+A related method used for flux calculations from eddy-covariance data based on Ogives, that is a cumulative frequency distribution, i.e. the sum of the cospectral energy. @Sievers2015 developed an Ogive optimization, which allows to disentangle low frequency contributions on flux estimates. This approach is particular relevant under low-flux conditions, e.g. with changing signs in one averaging interval. The low frequency contributions are generally associated with non-local features, e.g. topography, while high-frequency contributions are local.
+
+**Quick overview:**
+
+- Fast Fourier Transform FFT (rbase: `fft`, `spectrum`)
+- Wavelets (`WaveletComp::wt.image`)
+- Multiresolution decomposition MRD (`Reddy::calc_mrd`)
+- Ogives (`agricolae::ogive.freq`)
+
+
+```R
+#loading Reddy package
+install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE)
+library(Reddy)
+
+#ec data files
+dir_in="../data/ec-data_10Hz_raw"
+files=list.files(dir_in,full.names=TRUE)
+nf=length(files)
+
+i=8 #select a file
+tmp=read.table(files[i],sep=",",header=T)
+```
+
+    Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
+    (as ‘lib’ is unspecified)
+    
+
+
+## FFT spectrum and comparison to theoretical spectra
+The rbase function `spectrum` calculates the spectrum based on FFT and plots by default an associated periodigram. 
+
+
+```R
+spectrum(tmp$u_m.s)
+```
+
+
+    
+![png](output_3_0.png)
+    
+
+
+However, to systematically investigate spectral density and reduce the noise, it is recommended to apply binning (i.e., averaging over frequency intervals), which can be done with the function `Reddy::calc_spectrum` (as wrapper of `spectrum`). The resulting averaged spectra can then be compared to theoretical slopes. In homogeneous and isotropic turbulence a spectral slope of -5/3 follows from theoretical considerations (Kolmogorovs energy cascade), which is usually used as visual comparison. Deviations from this -5/3-slope indicate that either more energy (steeper slope) or less energy (weaker slope) is dissipated, which can have various reasons, e.g. turbulence anisotropy or energy injections.
+
+
+```R
+spectrum_u = calc_spectrum(tmp$u_m.s)
+```
+
+    
+    Call:
+    lm(formula = log(sbin[, 2]) ~ bins[2:nbins])
+    
+    Residuals:
+         Min       1Q   Median       3Q      Max 
+    -2.20343 -0.08638  0.00209  0.21610  1.08777 
+    
+    Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)    -3.9486     0.2669  -14.79 2.23e-16 ***
+    bins[2:nbins]  -2.7810     0.1064  -26.15  < 2e-16 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    
+    Residual standard error: 0.6212 on 34 degrees of freedom
+      (63 observations deleted due to missingness)
+    Multiple R-squared:  0.9526,	Adjusted R-squared:  0.9512 
+    F-statistic: 683.6 on 1 and 34 DF,  p-value: < 2.2e-16
+    
+
+
+
+    
+![png](output_5_1.png)
+    
+
+
+## Multiresolution decomposition (MRD)
+Multiresolution decomposition (MRD) is a method to characterize the timescale dependence of variances (spectrum) or covariances (cospectrum) and to find scale gaps between turbulent and submeso-scale motions. It uses Haar wavelets, which have the advantage over Fourier analysis that no periodicity is assumed.
+
+<img src="../figures/schema/mrd_schema.png" width=500 />
+
+
+### Calculating multiresolution decomposition with `calc_mrd`
+
+
+```R
+#cospectra
+mrd_uw=calc_mrd(tmp$u_m.s,tmp$w_m.s,time_res=0.1) #momentum flux
+mrd_Tw=calc_mrd(tmp$T_degC,tmp$w_m.s,time_res=0.1) #sensible heat flux
+
+#spectra
+mrd_ww=calc_mrd(tmp$w_m.s,tmp$w_m.s,time_res=0.1) #vertical veloctiy
+mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
+```
+
+The function returns a dataframe containing index, exponent $m$, scale (i.e. $2^{m}$), time [s], mean, median, 25% and 75% quartiles as columns. The number of rows is given by $M$ fulfilling $2^M \le $ #measurements.
+
+
+```R
+#look into output
+mrd_uw
+```
+
+
+<table class="dataframe">
+<caption>A data.frame: 15 × 8</caption>
+<thead>
+	<tr><th scope=col>index</th><th scope=col>m</th><th scope=col>scale</th><th scope=col>time</th><th scope=col>mean</th><th scope=col>median</th><th scope=col>q25</th><th scope=col>q75</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 1</td><td>14</td><td>16384</td><td>1638.4</td><td> 2.009888e-03</td><td> 6.411861e-05</td><td>-5.739598e-03</td><td> 7.411443e-03</td></tr>
+	<tr><td> 2</td><td>13</td><td> 8192</td><td> 819.2</td><td> 3.723193e-03</td><td> 3.046532e-04</td><td>-7.508746e-03</td><td> 1.040180e-02</td></tr>
+	<tr><td> 3</td><td>12</td><td> 4096</td><td> 409.6</td><td> 5.007376e-03</td><td> 6.024576e-04</td><td>-9.401348e-03</td><td> 1.487008e-02</td></tr>
+	<tr><td> 4</td><td>11</td><td> 2048</td><td> 204.8</td><td> 5.831290e-03</td><td> 6.054180e-04</td><td>-9.164119e-03</td><td> 1.592909e-02</td></tr>
+	<tr><td> 5</td><td>10</td><td> 1024</td><td> 102.4</td><td> 9.752098e-03</td><td> 1.325413e-03</td><td>-6.967310e-03</td><td> 1.938746e-02</td></tr>
+	<tr><td> 6</td><td> 9</td><td>  512</td><td>  51.2</td><td> 1.090534e-02</td><td> 2.818075e-03</td><td>-4.432612e-03</td><td> 1.858083e-02</td></tr>
+	<tr><td> 7</td><td> 8</td><td>  256</td><td>  25.6</td><td> 1.465273e-02</td><td> 3.577008e-03</td><td>-3.271827e-03</td><td> 2.213298e-02</td></tr>
+	<tr><td> 8</td><td> 7</td><td>  128</td><td>  12.8</td><td> 1.157982e-02</td><td> 3.560662e-03</td><td>-6.819690e-03</td><td> 1.801111e-02</td></tr>
+	<tr><td> 9</td><td> 6</td><td>   64</td><td>   6.4</td><td> 9.264997e-03</td><td> 5.478194e-04</td><td>-8.774036e-03</td><td> 9.014596e-03</td></tr>
+	<tr><td>10</td><td> 5</td><td>   32</td><td>   3.2</td><td> 6.077250e-03</td><td> 4.486199e-03</td><td>-2.698569e-03</td><td> 9.425087e-03</td></tr>
+	<tr><td>11</td><td> 4</td><td>   16</td><td>   1.6</td><td> 4.209757e-03</td><td>-5.068024e-04</td><td>-4.568223e-03</td><td> 7.532330e-03</td></tr>
+	<tr><td>12</td><td> 3</td><td>    8</td><td>   0.8</td><td>-3.430667e-03</td><td>-4.011748e-03</td><td>-6.571402e-03</td><td>-8.710123e-04</td></tr>
+	<tr><td>13</td><td> 2</td><td>    4</td><td>   0.4</td><td>-6.626465e-03</td><td>-6.626465e-03</td><td>-7.390707e-03</td><td>-5.862222e-03</td></tr>
+	<tr><td>14</td><td> 1</td><td>    2</td><td>   0.2</td><td>-4.079521e-03</td><td>-4.079521e-03</td><td>-4.079521e-03</td><td>-4.079521e-03</td></tr>
+	<tr><td>15</td><td> 0</td><td>    1</td><td>   0.1</td><td>-8.838739e-34</td><td>-8.838739e-34</td><td>-8.838739e-34</td><td>-8.838739e-34</td></tr>
+</tbody>
+</table>
+
+
+
+### Plotting multiresolution decomposition with `plot_mrd`
+
+`plot_mrd` takes an object returned by `calc_mrd` and plots mean, median and quartiles versus time.
+
+
+```R
+plot_mrd(mrd_uw, main="Cospectrum (u,w)")
+```
+
+
+    
+![png](output_12_0.png)
+    
+
+
+
+```R
+plot_mrd(mrd_Tw, main="Cospectrum (T,w)")
+```
+
+
+    
+![png](output_13_0.png)
+    
+
+
+
+```R
+plot_mrd(mrd_ww, main="Spectrum (w,w)")
+```
+
+
+    
+![png](output_14_0.png)
+    
+
+
+
+```R
+plot_mrd(mrd_TT, main="Spectrum (T,T)")
+```
+
+
+    
+![png](output_15_0.png)
+    
+
+
+Composite MRDs can be created by averaging over several MRDs (also possible to distinguish different flow regimes, e.g., based on the stability parameter `calc_zeta`) and can be used to find long-term characteristic (e.g., scale gaps). Scale(s) gap(s) are defined as the the zero-crossings of the spectrum or cospectrum (larger than the first zero-crossing at the measurement frequency itself).
+
+## Literature
+- Vickers, D. and Mahrt, L. (2003). The Cospectral Gap and Turbulent Flux
+Calculations. J Atmos Ocean Technol, 20:660–672.
