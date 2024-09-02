@@ -16,6 +16,8 @@ calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-c
 plotting-quadrant-analysis-with-plot_quadrant_analysis
 literature
 spectra
+spectral-analysis-of-timeseries
+fft-spectrum-and-comparison-to-theoretical-spectra
 multiresolution-decomposition-mrd
 calculating-multiresolution-decomposition-with-calc_mrd
 plotting-multiresolution-decomposition-with-plot_mrd
