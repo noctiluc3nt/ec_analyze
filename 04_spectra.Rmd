@@ -186,6 +186,3 @@ plot_mrd(mrd_TT, main="Spectrum (T,T)")
 
 Composite MRDs can be created by averaging over several MRDs (also possible to distinguish different flow regimes, e.g., based on the stability parameter `calc_zeta`) and can be used to find long-term characteristic (e.g., scale gaps). Scale(s) gap(s) are defined as the the zero-crossings of the spectrum or cospectrum (larger than the first zero-crossing at the measurement frequency itself).
 
-## Literature
-- Vickers, D. and Mahrt, L. (2003). The Cospectral Gap and Turbulent Flux
-Calculations. J Atmos Ocean Technol, 20:660–672.
