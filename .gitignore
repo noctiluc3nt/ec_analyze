@@ -6,3 +6,5 @@
 *.out
 *.synctex.gz
 .Rproj.user
+
+*.odp
