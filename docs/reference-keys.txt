@@ -14,7 +14,6 @@ turbulence-regimes
 quadrant-analysis
 calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis
 plotting-quadrant-analysis-with-plot_quadrant_analysis
-literature
 spectra
 spectral-analysis-of-timeseries
 fft-spectrum-and-comparison-to-theoretical-spectra

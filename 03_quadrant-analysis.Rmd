@@ -1,11 +1,11 @@
-# Quadrant Analysis
+# Quadrant analysis
 
-Quadrant analysis is a simple conditional sampling method to detect coherent structures directly from the high-frequency measurements. For this, the Reddy package provides two functions: `calc_quadrant_analysis` for calculating occurrence frequency and strength of the four quadrants and `plot_quadrant_analysis` for plotting the two variables as scatter plot with a 2d kernel density estimation and a linear regression.
+Quadrant analysis is a simple conditional sampling method to detect coherent structures directly from the high-frequency measurements (e.g. @Wallace2016). For this, the Reddy package provides two functions: `calc_quadrant_analysis` for calculating occurrence frequency and strength of the four quadrants and `plot_quadrant_analysis` for plotting the two variables as scatter plot with a 2d kernel density estimation and a linear regression, as detailed below.
 
 
 ```R
 #loading Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE)
+install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 
 #ec data files
@@ -14,15 +14,12 @@ files=list.files(dir_in,full.names=TRUE)
 nf=length(files)
 ```
 
-    Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
-    (as ‘lib’ is unspecified)
-    
-
-
 ## Calculation of occurrence frequencies and strengths of the four quadrants with `calc_quadrant_analysis`
 The two variables are normalized (if `do_normalization = TRUE`) through
 $$ \hat{x} = \frac{x-\overline{x}}{\sigma_x}$$
-by substracting the mean value $\overline{x}$ and dividing by $\sigma_x$ to make different variables with different value ranges comparable and centered around zero. The function counts the occurrence frequency of each quadrant, calculates their strength as product $\hat{x}\hat{y}$ and as covariance $\overline{\hat{x}'\hat{y}'}$. The parameter `hole_sizes`can be used to filter out very strong events by applying the filter conditions $\vert \hat{x}\hat{y} \vert \le H \cdot \vert \overline{\hat{x}'\hat{y}'}\vert$. Usually, $y$ is chosen to be the vertical velocity $w$.
+by substracting the mean value $\overline{x}$ and dividing by $\sigma_x$ to make different variables with different value ranges comparable and centered around zero. The function counts the occurrence frequency of each quadrant, calculates their strength as product $\hat{x}\hat{y}$ and as covariance $\overline{\hat{x}'\hat{y}'}$. The parameter `hole_sizes`can be used to filter out very strong events by applying the filter conditions $\vert \hat{x}\hat{y} \vert \le H \cdot \vert \overline{\hat{x}'\hat{y}'}\vert$. Usually, $y$ is chosen to be the vertical velocity $w$. The quadrant analysis is directly related to the fluxes by using the respective constituting quantities: $(u,w)$ for momentum flux, $(T,w)$ for sensible heat flux, $(q,w)$ for latent heat flux and $(c,w)$ for CO$_2$ flux -- as visualized in the figure (adapted from @Mack2024).
+
+<img src="../figures/schema/qa_schema.png" />
 
 
 ```R
@@ -30,60 +27,18 @@ i=8 #select a file
 tmp=read.table(files[i],sep=",",header=T)
 
 qa_Tw=calc_quadrant_analysis(tmp$T_degC,tmp$w_m.s) #based on the raw data (10 Hz) directly (i.e., unrotated)
-qa_Tw
+str(qa_Tw)
 ```
 
-
-<dl>
-	<dt>$hole_sizes</dt>
-		<dd><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ol>
-</dd>
-	<dt>$occurrence</dt>
-		<dd><table class="dataframe">
-<caption>A matrix: 4 × 11 of type int</caption>
-<tbody>
-	<tr><td>5448</td><td>4689</td><td>4232</td><td>3829</td><td>3542</td><td>3355</td><td>3214</td><td>3120</td><td>3071</td><td>3043</td><td>3017</td></tr>
-	<tr><td>2975</td><td> 144</td><td>   8</td><td>   1</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td></tr>
-	<tr><td>6619</td><td>3812</td><td>3732</td><td>4177</td><td>4539</td><td>4821</td><td>5015</td><td>5153</td><td>5238</td><td>5302</td><td>5345</td></tr>
-	<tr><td>2958</td><td> 300</td><td>  71</td><td>  19</td><td>   4</td><td>   1</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td><td>   0</td></tr>
-</tbody>
-</table>
-</dd>
-	<dt>$product</dt>
-		<dd><table class="dataframe">
-<caption>A matrix: 4 × 11 of type dbl</caption>
-<tbody>
-	<tr><td> 1.0680473</td><td> 0.8157981</td><td> 0.5926998</td><td> 0.4160602</td><td> 0.2595930</td><td> 0.128415</td><td>0.00496475</td><td>-0.09889583</td><td>-0.1580028</td><td>-0.1941919</td><td>-0.2292195</td></tr>
-	<tr><td>-0.2913532</td><td>-1.3388982</td><td>-2.3107778</td><td>-3.0595706</td><td>       NaN</td><td>      NaN</td><td>       NaN</td><td>        NaN</td><td>       NaN</td><td>       NaN</td><td>       NaN</td></tr>
-	<tr><td> 0.6190221</td><td> 0.3023105</td><td> 0.3188273</td><td> 0.4780481</td><td> 0.6247966</td><td> 0.729391</td><td>0.81096819</td><td> 0.88180372</td><td> 0.9271087</td><td> 0.9649898</td><td> 0.9919303</td></tr>
-	<tr><td>-0.4200449</td><td>-1.6791768</td><td>-2.7216259</td><td>-3.5668925</td><td>-4.3541217</td><td>-5.200543</td><td>       NaN</td><td>        NaN</td><td>       NaN</td><td>       NaN</td><td>       NaN</td></tr>
-</tbody>
-</table>
-</dd>
-	<dt>$covariance</dt>
-		<dd><table class="dataframe">
-<caption>A matrix: 4 × 11 of type dbl</caption>
-<tbody>
-	<tr><td> 0.106717873</td><td>0.3190217</td><td>0.3943558</td><td>0.39175959</td><td>0.33878042</td><td>0.28464356</td><td>0.22478907</td><td>0.16509696</td><td>0.13053088</td><td>0.10926006</td><td>0.08895242</td></tr>
-	<tr><td> 0.053090898</td><td>0.1180140</td><td>0.1147860</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td></tr>
-	<tr><td>-0.009141232</td><td>0.2882998</td><td>0.1194031</td><td>0.04190299</td><td>0.05120756</td><td>0.06056233</td><td>0.06900792</td><td>0.07814975</td><td>0.08542762</td><td>0.09238304</td><td>0.09700542</td></tr>
-	<tr><td> 0.032263914</td><td>0.1706475</td><td>0.2092321</td><td>0.09659086</td><td>0.05461222</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td></tr>
-</tbody>
-</table>
-</dd>
-	<dt>$covariance_total</dt>
-		<dd>0.149572439233721</dd>
-	<dt>$correlation_total</dt>
-		<dd>0.433733025048198</dd>
-	<dt>$meta</dt>
-		<dd>'Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns: selected hole sizes'</dd>
-</dl>
-
+    List of 8
+     $ hole_sizes       : int [1:11] 0 1 2 3 4 5 6 7 8 9 ...
+     $ occurrence       : int [1:4, 1:11] 5448 2975 6619 2958 4689 144 3812 300 4232 8 ...
+     $ product          : num [1:4, 1:11] 1.068 -0.291 0.619 -0.42 0.816 ...
+     $ covariance       : num [1:4, 1:11] 0.10672 0.05309 -0.00914 0.03226 0.31902 ...
+     $ covariance_total : num 0.15
+     $ correlation_total: num 0.434
+     $ product_total    : num [1:18000] 0.0448 -0.0544 -0.4983 0.115 0.3095 ...
+     $ meta             : chr "Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns represent selected hole sizes"
 
 
 ## Plotting quadrant analysis with `plot_quadrant_analysis`
@@ -124,7 +79,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s,xlab="T (normalized)",ylab="w (norma
 
 
     
-![png](output_6_1.png)
+![](figures/fig_0901.png){width=500}
     
 
 
@@ -135,7 +90,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s,xlab="T (normalized)",ylab="w (norma
 i=38 #select a file -- a nighttime example
 print(files[i])
 tmp=read.table(files[i],sep=",",header=T)
-plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s) #based on the raw data (10 Hz) directly (i.e., unrotated)
+plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s,xlab="T (normalized)",ylab="w (normalized)",main="Quadrant Analysis (T,w)") #based on the raw data (10 Hz) directly (i.e., unrotated)
 ```
 
     [1] "../data/ec-data_10Hz_raw/2018-07-21T030000.csv"
@@ -162,7 +117,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s) #based on the raw data (10 Hz) dire
 
 
     
-![png](output_8_1.png)
+![](figures/fig_0902.png){width=500}
     
 
 
@@ -170,7 +125,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s) #based on the raw data (10 Hz) dire
 
 
 ```R
-plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s) #based on the raw data (10 Hz) directly (i.e., unrotated)
+plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s,xlab="u (normalized)",ylab="w (normalized)",main="Quadrant Analysis (u,w)") #based on the raw data (10 Hz) directly (i.e., unrotated)
 ```
 
     
@@ -196,15 +151,8 @@ plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s) #based on the raw data (10 Hz) direc
 
 
     
-![png](output_10_1.png)
+![](figures/fig_0903.png){width=500}
     
 
 
 Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., `rotate_double`) visually.
-
-## Literature
-- Li, D. and Bou-Zeid, E. (2011). Coherent Structures and the Dissimilarity of
-Turbulent Transport of Momentum and Scalars in the Unstable Atmospheric
-Surface Layer. Boundary-Layer Meteorol, 140:243–262.
-- Wallace, J. (2016). Quadrant Analysis in Turbulence Research: History and
-Evolution. Annu Rev Fluid Mech, 48:131–158.
