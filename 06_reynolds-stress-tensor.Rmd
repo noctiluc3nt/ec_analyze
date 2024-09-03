@@ -7,22 +7,19 @@ $$ R := \overline{u_i ' u_j '} = \begin{pmatrix}
 			\overline{v'u'} & v'^2 & \overline{v'w'} \\
 			\overline{w'u'} & \overline{w'v'} & w'^2 
 		\end{pmatrix}, \quad \textrm{with} \quad R = R^T$$
-summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle -- called *barycentric map* -- with the coordinates $(x_B,y_B)$, can be constructed, which allows to characterize the anisotropy ($y_B$) and the limiting states.
+summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle -- called *barycentric map* (@Banerjee2007, see figure) -- with the coordinates $(x_B,y_B)$, can be constructed, which allows to characterize the anisotropy ($y_B$) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.
+
+<img src="../figures/schema/triangle_schema.png" width=500 />
 
 
 ```R
 #loading Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE)
+install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 
 #read in processed example data
 dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
 ```
-
-    Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
-    (as ‘lib’ is unspecified)
-    
-
 
 ## Invariant analysis of the Reynolds stress tensor
 ### Performing the invariant analysis of the Reynolds stress tensor with `calc_anisotropy`
@@ -62,7 +59,7 @@ plot_barycentric_map(rey_ana$xb,rey_ana$yb)
 
 
     
-![png](output_6_0.png)
+![](figures/fig_0701.png){width=500}
     
 
 
@@ -105,11 +102,6 @@ print(summary(fit))
 
 
     
-![png](output_9_1.png)
+![](figures/fig_0702.png){width=500}
     
 
-
-## Literature
-- Banerjee, S., Krahl, R., Durst, F., and Zenger, C. (2007). Presentation of
-anisotropy properties of turbulence, invariants versus eigenvalue approaches.
-J Turb, 8(N32).

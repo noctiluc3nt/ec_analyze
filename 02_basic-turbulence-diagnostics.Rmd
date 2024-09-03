@@ -1,8 +1,14 @@
 # Turbulence diagnostics
 After completing the post-processing, we can now move on to looking at some turbulence diagnostics. 
-Based on the generated half-hourly output of the first notebook ([01_post-processing.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/01_post-processing.ipynb)) some standard turbulence quantities, i.e. stability parameter, friction velocity, TKE, turbulence intensity are calculated and plotted, which allow to study flow properties.
+Based on the generated half-hourly output of the first notebook ([01_post-processing.ipynb](https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/01_post-processing.ipynb)) some standard turbulence quantities, i.e. stability parameter, friction velocity, TKE, turbulence intensity are calculated and plotted, which allows to study turbulent flow properties systematically.
 
 
+```R
+#loading Reddy package
+install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE)
+library(Reddy)
+library(latex2exp)
+```
 ```R
 #read in processed example data
 dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
@@ -19,12 +25,13 @@ $$TI = \frac{\sqrt{\sigma_u^2+\sigma_v^2}}{\overline{u}} ,\quad\quad I_w= \frac{
  From the TKE, a velocity scale can easily be derived $V_{TKE} = \sqrt{TKE}$ (`calc_vtke`).
 - **Friction velocity** $u_*$ (`calc_ustar`): The friction velocity describes the effect of friction in form of a velocity scale
 $$ u_* = \sqrt[4]{\overline{u'v'}^2+\overline{v'w'}^2}.$$
-- **Obukhov length** $L$ (`calc_L`): The Obukhov length is a length scale that describes the effect of buoyancy 
+- **Obukhov length** $L$ (`calc_L`): The Obukhov length is a length scale that describes the effect of buoyancy versus shear (friction velocity)
 $$ L = -\frac{u_*^3 \overline{T_v}}{\kappa \,g\,\overline{w'T'}}, $$
-which is central in Monin-Obukhov similarity theory (MOST) to derive dimensionless scaling parameter, like the stability parameter $\zeta$.
-The fluxes used in the calculation are either the surface fluxes for global scaling or the fluxes at the measurement height for local scaling.
+and is central in Monin-Obukhov similarity theory (MOST) for deriving dimensionless scaling parameters, on particular the stability parameter $\zeta$.
+The fluxes used in the calculation are either the surface fluxes for global scaling (@Monin1954) or the fluxes at the measurement height for local scaling (@Nieuwstadt1984).
 - **Stability parameter** $\zeta$ (`calc_zeta`): The stability parameter is the ratio of Obukhov length and measurement height and thus a dimensionless measure for stability
 $$ \zeta = \frac{z}{L}.$$
+$\zeta$ is negative in unstable stratification, zero in neutral stratification, and positive in stable stratification, which can be traced back to the sign of the heat flux $\overline{w'T'}$ in the Obukhov length $L$.
 
 
 ```R
@@ -58,12 +65,12 @@ plot(dat$cov_co2w,type="l",ylab=TeX("cov(c,w) [$ppm m/s$]"))
 
 
     
-![](figures/fig_0201.png)
+![](figures/fig_0301.png){width=600}
     
 
 
 ## Stability dependence
-It is often interesting to investigate the stability dependence of turbulence characteristics, e.g. since Monin-Obukhov similarity theory (MOST) predict all dimensionless turbulence characteristics based on the dimensionless stability parameter. A simple way is to plot stability versus a turbulence characteristic and bin the data based on stability intervals. For this the function `binning` can be used, which bins one variable based on another for predefined bins, as exemplified below for the dependence of the sensible heat flux on the stability parameter. The output contains mean, median, 25% and 75% quartile per discrete bin as dataframe. The used variables and the bins can be customized. Such type of analysis is usually applied to longer timeseries. 
+It is often interesting to investigate the stability dependence of turbulence characteristics, e.g. since Monin-Obukhov similarity theory (MOST) predicts all dimensionless turbulence characteristics based on the dimensionless stability parameter $\zeta$. A simple way is to plot stability versus a turbulence characteristic and bin the data based on stability intervals. For this the function `binning` can be used, which bins one variable based on another for predefined bins, as exemplified below for the dependence of the sensible heat flux on the stability parameter. The output contains mean, median, 25% and 75% quartile per discrete bin as dataframe. The used variables and the bins can be customized. Such type of analysis is usually applied to longer timeseries. 
 
 
 ```R
@@ -99,7 +106,7 @@ abline(v=0,lty=2)
 
 
     
-![](figures/fig_0202.png)
+![](figures/fig_0302.png){width=350}
     
 
 
@@ -107,7 +114,7 @@ Based on our short example data, we can already see that the sensible heat flux 
 
 ## Turbulence regimes
 The above shown example for stability dependence can be extended to arbitrary variables and is used to characterize different turbulence regimes. 
-To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be used. Here are some examples plotting wind speed vs TKE or stability parameter vs TKE. For example, @Sun2012 investigated turbulence regimes in stable boundary layers and distinguish between a weak and strong turbulence (and an intermediate regime). For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain versatile factors (e.g., the footprint) modify it.
+To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be used. Here are some examples plotting wind speed vs TKE or stability parameter vs TKE (see e.g., Sun et al., 2012). For example, @Sun2012 investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence (and intermediate) regimes. For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this simple model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain versatile factors (e.g., the footprint) modify it.
 
 
 ```R
@@ -121,6 +128,6 @@ abline(0.1,0.1,col=4,lty=2)
 
 
     
-![](figures/fig_0203.png)
-
+![](figures/fig_0303.png){width=350}
     
+

@@ -174,13 +174,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="flux-footprint.html"><a href="flux-footprint.html"><i class="fa fa-check"></i><b>6</b> Flux Footprint</a>
+<li class="chapter" data-level="6" data-path="flux-footprint.html"><a href="flux-footprint.html"><i class="fa fa-check"></i><b>6</b> Flux footprint</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="flux-footprint.html"><a href="flux-footprint.html#d-flux-footprint"><i class="fa fa-check"></i><b>6.1</b> 2d flux footprint</a>
+<li class="chapter" data-level="6.1" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-parametrizations"><i class="fa fa-check"></i><b>6.1</b> Flux footprint parametrizations</a></li>
+<li class="chapter" data-level="6.2" data-path="flux-footprint.html"><a href="flux-footprint.html#d-flux-footprint-estimate"><i class="fa fa-check"></i><b>6.2</b> 2D flux footprint estimate</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>6.1.1</b> Calculate 2d flux footprint estimate with <code>calc_flux_footprint</code></a></li>
-<li class="chapter" data-level="6.1.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>6.1.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
-<li class="chapter" data-level="6.1.3" data-path="flux-footprint.html"><a href="flux-footprint.html#literature-1"><i class="fa fa-check"></i><b>6.1.3</b> Literature</a></li>
+<li class="chapter" data-level="6.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>6.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>6.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>7</b> Reynolds stress tensor</a>
@@ -191,7 +191,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#plotting-the-barycentric-map-using-plot_barycentric_map"><i class="fa fa-check"></i><b>7.1.2</b> Plotting the barycentric map using <code>plot_barycentric_map</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var"><i class="fa fa-check"></i><b>7.2</b> Anisotropy and velocity aspect ratio (VAR)</a></li>
-<li class="chapter" data-level="7.3" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#literature-2"><i class="fa fa-check"></i><b>7.3</b> Literature</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance (SEB)</a>
 <ul>
@@ -199,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
 <li class="chapter" data-level="8.3" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Bowen ratio and evaporative fraction</a></li>
 <li class="chapter" data-level="8.4" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#clear-sky-index-csi-for-contextualization-calc_csi"><i class="fa fa-check"></i><b>8.4</b> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)</a></li>
-<li class="chapter" data-level="8.5" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#literature-3"><i class="fa fa-check"></i><b>8.5</b> Literature</a></li>
+<li class="chapter" data-level="8.5" data-path="surface-energy-balance-seb.html"><a href="surface-energy-balance-seb.html#literature-1"><i class="fa fa-check"></i><b>8.5</b> Literature</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown<br> (Laura Mack, 2024)</a></li>
@@ -251,15 +250,15 @@ which can also be expressed in a relative measure, the closure ratio CR. The adv
 </div>
 <div id="calculating-surface-energy-balance" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Calculating surface energy balance<a href="surface-energy-balance-seb.html#calculating-surface-energy-balance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="surface-energy-balance-seb.html#cb49-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb49-2"><a href="surface-energy-balance-seb.html#cb49-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
-<span id="cb49-3"><a href="surface-energy-balance-seb.html#cb49-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
-<span id="cb49-4"><a href="surface-energy-balance-seb.html#cb49-4" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb49-5"><a href="surface-energy-balance-seb.html#cb49-5" aria-hidden="true"></a>sigma=<span class="fl">5.67</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span>(<span class="op">-</span><span class="dv">8</span>)</span>
-<span id="cb49-6"><a href="surface-energy-balance-seb.html#cb49-6" aria-hidden="true"></a></span>
-<span id="cb49-7"><a href="surface-energy-balance-seb.html#cb49-7" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
-<span id="cb49-8"><a href="surface-energy-balance-seb.html#cb49-8" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span>
-<span id="cb49-9"><a href="surface-energy-balance-seb.html#cb49-9" aria-hidden="true"></a>dat<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="surface-energy-balance-seb.html#cb47-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb47-2"><a href="surface-energy-balance-seb.html#cb47-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>)</span>
+<span id="cb47-3"><a href="surface-energy-balance-seb.html#cb47-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb47-4"><a href="surface-energy-balance-seb.html#cb47-4" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb47-5"><a href="surface-energy-balance-seb.html#cb47-5" aria-hidden="true"></a>sigma=<span class="fl">5.67</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span>(<span class="op">-</span><span class="dv">8</span>)</span>
+<span id="cb47-6"><a href="surface-energy-balance-seb.html#cb47-6" aria-hidden="true"></a></span>
+<span id="cb47-7"><a href="surface-energy-balance-seb.html#cb47-7" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
+<span id="cb47-8"><a href="surface-energy-balance-seb.html#cb47-8" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span>
+<span id="cb47-9"><a href="surface-energy-balance-seb.html#cb47-9" aria-hidden="true"></a>dat<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
 <pre><code>Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
 (as ‘lib’ is unspecified)
 
@@ -277,12 +276,12 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union</code></pre>
 <p><strong>Plotting of surface energy balance with <code>plot_seb</code></strong> <br>
 The function <code>plot_seb</code>plots the surface energy balance as time series and as scatter plot (R-GH, SH+LH) with linear regression as well as calculates the residual flux and the closure ratio.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance-seb.html#cb51-1" aria-hidden="true"></a><span class="co">#read in radiation data</span></span>
-<span id="cb51-2"><a href="surface-energy-balance-seb.html#cb51-2" aria-hidden="true"></a>dat_rad=<span class="kw">read.table</span>(<span class="st">&quot;../data//radiation-data_30min//biomet_data.csv&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
-<span id="cb51-3"><a href="surface-energy-balance-seb.html#cb51-3" aria-hidden="true"></a><span class="kw">colnames</span>(dat_rad)=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;rh&quot;</span>,<span class="st">&quot;ta&quot;</span>,<span class="st">&quot;swin&quot;</span>,<span class="st">&quot;swout&quot;</span>,<span class="st">&quot;lwin&quot;</span>,<span class="st">&quot;lwout&quot;</span>,<span class="st">&quot;shf1&quot;</span>,<span class="st">&quot;shf2&quot;</span>)</span>
-<span id="cb51-4"><a href="surface-energy-balance-seb.html#cb51-4" aria-hidden="true"></a>dat_rad<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat_rad<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="surface-energy-balance-seb.html#cb52-1" aria-hidden="true"></a>dat=<span class="kw">inner_join</span>(dat,dat_rad,<span class="dt">by=</span><span class="st">&quot;TIME&quot;</span>)</span>
-<span id="cb52-2"><a href="surface-energy-balance-seb.html#cb52-2" aria-hidden="true"></a>dat</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="surface-energy-balance-seb.html#cb49-1" aria-hidden="true"></a><span class="co">#read in radiation data</span></span>
+<span id="cb49-2"><a href="surface-energy-balance-seb.html#cb49-2" aria-hidden="true"></a>dat_rad=<span class="kw">read.table</span>(<span class="st">&quot;../data//radiation-data_30min//biomet_data.csv&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb49-3"><a href="surface-energy-balance-seb.html#cb49-3" aria-hidden="true"></a><span class="kw">colnames</span>(dat_rad)=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;rh&quot;</span>,<span class="st">&quot;ta&quot;</span>,<span class="st">&quot;swin&quot;</span>,<span class="st">&quot;swout&quot;</span>,<span class="st">&quot;lwin&quot;</span>,<span class="st">&quot;lwout&quot;</span>,<span class="st">&quot;shf1&quot;</span>,<span class="st">&quot;shf2&quot;</span>)</span>
+<span id="cb49-4"><a href="surface-energy-balance-seb.html#cb49-4" aria-hidden="true"></a>dat_rad<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat_rad<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="surface-energy-balance-seb.html#cb50-1" aria-hidden="true"></a>dat=<span class="kw">inner_join</span>(dat,dat_rad,<span class="dt">by=</span><span class="st">&quot;TIME&quot;</span>)</span>
+<span id="cb50-2"><a href="surface-energy-balance-seb.html#cb50-2" aria-hidden="true"></a>dat</span></code></pre></div>
 <table class="dataframe">
 <caption>
 A data.frame: 127 × 40
@@ -4387,7 +4386,7 @@ shf2
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="surface-energy-balance-seb.html#cb53-1" aria-hidden="true"></a><span class="kw">plot_seb</span>(dat<span class="op">$</span>swin,dat<span class="op">$</span>swout,dat<span class="op">$</span>lwin,dat<span class="op">$</span>lwout,dat<span class="op">$</span>sh,dat<span class="op">$</span>lh,dat<span class="op">$</span>shf1)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance-seb.html#cb51-1" aria-hidden="true"></a><span class="kw">plot_seb</span>(dat<span class="op">$</span>swin,dat<span class="op">$</span>swout,dat<span class="op">$</span>lwin,dat<span class="op">$</span>lwout,dat<span class="op">$</span>sh,dat<span class="op">$</span>lh,dat<span class="op">$</span>shf1)</span></code></pre></div>
 <div class="figure">
 <img src="output_6_0.png" alt="" />
 <p class="caption">png</p>
@@ -4421,23 +4420,23 @@ F-statistic: 664.7 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
     BR:= \frac{SH}{LH}\quad\quad\textrm{and}\quad\quad EF:= \frac{LH}{LH+SH}
 \]</span>
 and are both a way to describe the heat transfer by sensible vs latent heat. They are related to the surface (and the water abundance therein) and can be used to compare different surface types in different climates. Therefore, it usually applied on monthly/seasonal/annual averages (so here just exemplarily calculated).</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="surface-energy-balance-seb.html#cb55-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BR (average):&quot;</span>, <span class="kw">calc_br</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span>
-<span id="cb55-2"><a href="surface-energy-balance-seb.html#cb55-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;EF (average):&quot;</span>, <span class="kw">calc_ef</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="surface-energy-balance-seb.html#cb53-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BR (average):&quot;</span>, <span class="kw">calc_br</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span>
+<span id="cb53-2"><a href="surface-energy-balance-seb.html#cb53-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;EF (average):&quot;</span>, <span class="kw">calc_ef</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span></code></pre></div>
 <pre><code>[1] &quot;BR (average): 1.2715665126865&quot;
 [1] &quot;EF (average): 0.440224837976387&quot;</code></pre>
 </div>
 <div id="clear-sky-index-csi-for-contextualization-calc_csi" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)<a href="surface-energy-balance-seb.html#clear-sky-index-csi-for-contextualization-calc_csi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity <span class="math inline">\(\epsilon_{actual}\)</span> and theoretical (clear-sky) emissivity <span class="math inline">\(\epsilon_{theoretical}\)</span>. If <span class="math inline">\(\epsilon_{actual} \le \epsilon_{theoretical}\)</span>, i.e. <span class="math inline">\(CSI \le 1\)</span>, than the sky is assumed to be clear-sky (see e.g. in the review paper Lehner et al., 2021).</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="surface-energy-balance-seb.html#cb57-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
-<span id="cb57-2"><a href="surface-energy-balance-seb.html#cb57-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="surface-energy-balance-seb.html#cb55-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
+<span id="cb55-2"><a href="surface-energy-balance-seb.html#cb55-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>
 <div class="figure">
 <img src="output_10_0.png" alt="" />
 <p class="caption">png</p>
 </div>
 </div>
-<div id="literature-3" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Literature<a href="surface-energy-balance-seb.html#literature-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="literature-1" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Literature<a href="surface-energy-balance-seb.html#literature-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Lehner, M., Rotach, M. W. Sfyri, E., and Obleitner, F. (2021). Spatial and temporal variations in near-surface en-
 ergy fluxes in an Alpine valley under synoptically undisturbed and clear-sky conditions. Q J R Meteorol Soc,
@@ -4454,7 +4453,22 @@ Verma, S., 2002. Energy balance closure at FLUXNET sites. Agric. Forest Meteorol
 
 <div id="refs" class="references hanging-indent">
 <div>
+<p>Banerjee, S., R. Krahl, F. Durst, and C. Zenger. 2007. “Presentation of anisotropy properties of turbulence, invariants versus eigenvalue approaches.” <em>J Turb</em> 8 (N32). <a href="https://doi.org/10.1080/14685240701506896">https://doi.org/10.1080/14685240701506896</a>.</p>
+</div>
+<div>
 <p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>.</p>
+</div>
+<div>
+<p>Kljun, N., P. Calanca, M. W. Rotach, and H. P. Schmid. 2015. “A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP).” <em>Geosci Model Dev</em> 8: 3695–3713.</p>
+</div>
+<div>
+<p>Monin, A. S., and A. M. Obukhov. 1954. “Basic laws of turbulent mixing in the surface layer of the atmosphere.” <em>Tr Akad Nauk SSSR Geophiz Inst</em> 24 (151): 163–87.</p>
+</div>
+<div>
+<p>Nieuwstadt, F. T. M. 1984. “The Turbulent Structures of the Stable, Nocturnal Boundary Layer.” <em>J Atmos Sci</em> 41 (14): 2202–16.</p>
+</div>
+<div>
+<p>Pirk, N., K. Aalstad, Y. A. Yilmaz, A. Vatne, A. L. Popp, P. Horvath, A. Bryn, et al. 2023. “Snow-Vegetation-Atmosphere Interactions in Alpine Tundra.” <em>Biogeosciences</em> 20: 2031–47. <a href="https://doi.org/10.5194/bg-20-2031-2023">https://doi.org/10.5194/bg-20-2031-2023</a>.</p>
 </div>
 <div>
 <p>Sievers, J., T. Papakyriakou, S. E. Larsen, M. M. Jammet, S. Rysgaard, M. K. Sejr, and L. L. Sørensen. 2015. “Estimating surface fluxes using eddy covariance and numerical ogive optimization.” <em>Atmos Chem Phys</em> 15: 2081–2103. <a href="https://doi.org/10.5194/acp-15-2081-2015">https://doi.org/10.5194/acp-15-2081-2015</a>.</p>
