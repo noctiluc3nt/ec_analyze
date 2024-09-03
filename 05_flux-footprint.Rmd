@@ -1,6 +1,7 @@
-# Flux Footprint
+# Flux footprint
 
-The calculation of a 2d flux footprint makes it possible to estimate the size of the surface that contributes to the measured flux. This also allows to analyze whether changes in the flux result from a change in the footprint (e.g. surface composition, vegetation, surface roughness). Here the flux footprint parametrization according to Kljun et al., 2015 is used. <br>
+## Flux footprint parametrizations
+The calculation of a 2d flux footprint makes it possible to estimate the size of the surface that contributes to the measured flux. This also allows to analyze whether changes in the flux result from a change in the footprint (e.g. surface composition, vegetation, surface roughness). Here the flux footprint parametrization according to @Kljun2015 is used. <br>
 The mathematical idea for deriving a flux footprint parametrization is to express the flux ($F_c$) as integral over the distribution of its sinks and sources ($S_c$) times a transfer function $f$ (the flux footprint):
 $$
     F_c(0,0,z) = \int\int S_c(x,y) f(x,y) \:dx\,dy
@@ -9,14 +10,13 @@ By treating streamwise and crosswise velocity independently, the footprint can b
 $$
     f(x,y) = \overline{f^y}(x)D_y.
 $$
-(This assumption leads to a symmtric footprint in crosswind direction.) For further derivations a concrete footprint model has to be applied, which is in Kljun et al., 2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities.
+This assumption leads to a symmtric footprint in crosswind direction. For further derivations a concrete footprint model has to be applied, which is in Kljun et al., 2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities.
 
 
 ```R
 #load Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE)
+install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
-kap=function() return(0.4)
 
 #read in processed example data
 dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
@@ -25,14 +25,9 @@ dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
 i=8 #daytime example
 ```
 
-    Installing package into ‘/home/lauracma/R/x86_64-pc-linux-gnu-library/4.0’
-    (as ‘lib’ is unspecified)
-    
-
-
-## 2d flux footprint
-### Calculate 2d flux footprint estimate with `calc_flux_footprint`
-The function `calc_flux_footprint`uses the 2d flux footprint parametrization (FFP) according to Kljun et al., 2015 to calculate the footprint based on measurement height `zm`, mean horizontal wind speed `u_mean`, boundary layer height `h`, Obukhov length `L` (`calc_L`), standard deviation of cross-wind component `v_sd` and either friction velocity `ustar`(`calc_ustar`) or surface roughness length `z0` in a resolution given by `nres`. The boundary layer height can be taken from e.g. ERA5.
+## 2D flux footprint estimate
+### Calculate 2D flux footprint estimate with `calc_flux_footprint`
+The function `calc_flux_footprint`uses the 2d flux footprint parametrization (FFP) according to @Kljun2015 to calculate the footprint based on measurement height `zm`, mean horizontal wind speed `u_mean`, boundary layer height `h`, Obukhov length `L` (`calc_L`), standard deviation of cross-wind component `v_sd` and either friction velocity `ustar`(`calc_ustar`) or surface roughness length `z0` in a resolution given by `nres`. The boundary layer height can be taken from e.g. ERA5.
 
 
 ```R
@@ -86,22 +81,11 @@ plot_flux_footprint(ffp)
 
 
     
-![png](output_5_0.png)
+![](figures/fig_0601.png){width=500}
+    
+
+![](figures/fig_0602.png){width=500}
     
 
 
-
-    
-![png](output_5_1.png)
-    
-
-
-Footprint climatologies can be create as composite footprints by averaging over several FFP calculations. 
-
-### Literature
-- Kljun, N., Calanca, P., Rotach, M. W., and Schmid, H. P.: A Simple Two-Dimensional Parameterisation for Flux Footprint Prediction (FFP),
-Geoscientific Model Development, 8, 3695–3713, https://doi.org/10.5194/gmd-8-3695-2015, 2015.
-- Pirk, N., Aalstad, K., Yilmaz, Y. A., Vatne, A., Popp, A. L., Horvath, P.,
-Bryn, A., Vollsnes, A. V., Westermann, S., Berntsen, T. K., Stordal, F., and
-Tallaksen, L. M. (2023). Snow-vegetation-atmosphere interactions in alpine
-tundra. Biogeosciences, 20:2031–2047.
+Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage https://www.footprint.kljun.net/. The flux footprint can then be plotted on an aerial photo or a ecosystem type classification, see e.g. @Kljun2015 therein Fig. 5 or @Pirk2023a therein Fig. 4.
