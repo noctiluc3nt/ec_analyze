@@ -16,18 +16,28 @@ description: ""
 # Introduction
 
 <hr>
-<span style="color: darkblue;">**An introduction to eddy-covariance measurements and their meteorological evaluation**</span> <br>
-**Package**: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-**Gitbook**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
+**Package**: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br> 
+**Jupyter notebooks**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a><br>
+**Publication**: <a href="https://link.springer.com/article/10.1007/s10546-024-00879-5">Link</a><br>
+**Any comments or issues?**: <a href="https://github.com/noctiluc3nt/ec_analyze/issues">create an issue (Github)</a>
+
 <hr>
 
 **Overview:** Eddy-covariance (EC) measurements allow to *measure turbulent fluxes directly and non-invasively over long periods of time*, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere. 
 <br>
 However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out. 
 This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
+Each chapter covers one topic and is also available as jupyter notebook, which can be downloaded  <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">here</a>. 
 
 ![Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package](./figures/schema/schema.png)
 
+
+**Installation of the Reddy package:** The Reddy package can be installed directly from github:
+```R
+        devtools::install_git("https://github.com/noctiluc3nt/Reddy")
+```
+Entering a function name `function` in an R terminal, shows the function and the performed calculations, such that the calculation and plotting procedure is fully comprehensible.
+The Reddy package depends on the libraries `MASS` (for kernel density estimation), `pracma` (basic linear algebra) and `RcppRoll` (C++ interface for accelerated data handling), which are automatically installed with Reddy.
 
 ## Measurement setup and instrumentation
 

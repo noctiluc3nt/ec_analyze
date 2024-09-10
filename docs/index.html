@@ -226,18 +226,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr>
-<span style="color: darkblue;"><strong>An introduction to eddy-covariance measurements and their meteorological evaluation</strong></span> <br>
-<strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-<strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
+<p><strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
+<strong>Jupyter notebooks</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a><br>
+<strong>Publication</strong>: <a href="https://link.springer.com/article/10.1007/s10546-024-00879-5">Link</a><br>
+<strong>Any comments or issues?</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/issues">create an issue (Github)</a></p>
 <hr>
 <p><strong>Overview:</strong> Eddy-covariance (EC) measurements allow to <em>measure turbulent fluxes directly and non-invasively over long periods of time</em>, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere.
 <br>
 However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out.
-This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.</p>
+This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
+Each chapter covers one topic and is also available as jupyter notebook, which can be downloaded <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">here</a>.</p>
 <div class="figure">
-<img src="figures/schema/schema.png" alt="" />
+<img src="./figures/schema/schema.png" alt="" />
 <p class="caption">Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package</p>
 </div>
+<p><strong>Installation of the Reddy package:</strong> The Reddy package can be installed directly from github:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true"></a>        devtools<span class="op">::</span><span class="kw">install_git</span>(<span class="st">&quot;https://github.com/noctiluc3nt/Reddy&quot;</span>)</span></code></pre></div>
+<p>Entering a function name <code>function</code> in an R terminal, shows the function and the performed calculations, such that the calculation and plotting procedure is fully comprehensible.
+The Reddy package depends on the libraries <code>MASS</code> (for kernel density estimation), <code>pracma</code> (basic linear algebra) and <code>RcppRoll</code> (C++ interface for accelerated data handling), which are automatically installed with Reddy.</p>
 <div id="measurement-setup-and-instrumentation" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Measurement setup and instrumentation<a href="index.html#measurement-setup-and-instrumentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Setup:</strong>
