@@ -9,7 +9,7 @@ $$ R := \overline{u_i ' u_j '} = \begin{pmatrix}
 		\end{pmatrix}, \quad \textrm{with} \quad R = R^T$$
 summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle -- called *barycentric map* (@Banerjee2007, see figure) -- with the coordinates $(x_B,y_B)$, can be constructed, which allows to characterize the anisotropy ($y_B$) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.
 
-<img src="../figures/schema/triangle_schema.png" width=500 />
+<img src="../figures/schema/triangle_schema.png" width=550 />
 
 
 ```R
