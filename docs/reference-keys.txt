@@ -33,5 +33,6 @@ plotting-of-flux-footprint-with-plot_flux_footprint
 surface-energy-balance
 surface-energy-balance-closure
 calculating-surface-energy-balance
-bowen-ratio-and-evaporative-fraction
-clear-sky-index-csi-for-contextualization-calc_csi
+hydrological-measures-bowen-ratio-and-evaporative-fraction
+meteorological-contextualization
+references

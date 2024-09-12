@@ -195,9 +195,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#surface-energy-balance-closure"><i class="fa fa-check"></i><b>8.1</b> Surface energy balance closure</a></li>
 <li class="chapter" data-level="8.2" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
-<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Bowen ratio and evaporative fraction</a></li>
-<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#clear-sky-index-csi-for-contextualization-calc_csi"><i class="fa fa-check"></i><b>8.4</b> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)</a></li>
+<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Hydrological measures: Bowen ratio and evaporative fraction</a></li>
+<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#meteorological-contextualization"><i class="fa fa-check"></i><b>8.4</b> Meteorological contextualization</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2024)</a></li>
 
@@ -225,25 +226,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr>
-<span style="color: darkblue;"><strong>An introduction to eddy-covariance measurements and their meteorological evaluation</strong></span> <br>
-<strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
-<strong>Gitbook</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a>
+<p><strong>Package</strong>: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br>
+<strong>Jupyter notebooks</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a><br>
+<strong>Publication</strong>: <a href="https://link.springer.com/article/10.1007/s10546-024-00879-5">Link</a><br>
+<strong>Any comments or issues?</strong>: <a href="https://github.com/noctiluc3nt/ec_analyze/issues">create an issue (Github)</a></p>
 <hr>
 <p><strong>Overview:</strong> Eddy-covariance (EC) measurements allow to <em>measure turbulent fluxes directly and non-invasively over long periods of time</em>, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land/vegetation/cryosphere/hydrosphere.
 <br>
 However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out.
-This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.</p>
+This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
+Each chapter covers one topic and is also available as jupyter notebook, which can be downloaded <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">here</a>.</p>
 <div class="figure">
-<img src="figures/schema/schema.png" alt="" />
+<img src="./figures/schema/schema.png" alt="" />
 <p class="caption">Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package</p>
 </div>
+<p><strong>Installation of the Reddy package:</strong> The Reddy package can be installed directly from github:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true"></a>        devtools<span class="op">::</span><span class="kw">install_git</span>(<span class="st">&quot;https://github.com/noctiluc3nt/Reddy&quot;</span>)</span></code></pre></div>
+<p>Entering a function name <code>function</code> in an R terminal, shows the function and the performed calculations, such that the calculation and plotting procedure is fully comprehensible.
+The Reddy package depends on the libraries <code>MASS</code> (for kernel density estimation), <code>pracma</code> (basic linear algebra) and <code>RcppRoll</code> (C++ interface for accelerated data handling), which are automatically installed with Reddy.</p>
 <div id="measurement-setup-and-instrumentation" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Measurement setup and instrumentation<a href="index.html#measurement-setup-and-instrumentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Setup:</strong>
-An EC setup has two main components: the sonic anemometer (for the wind vector and temperature) and a gasanalyzer (for water vapor, carbon dioxide, methane, …).
+An EC setup has two main components: the sonic anemometer (for the wind vector and temperature) and a gas analyzer (for water vapor, carbon dioxide, methane, …).
 The sonic usually consists of three pairs of transducers, that transmit and receive ultra-sonic sound waves whose propagation speed depends on wind speed, temperature and humidity. Therefrom, the three wind components and the sonic temperature, which is approximately the virtual temperature, can be derived.
-The gasanalyzers utilize usually an absorption line in the near- or mid-infrared of the respective trace gas, to measure their number density (IRGA - infrared gas analyzer). There are different types of infrared gasanalyzer, the most common difference beeing between gasanalyzers with closed or open measuring path.
-Further possible methods for gasanalyzers are laser spectroscopy, mass spectroscopy, chromatography and chemiluminescence (often used for NOx) and also particle flux measurements can be combined with sonic measurements to derive particle fluxes. <br>
+The gas analyzers utilize usually an absorption line in the near- or mid-infrared of the respective trace gas, to measure their number density (IRGA - infrared gas analyzer). There are different types of infrared gas analyzer, the most common difference beeing between gas analyzers with closed or open measuring path.
+Further possible methods for gas analyzers are laser spectroscopy, mass spectroscopy, chromatography and chemiluminescence (often used for NOx) and also particle flux measurements can be combined with sonic measurements to derive particle fluxes. <br>
 The EC system can be mounted on a tower or mast with one or several measurement heights. For choosing the location and measurement height, the surface roughness and the flux footprint (i.e., the area where the flux originates from) are examined. Since the mast or tower disturb the EC measurements, the orientation of the system is chosen based on the prevailing wind direction(s), such that the main wind direction(s) are undisturbed by the tower structures, as exemplified in figure 3.
 The sonics have an internal orientation (and should face north as indicated on the sonic), and they should be levelled (however, their precise levelling is not essential as the wind is rotated in the post-processing anyway).</p>
 <div class="figure">
@@ -251,8 +258,8 @@ The sonics have an internal orientation (and should face north as indicated on t
 <p class="caption">Figure 2: Eddy-covariance sites in different environments: urban (Helsinki, Finland), lake (Kuivajärvi, Finland), boreal forest (Sodankylä, Finland), and alpine tundra (Finse, Norway).</p>
 </div>
 <p><strong>Calibration and Maintainance:</strong>
-The EC system requires regular maintainance, in particular the gasanalyzers. The gasanalyzers are calibrated regularly in-field and, more rarely, intensively by the manufacturer. For this prupose, reference measurements are carried out with gas cylinders containing a fixed amount of the gas, e.g. zero-gas or 450 ppm CO<span class="math inline">\(_2\)</span>. For water vapor, usually only the zero-gas calibration is performed, since fixed water vapor concentrations are difficult to maintain. For other trace gases, the in-field calibration is performed with a zero-gas and another fixed concentration, while the manufacturer calibrates for several fixed gas concentrations.
-The optics of the gasanalyzer have to be cleaned regulary depending on the environmental conditions, whereby open-path gasanalyzers require more maintainance than closed-path gasanalyzers.
+The EC system requires regular maintainance, in particular the gas analyzers. The gas analyzers are calibrated regularly in-field and, more rarely, intensively by the manufacturer. For this prupose, reference measurements are carried out with gas cylinders containing a fixed amount of the gas, e.g. zero-gas or 450 ppm CO<span class="math inline">\(_2\)</span>. For water vapor, usually only the zero-gas calibration is performed, since fixed water vapor concentrations are difficult to maintain. For other trace gases, the in-field calibration is performed with a zero-gas and another fixed concentration, while the manufacturer calibrates for several fixed gas concentrations.
+The optics of the gas analyzer have to be cleaned regulary depending on the environmental conditions, whereby open-path gas analyzers require more maintainance than closed-path gas analyzers.
 Additionally, the inlet filters should be cleaned or replaced regulary as well as the sampling tube. The sonic requires less maintainance, however, the measurements are sensitive to the distance of the transducer pairs, so their distance should be checked.</p>
 <div class="figure">
 <img src="figures/setup/ec-setup-all-labelled_upscaled.png" alt="" />
@@ -261,24 +268,39 @@ Additionally, the inlet filters should be cleaned or replaced regulary as well a
 </div>
 <div id="data-sources" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Data sources<a href="index.html#data-sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are several coordinated FLUXNETs, which standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br></p>
+<p><strong>FLUXNETs:</strong>
+There are several coordinated FLUXNETs, which standardise eddy-covariance measurements regionally or globally and provide post-processed flux data. For example:<br></p>
 <ul>
-<li><a href="https://fluxnet.org">FLUXNET</a>: data set <a href="https://fluxnet.org/data/fluxnet2015-dataset/"> FLUXNET2015</a></li>
-<li><a href="https://www.icos-cp.eu/">ICOS (Integrated Carbon Observation System)</a>: data portal for <a href="https://data.icos-cp.eu/portal/#%7B%22filterCategories%22:%7B%22project%22:%5B%22icos%22%5D,%22level%22:%5B1,2%5D,%22stationclass%22:%5B%22ICOS%22%5D%7D%7D">data download</a></li>
+<li><a href="https://fluxnet.org">FLUXNET</a>: FLUXNET combines several regional network to a global flux dataset. A list of regional networks can be found <a href="https://fluxnet.org/about/regional-networks/">here</a> and a list of stations <a href="https://fluxnet.org/sites/site-list-and-pages/">here</a>.
+The most recent global flux data set is <a href="https://fluxnet.org/data/fluxnet2015-dataset/"> FLUXNET2015</a> <span class="citation">(Pastorello et al. <a href="#ref-Pastorello2020" role="doc-biblioref">2020</a>)</span>.</li>
+<li><a href="https://www.icos-cp.eu/">ICOS</a>: ICOS (Integrated Carbon Observation System) is a European network of different station types (Atmosphere, Ecosystem, Ocean), which observe carbon concentrations and fluxes. The atmospheric stations are listed <a href="https://www.icos-cp.eu/observations/atmosphere/stations">here</a> and data can be downloaded from the
+<a href="https://data.icos-cp.eu/portal/#%7B%22filterCategories%22:%7B%22project%22:%5B%22icos%22%5D,%22level%22:%5B1,2%5D,%22stationclass%22:%5B%22ICOS%22%5D%7D%7D">data portal</a>.</li>
 </ul>
-<!--
-## Other micrometeorological measurement methods
- chamber flux measurements, drones, fods, lidar, scintilometer-->
-<p><strong>Other packages for processing of eddy-covariance data:</strong> <br></p>
+<p><strong>Other packages for processing of eddy-covariance data:</strong> Multiple other packages for eddy-covariance data processing exist with different applications and different degrees of specialization as well as in different languages. The main focus of these packages is the post-processing of raw eddy-covariance data and the main application area are ecosystem studies.
+In this regard, <a href="https://github.com/noctiluc3nt/Reddy">Reddy</a> <span style="color: darkblue;"><strong>R</strong></span> fills a gap, as it is tailored to meteorological applications and allows for a fully customized post-processing and analysis of eddy-covariance data. <br></p>
 <ul>
-<li><a href="https://github.com/LI-COR-Environmental/eddypro-engine">EddyPro®</a>: Post-processing of eddy-covariance data (LI-COR Biosciences)</li>
-<li><a href="https://cran.r-project.org/web/packages/REddyProc/index.html">REddyProc</a>: Post-processing of (half-)hourly eddy-covariance measurements</li>
-<li><a href="https://github.com/lsigut/openeddy">openeddy</a>: Post-processing of eddy-covariance data, aligned with REddyProc</li>
-<li><a href="https://github.com/domvit81/RFlux/">RFlux</a>: GUI for post-processing of eddy-covariance raw data by calling <a href="https://github.com/LI-COR-Environmental/eddypro-engine">EddyPro®</a> (LI-COR Biosciences, 2019)</li>
-<li><a href="https://github.com/fluxnet/ONEFlux">ONEFlux</a> (“Open Network-Enabled Flux processing pipeline”): Post-processing of (half-)hourly eddy-covariance data used to create the <a href="https://fluxnet.org/data/fluxnet2015-dataset/">FLUXNET2015 dataset</a></li>
-<li><a href="https://pypi.org/project/icoscp/">icoscp</a>: accessing data from <a href="https://www.icos-cp.eu/">ICOS</a> (Integrated Carbon Observing System) <a href="https://data.icos-cp.eu/portal/#%7B%22filterCategories%22:%7B%22project%22:%5B%22icos%22%5D,%22level%22:%5B1,2%5D,%22stationclass%22:%5B%22ICOS%22%5D%7D%7D">data portal</a></li>
+<li><a href="https://github.com/LI-COR-Environmental/eddypro-engine">EddyPro®</a> <span style="color: darkblue;"><strong>Fortran</strong></span>: Post-processing of eddy-covariance data (LI-COR Biosciences).</li>
+<li><a href="https://github.com/fluxnet/ONEFlux">ONEFlux</a> <span style="color: darkblue;"><strong>C</strong></span> (“Open Network-Enabled Flux processing pipeline”): Post-processing of (half-)hourly eddy-covariance data used to create the FLUXNET2015 dataset <span class="citation">(Pastorello et al. <a href="#ref-Pastorello2020" role="doc-biblioref">2020</a>)</span>.</li>
+<li><a href="https://cran.r-project.org/web/packages/REddyProc/index.html">REddyProc</a> <span style="color: darkblue;"><strong>R</strong></span>: Post-processing of (half-)hourly eddy-covariance measurements.</li>
+<li><a href="https://github.com/lsigut/openeddy">openeddy</a> <span style="color: darkblue;"><strong>R</strong></span>: Post-processing of eddy-covariance data, aligned with REddyProc.</li>
+<li><a href="https://github.com/domvit81/RFlux/">RFlux</a> <span style="color: darkblue;"><strong>R</strong></span>: GUI for post-processing of eddy-covariance raw data by calling <a href="https://github.com/LI-COR-Environmental/eddypro-engine">EddyPro®</a> (LI-COR Biosciences, 2019).</li>
+<li><a href="https://github.com/NEONScience/eddy4R">eddy4R</a> <span style="color: darkblue;"><strong>R</strong></span> <span class="citation">(Metzger et al. <a href="#ref-Metzger2017" role="doc-biblioref">2017</a>)</span> : Family of several R-package for eddy-covariance post-processing in a DevOps framework.</li>
+<li><a href="https://pypi.org/project/icoscp/">icoscp</a> <span style="color: darkblue;"><strong>Python</strong></span>: Accessing data from ICOS data portal.</li>
+<li><a href="https://github.com/Open-ET/flux-data-qaqc">flux-data-qaqc</a> <span style="color: darkblue;"><strong>Python</strong></span> <span class="citation">(Volk et al. <a href="#ref-Volk2021" role="doc-biblioref">2021</a>)</span> : Post-processing of eddy-covariance measurements to derive daily or monthly evapotranspiration in a energy balance framework.</li>
 </ul>
 
+</div>
+</div>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-Metzger2017">
+<p>Metzger, S., D. Durden, C. Sturtevant, H. Luo, N. Pingintha-Durden, T. Sachs, A. Serafimovivh, et al. 2017. “eddy4R 0.2.0: a DevOps model for community-extensible processing and analysis of eddy-covariance data based on R, Git, Docker, and HDF5.” <em>Geosci Model Dev</em> 10: 3189–3206. <a href="https://doi.org/10.5194/gmd-10-3189-2017">https://doi.org/10.5194/gmd-10-3189-2017</a>.</p>
+</div>
+<div id="ref-Pastorello2020">
+<p>Pastorello, G., A. Trotta, E. Canfora, and others. 2020. “The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data.” <em>Sci Data</em> 7 (225). <a href="https://doi.org/10.1038/s41597-020-0534-3">https://doi.org/10.1038/s41597-020-0534-3</a>.</p>
+</div>
+<div id="ref-Volk2021">
+<p>Volk, J., J. Huntingtion, R. Allen, F. Melton, M. Anderson, and A. Kilic. 2021. “flux-data-qaqc: A Python Package for Energy Balance Closure and Post-Processing of Eddy Flux Data.” <em>Journal of Open Source Software</em> 6 (66). <a href="https://doi.org/10.21105/joss.03418">https://doi.org/10.21105/joss.03418</a>.</p>
 </div>
 </div>
             </section>

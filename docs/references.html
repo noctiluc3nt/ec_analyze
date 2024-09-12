@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 References | Reddy: An open-source package for analyzing eddy-covariance data</title>
+  <meta name="description" content="9 References | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 References | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="noctiluc3nt/Reddy" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 References | Reddy: An open-source package for analyzing eddy-covariance data" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="surface-energy-balance.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/noctiluc3nt/Reddy" target="blank"><bf>Reddy<bf></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#measurement-setup-and-instrumentation"><i class="fa fa-check"></i><b>1.1</b> Measurement setup and instrumentation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-sources"><i class="fa fa-check"></i><b>1.2</b> Data sources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html"><i class="fa fa-check"></i><b>2</b> Post-processing of raw eddy-covariance data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#eddy-covariance-method"><i class="fa fa-check"></i><b>2.1</b> Eddy-covariance method</a></li>
+<li class="chapter" data-level="2.2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#raw-data-handling-and-corrections"><i class="fa fa-check"></i><b>2.2</b> Raw data handling and corrections</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time"><i class="fa fa-check"></i><b>2.2.1</b> Choosing a suitable averaging time</a></li>
+<li class="chapter" data-level="2.2.2" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data"><i class="fa fa-check"></i><b>2.2.2</b> Overview of correction procedures applied to the raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="post-processing-of-raw-eddy-covariance-data.html"><a href="post-processing-of-raw-eddy-covariance-data.html#an-example-post-processing-routine"><i class="fa fa-check"></i><b>2.3</b> An example post-processing routine</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html"><i class="fa fa-check"></i><b>3</b> Turbulence diagnostics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-simple-timeseries-plots"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and simple timeseries plots</a></li>
+<li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
+<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html#calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis"><i class="fa fa-check"></i><b>4.1</b> Calculation of occurrence frequencies and strengths of the four quadrants with <code>calc_quadrant_analysis</code></a></li>
+<li class="chapter" data-level="4.2" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html#plotting-quadrant-analysis-with-plot_quadrant_analysis"><i class="fa fa-check"></i><b>4.2</b> Plotting quadrant analysis with <code>plot_quadrant_analysis</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
+<li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#invariant-analysis-of-the-reynolds-stress-tensor"><i class="fa fa-check"></i><b>6.1</b> Invariant analysis of the Reynolds stress tensor</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy"><i class="fa fa-check"></i><b>6.1.1</b> Performing the invariant analysis of the Reynolds stress tensor with <code>calc_anisotropy</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#plotting-the-barycentric-map-using-plot_barycentric_map"><i class="fa fa-check"></i><b>6.1.2</b> Plotting the barycentric map using <code>plot_barycentric_map</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var"><i class="fa fa-check"></i><b>6.2</b> Anisotropy and velocity aspect ratio (VAR)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="flux-footprint.html"><a href="flux-footprint.html"><i class="fa fa-check"></i><b>7</b> Flux footprint</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-parametrizations"><i class="fa fa-check"></i><b>7.1</b> Flux footprint parametrizations</a></li>
+<li class="chapter" data-level="7.2" data-path="flux-footprint.html"><a href="flux-footprint.html#d-flux-footprint-estimate"><i class="fa fa-check"></i><b>7.2</b> 2D flux footprint estimate</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#surface-energy-balance-closure"><i class="fa fa-check"></i><b>8.1</b> Surface energy balance closure</a></li>
+<li class="chapter" data-level="8.2" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
+<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Hydrological measures: Bowen ratio and evaporative fraction</a></li>
+<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#meteorological-contextualization"><i class="fa fa-check"></i><b>8.4</b> Meteorological contextualization</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2024)</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source package for analyzing eddy-covariance data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Baldocchi, D. D. 2003. “Assessing the eddy covariance technique for evaluating carbon dioxide exchange rates of ecosystems: past, present and future.” <em>Global Change Biology</em> 9: 479–92.</p>
+</div>
+<div>
+<p>Banerjee, S., R. Krahl, F. Durst, and C. Zenger. 2007. “Presentation of anisotropy properties of turbulence, invariants versus eigenvalue approaches.” <em>J Turb</em> 8 (N32). <a href="https://doi.org/10.1080/14685240701506896">https://doi.org/10.1080/14685240701506896</a>.</p>
+</div>
+<div>
+<p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>. <a href="https://doi.org/10.1007/978-3-642-25440-6">https://doi.org/10.1007/978-3-642-25440-6</a>.</p>
+</div>
+<div>
+<p>Foken, T., and B. Wichura. 1996. “Tools for quality assessment of surface-based flux measurements.” <em>Agric Forest Meteorol</em> 78: 83–105.</p>
+</div>
+<div>
+<p>Hsieh, C. I., G. Katul, and T. Chi. 2000. “An approximate analytical model for footprint estimation of scalar fluxes in thermally stratified atmospheric flows.” <em>Advances in Water Resources</em> 23 (7): 765–72. <a href="https://doi.org/10.1016/S0309-1708(99)00042-1">https://doi.org/10.1016/S0309-1708(99)00042-1</a>.</p>
+</div>
+<div>
+<p>Jimenez, J. 2018. “Coherent structures in wall-bounded turbulence.” <em>J Fluid Mech</em> 842 (P1). <a href="https://doi.org/10.1017/jfm.2018.144">https://doi.org/10.1017/jfm.2018.144</a>.</p>
+</div>
+<div>
+<p>Katul, G., G. Kuhn, J. Schieldge, and C.-I. Hsieh. 1997. “The ejection-sweep character of scalar fluxes in the unstable surface layer.” <em>Boundary-Layer Meteorol</em> 83: 1–26.</p>
+</div>
+<div>
+<p>Kljun, N., P. Calanca, M. W. Rotach, and H. P. Schmid. 2015. “A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP).” <em>Geosci Model Dev</em> 8: 3695–3713. <a href="https://doi.org/10.5194/gmd-8-3695-2015">https://doi.org/10.5194/gmd-8-3695-2015</a>.</p>
+</div>
+<div>
+<p>Kormann, R., and F. X. Meixner. 2001. “An analytical footprint model for non-neutral stratification.” <em>Boundary-Layer Meteorol</em> 99: 207–24.</p>
+</div>
+<div>
+<p>Lehner, M., E. Rotach M. W. Sfyri, and F. Obleitner. 2021. “Spatial and temporal variations in near-surface energy fluxes in an Alpine valley under synoptically undisturbed and clear-sky conditions.” <em>Q J R Meteorol Soc</em> 147 (737): 2173–96. <a href="https://doi.org/10.1002/qj.4016">https://doi.org/10.1002/qj.4016</a>.</p>
+</div>
+<div>
+<p>Mack, L., T. K. Berntsen, N. Vercauteren, and N. Pirk. 2024. “Transfer Efficiency and Organization in Turbulent Transport over Alpine Tundra.” <em>Boundary-Layer Meteorol</em> 190 (38). <a href="https://doi.org/10.1007/s10546-024-00879-5">https://doi.org/10.1007/s10546-024-00879-5</a>.</p>
+</div>
+<div>
+<p>Mauder, M., M. Cuntz, C. Drüe, A. Graf, C. Rebmann, H. P. Schmid, M. Schmidt, and R. Steinbrecher. 2013. “A strategy for quality and uncertainty assessment of long-term eddy-covariance measurements.” <em>Agric Forest Meteorol</em> 169: 122–35. <a href="https://doi.org/10.1016/j.agrformet.2012.09.006">https://doi.org/10.1016/j.agrformet.2012.09.006</a>.</p>
+</div>
+<div>
+<p>Mauder, M., T. Foken, and J. Cuxart. 2020. “Surface‑Energy‑Balance Closure over Land: A Review.” <em>Boundary-Layer Meteorol</em> 177: 395–426. <a href="https://doi.org/10.1007/s10546-020-00529-6">https://doi.org/10.1007/s10546-020-00529-6</a>.</p>
+</div>
+<div>
+<p>Metzger, S., D. Durden, C. Sturtevant, H. Luo, N. Pingintha-Durden, T. Sachs, A. Serafimovivh, et al. 2017. “eddy4R 0.2.0: a DevOps model for community-extensible processing and analysis of eddy-covariance data based on R, Git, Docker, and HDF5.” <em>Geosci Model Dev</em> 10: 3189–3206. <a href="https://doi.org/10.5194/gmd-10-3189-2017">https://doi.org/10.5194/gmd-10-3189-2017</a>.</p>
+</div>
+<div>
+<p>Monin, A. S., and A. M. Obukhov. 1954. “Basic laws of turbulent mixing in the surface layer of the atmosphere.” <em>Tr Akad Nauk SSSR Geophiz Inst</em> 24 (151): 163–87.</p>
+</div>
+<div>
+<p>Nieuwstadt, F. T. M. 1984. “The Turbulent Structures of the Stable, Nocturnal Boundary Layer.” <em>J Atmos Sci</em> 41 (14): 2202–16.</p>
+</div>
+<div>
+<p>Pastorello, G., A. Trotta, E. Canfora, and others. 2020. “The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data.” <em>Sci Data</em> 7 (225). <a href="https://doi.org/10.1038/s41597-020-0534-3">https://doi.org/10.1038/s41597-020-0534-3</a>.</p>
+</div>
+<div>
+<p>Pirk, N., K. Aalstad, Y. A. Yilmaz, A. Vatne, A. L. Popp, P. Horvath, A. Bryn, et al. 2023. “Snow-Vegetation-Atmosphere Interactions in Alpine Tundra.” <em>Biogeosciences</em> 20: 2031–47. <a href="https://doi.org/10.5194/bg-20-2031-2023">https://doi.org/10.5194/bg-20-2031-2023</a>.</p>
+</div>
+<div>
+<p>Schotanus, P., F. T. M. Nieuwstadt, and H. A. R. DeBruin. 1983. “Temperature measurement with a sonic anemometer and its application to heat and moisture fluctuations.” <em>Boundary-Layer Meteorol</em> 26: 81–93.</p>
+</div>
+<div>
+<p>Shaw, R. H., J. Tavanger, and D. P. Ward. 1983. “Structure of the Reynolds Stress in a Canopy Layer.” <em>J Climate Applied Meteorol</em> 22: 1922–31.</p>
+</div>
+<div>
+<p>Sievers, J., T. Papakyriakou, S. E. Larsen, M. M. Jammet, S. Rysgaard, M. K. Sejr, and L. L. Sørensen. 2015. “Estimating surface fluxes using eddy covariance and numerical ogive optimization.” <em>Atmos Chem Phys</em> 15: 2081–2103. <a href="https://doi.org/10.5194/acp-15-2081-2015">https://doi.org/10.5194/acp-15-2081-2015</a>.</p>
+</div>
+<div>
+<p>Stoy, P. C., M. Mauder, T. Foken, and et al. 2013. “A data-driven analysis of energy balance closure across FLUXNET research sites: The role of landscape scale heterogeneity.” <em>Agric Forest Meteorol</em> 171: 137–52.</p>
+</div>
+<div>
+<p>Sun, J., L. Mahrt, R. M. Banta, and Y. L. Pichugina. 2012. “Turbulence Regimes and Turbulence Intermittency in the Stable Boundary Layer during CASES-99.” <em>J Atmos Sci</em> 69: 338–51.</p>
+</div>
+<div>
+<p>Vickers, D., and L. Mahrt. 2003. “The Cospectral Gap and Turbulent Flux Calculations.” <em>J Atmos Ocean Technol</em> 20: 660–72.</p>
+</div>
+<div>
+<p>Volk, J., J. Huntingtion, R. Allen, F. Melton, M. Anderson, and A. Kilic. 2021. “flux-data-qaqc: A Python Package for Energy Balance Closure and Post-Processing of Eddy Flux Data.” <em>Journal of Open Source Software</em> 6 (66). <a href="https://doi.org/10.21105/joss.03418">https://doi.org/10.21105/joss.03418</a>.</p>
+</div>
+<div>
+<p>Wallace, J. 2016. “Quadrant Analysis in Turbulence Research: History and Evolution.” <em>Annu Rev Fluid Mech</em> 48: 131–58. <a href="https://doi.org/10.1146/annurev-fluid-122414-034550">https://doi.org/10.1146/annurev-fluid-122414-034550</a>.</p>
+</div>
+<div>
+<p>Webb, E. K., G. I. Pearman, and R. Leuning. 1980. “Correction of the flux measurements for density effects due to heat and water vapour transfer.” <em>Quart J Roy Meteorol Soc</em> 106: 85–100.</p>
+</div>
+<div>
+<p>Wilczak, J. M., S. P. Oncley, and S. A. Stage. 2001. “Sonic anemometer tilt correction algorithms.” <em>Boundary-Layer Meteorol</em> 99: 127–50.</p>
+</div>
+<div>
+<p>Wilson, K., and others. 2002. “Energy balance closure at FLUXNET sites.” <em>Agric Forest Meteorol</em> 113 (1-4): 223–43. <a href="https://doi.org/10.1016/S0168-1923(02)00109-0">https://doi.org/10.1016/S0168-1923(02)00109-0</a>.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="surface-energy-balance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["series.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toc depth": 2,
+"github-repo": "noctiluc3nt/ec_analyze"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

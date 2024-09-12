@@ -4,11 +4,12 @@ Quadrant analysis is a simple conditional sampling method to detect coherent str
 $$ \hat{x} = \frac{x-\overline{x}}{\sigma_x}$$
 by substracting the mean value $\overline{x}$ and dividing by $\sigma_x$ to make different variables with different value ranges comparable and centered around zero. Based on this, strength $S_i$ and duration $D_i$  of each quadrant ($i=1, ..., 4$) can be calculated:
 $$ S_i = \frac{\overline{\hat{x}'\hat{w}'}_i}{\overline{\hat{x}\hat{w}}}, \quad\quad D_i = \frac{1}{t_s} \int_0^{t_s} I_i(t) dt$$
-$S_i$ represents the relative strength of the respective quadrant (normalized by the total covariance) and $D_i$ the occurrence frequency of each quadrant (with averaging time $t_s$ and indicator function $I_i$).
+$S_i$ represents the relative strength of the respective quadrant (normalized by the total covariance) and $D_i$ the occurrence frequency of each quadrant (with averaging time $t_s$ and indicator function $I_i$). To get an overall measure for the contribution of disorganized (i.e. counter-gradient contribution) versus organized (i.e. down-gradient contribution) structures, the exuberance $E$ [@Shaw1983] and the organization ratio $OR$ [@Mack2024] can be defined as:
+$$ E = \frac{S(disorganized)}{S(organized)}, \quad\quad OR = \frac{D(disorganized)}{D(organized)}$$
+For example, for the sensible heat flux warm updrafts and cold downdrafts are the organized structures, and oppositely cold updrafts and warm downdrafts the disorganized ones (in the figure below, organized structures are shaded and disorganized are not shaded). <br> 
 To filter out particularly strong coherent structures, a hole size can be applied with the filter conditions $\vert \hat{x}\hat{y} \vert \le H \cdot \vert \overline{\hat{x}'\hat{y}'}\vert$ (hyperbolic curves in the figure). Usually, $y$ is chosen to be the vertical velocity $w$. The quadrant analysis is directly related to the fluxes by using the respective constituting quantities: $(u,w)$ for momentum flux, $(T,w)$ for sensible heat flux, $(q,w)$ for latent heat flux and $(c,w)$ for CO$_2$ flux -- as visualized in the figure (adapted from @Mack2024).
 
 <img src="../figures/schema/qa_schema.png" />
-
 
 
 ```R
@@ -27,7 +28,6 @@ To perform quadrant analysis, Reddy provides two functions: `calc_quadrant_analy
 The function `calc_quadrant_analysis` counts the occurrence frequency of each quadrant, calculates their strength as product $\hat{x}\hat{y}$ and as covariance $\overline{\hat{x}'\hat{y}'}$. The argument `do_normalization = TRUE` can be used to normalize the two variables and with `hole_sizes` one or several hole sizes can be applied. The output is a list containing $D_i$, $S_i$ for every quadrant and hole size.
 
 
-
 ```R
 i=8 #select a file
 tmp=read.table(files[i],sep=",",header=T)
@@ -36,15 +36,17 @@ qa_Tw=calc_quadrant_analysis(tmp$T_degC,tmp$w_m.s) #based on the raw data (10 Hz
 str(qa_Tw)
 ```
 
-    List of 8
-     $ hole_sizes       : int [1:11] 0 1 2 3 4 5 6 7 8 9 ...
-     $ occurrence       : int [1:4, 1:11] 5448 2975 6619 2958 4689 144 3812 300 4232 8 ...
-     $ product          : num [1:4, 1:11] 1.068 -0.291 0.619 -0.42 0.816 ...
-     $ covariance       : num [1:4, 1:11] 0.10672 0.05309 -0.00914 0.03226 0.31902 ...
-     $ covariance_total : num 0.15
-     $ correlation_total: num 0.434
-     $ product_total    : num [1:18000] 0.0448 -0.0544 -0.4983 0.115 0.3095 ...
-     $ meta             : chr "Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns represent selected hole sizes"
+    List of 10
+     $ hole_sizes        : int [1:11] 0 1 2 3 4 5 6 7 8 9 ...
+     $ occurrence        : int [1:4, 1:11] 5448 2975 6619 2958 4689 144 3812 300 4232 8 ...
+     $ product           : num [1:4, 1:11] 1.068 -0.291 0.619 -0.42 0.816 ...
+     $ covariance        : num [1:4, 1:11] 0.10672 0.05309 -0.00914 0.03226 0.31902 ...
+     $ covariance_total  : num 0.15
+     $ correlation_total : num 0.434
+     $ product_total     : num [1:18000] 0.0448 -0.0544 -0.4983 0.115 0.3095 ...
+     $ exuberance        : num [1:11] -0.422 -2.699 -5.521 -7.411 NaN ...
+     $ organization_ratio: num [1:11] 0.491672 0.052229 0.00992 0.002498 0.000495 ...
+     $ meta              : chr "Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns represent selected hole sizes"
 
 
 ## Plotting quadrant analysis with `plot_quadrant_analysis`
@@ -159,7 +161,6 @@ plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s,xlab="u (normalized)",ylab="w (normal
     
 ![](figures/fig_0903.png){width=500}
     
-
 
 
 Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., `rotate_double`) visually. The concept can be extended to a combination of three variables in the framework of octant analysis.

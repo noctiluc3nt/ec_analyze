@@ -195,9 +195,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#surface-energy-balance-closure"><i class="fa fa-check"></i><b>8.1</b> Surface energy balance closure</a></li>
 <li class="chapter" data-level="8.2" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
-<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Bowen ratio and evaporative fraction</a></li>
-<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#clear-sky-index-csi-for-contextualization-calc_csi"><i class="fa fa-check"></i><b>8.4</b> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)</a></li>
+<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Hydrological measures: Bowen ratio and evaporative fraction</a></li>
+<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#meteorological-contextualization"><i class="fa fa-check"></i><b>8.4</b> Meteorological contextualization</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2024)</a></li>
 
@@ -231,25 +232,25 @@ A related method used for flux calculations from eddy-covariance data is based o
 <li>Multiresolution decomposition MRD (<code>Reddy::calc_mrd</code>)</li>
 <li>Ogives (<code>agricolae::ogive.freq</code>)</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="spectra.html#cb23-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb23-2"><a href="spectra.html#cb23-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
-<span id="cb23-3"><a href="spectra.html#cb23-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
-<span id="cb23-4"><a href="spectra.html#cb23-4" aria-hidden="true"></a></span>
-<span id="cb23-5"><a href="spectra.html#cb23-5" aria-hidden="true"></a><span class="co">#ec data files</span></span>
-<span id="cb23-6"><a href="spectra.html#cb23-6" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
-<span id="cb23-7"><a href="spectra.html#cb23-7" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
-<span id="cb23-8"><a href="spectra.html#cb23-8" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span>
-<span id="cb23-9"><a href="spectra.html#cb23-9" aria-hidden="true"></a></span>
-<span id="cb23-10"><a href="spectra.html#cb23-10" aria-hidden="true"></a>i=<span class="dv">8</span> <span class="co">#select a file</span></span>
-<span id="cb23-11"><a href="spectra.html#cb23-11" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="spectra.html#cb24-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb24-2"><a href="spectra.html#cb24-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb24-3"><a href="spectra.html#cb24-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb24-4"><a href="spectra.html#cb24-4" aria-hidden="true"></a></span>
+<span id="cb24-5"><a href="spectra.html#cb24-5" aria-hidden="true"></a><span class="co">#ec data files</span></span>
+<span id="cb24-6"><a href="spectra.html#cb24-6" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span></span>
+<span id="cb24-7"><a href="spectra.html#cb24-7" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
+<span id="cb24-8"><a href="spectra.html#cb24-8" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span>
+<span id="cb24-9"><a href="spectra.html#cb24-9" aria-hidden="true"></a></span>
+<span id="cb24-10"><a href="spectra.html#cb24-10" aria-hidden="true"></a>i=<span class="dv">8</span> <span class="co">#select a file</span></span>
+<span id="cb24-11"><a href="spectra.html#cb24-11" aria-hidden="true"></a>tmp=<span class="kw">read.table</span>(files[i],<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span></code></pre></div>
 </div>
 <div id="fft-spectrum-and-comparison-to-theoretical-spectra" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> FFT spectrum and comparison to theoretical spectra<a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The rbase function <code>spectrum</code> calculates the spectrum based on FFT and plots by default an associated periodigram.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="spectra.html#cb24-1" aria-hidden="true"></a><span class="kw">spectrum</span>(tmp<span class="op">$</span>u_m.s)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spectra.html#cb25-1" aria-hidden="true"></a><span class="kw">spectrum</span>(tmp<span class="op">$</span>u_m.s)</span></code></pre></div>
 <p><img src="figures/fig_0501.png" width="400" /></p>
 <p>However, to systematically investigate spectral density and reduce the noise, it is recommended to apply binning (i.e., averaging over frequency intervals), which can be done with the function <code>Reddy::calc_spectrum</code> (as wrapper of <code>spectrum</code>). The resulting averaged spectra can then be compared to theoretical slopes. In homogeneous and isotropic turbulence a spectral slope of -5/3 follows from theoretical considerations (Kolmogorovs energy cascade), which is usually used as visual comparison. Deviations from this -5/3-slope indicate that either more energy (steeper slope) or less energy (weaker slope) is dissipated, which can have various reasons, e.g. turbulence anisotropy or energy injections.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spectra.html#cb25-1" aria-hidden="true"></a>spectrum_u =<span class="st"> </span><span class="kw">calc_spectrum</span>(tmp<span class="op">$</span>u_m.s)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spectra.html#cb26-1" aria-hidden="true"></a>spectrum_u =<span class="st"> </span><span class="kw">calc_spectrum</span>(tmp<span class="op">$</span>u_m.s)</span></code></pre></div>
 <pre><code>Call:
 lm(formula = log(sbin[, 2]) ~ bins[2:nbins])
 
@@ -276,16 +277,16 @@ F-statistic: 683.6 on 1 and 34 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="../figures/schema/mrd_schema.png" width=600 /></p>
 <div id="calculating-multiresolution-decomposition-with-calc_mrd" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Calculating multiresolution decomposition with <code>calc_mrd</code><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spectra.html#cb27-1" aria-hidden="true"></a><span class="co">#cospectra</span></span>
-<span id="cb27-2"><a href="spectra.html#cb27-2" aria-hidden="true"></a>mrd_uw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#momentum flux</span></span>
-<span id="cb27-3"><a href="spectra.html#cb27-3" aria-hidden="true"></a>mrd_Tw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#sensible heat flux</span></span>
-<span id="cb27-4"><a href="spectra.html#cb27-4" aria-hidden="true"></a></span>
-<span id="cb27-5"><a href="spectra.html#cb27-5" aria-hidden="true"></a><span class="co">#spectra</span></span>
-<span id="cb27-6"><a href="spectra.html#cb27-6" aria-hidden="true"></a>mrd_ww=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>w_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#vertical veloctiy</span></span>
-<span id="cb27-7"><a href="spectra.html#cb27-7" aria-hidden="true"></a>mrd_TT=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>T_degC,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#temperature</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spectra.html#cb28-1" aria-hidden="true"></a><span class="co">#cospectra</span></span>
+<span id="cb28-2"><a href="spectra.html#cb28-2" aria-hidden="true"></a>mrd_uw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#momentum flux</span></span>
+<span id="cb28-3"><a href="spectra.html#cb28-3" aria-hidden="true"></a>mrd_Tw=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#sensible heat flux</span></span>
+<span id="cb28-4"><a href="spectra.html#cb28-4" aria-hidden="true"></a></span>
+<span id="cb28-5"><a href="spectra.html#cb28-5" aria-hidden="true"></a><span class="co">#spectra</span></span>
+<span id="cb28-6"><a href="spectra.html#cb28-6" aria-hidden="true"></a>mrd_ww=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>w_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#vertical veloctiy</span></span>
+<span id="cb28-7"><a href="spectra.html#cb28-7" aria-hidden="true"></a>mrd_TT=<span class="kw">calc_mrd</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>T_degC,<span class="dt">time_res=</span><span class="fl">0.1</span>) <span class="co">#temperature</span></span></code></pre></div>
 <p>The function returns a dataframe containing index, exponent <span class="math inline">\(m\)</span>, scale (i.e. <span class="math inline">\(2^{m}\)</span>), time [s], mean, median, 25% and 75% quartiles as columns. The number of rows is given by <span class="math inline">\(M\)</span> fulfilling $2^M $ #measurements.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spectra.html#cb28-1" aria-hidden="true"></a><span class="co">#look into output</span></span>
-<span id="cb28-2"><a href="spectra.html#cb28-2" aria-hidden="true"></a>mrd_uw</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="spectra.html#cb29-1" aria-hidden="true"></a><span class="co">#look into output</span></span>
+<span id="cb29-2"><a href="spectra.html#cb29-2" aria-hidden="true"></a>mrd_uw</span></code></pre></div>
 <table class="dataframe">
 <caption>
 A data.frame: 15 × 8
@@ -741,18 +742,18 @@ q75
 <div id="plotting-multiresolution-decomposition-with-plot_mrd" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Plotting multiresolution decomposition with <code>plot_mrd</code><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>plot_mrd</code> takes an object returned by <code>calc_mrd</code> and plots mean, median and quartiles versus time.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="spectra.html#cb29-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_uw, <span class="dt">main=</span><span class="st">&quot;Cospectrum (u,w)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spectra.html#cb30-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_uw, <span class="dt">main=</span><span class="st">&quot;Cospectrum (u,w)&quot;</span>)</span></code></pre></div>
 <p><img src="figures/fig_0503.png" width="400" /></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spectra.html#cb30-1" aria-hidden="true"></a><span class="co">#plot_mrd(mrd_Tw, main=&quot;Cospectrum (T,w)&quot;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="spectra.html#cb31-1" aria-hidden="true"></a><span class="co">#plot_mrd(mrd_ww, main=&quot;Spectrum (w,w)&quot;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="spectra.html#cb32-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_TT, <span class="dt">main=</span><span class="st">&quot;Spectrum (T,T)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="spectra.html#cb31-1" aria-hidden="true"></a><span class="co">#plot_mrd(mrd_Tw, main=&quot;Cospectrum (T,w)&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="spectra.html#cb32-1" aria-hidden="true"></a><span class="co">#plot_mrd(mrd_ww, main=&quot;Spectrum (w,w)&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="spectra.html#cb33-1" aria-hidden="true"></a><span class="kw">plot_mrd</span>(mrd_TT, <span class="dt">main=</span><span class="st">&quot;Spectrum (T,T)&quot;</span>)</span></code></pre></div>
 <p><img src="figures/fig_0504.png" width="400" /></p>
 <p>Composite MRDs can be created by averaging over several MRDs (also possible to distinguish different flow regimes, e.g., based on the stability parameter <code>calc_zeta</code>) and can be used to find long-term characteristic (e.g., scale gaps). Scale(s) gap(s) are defined as the the zero-crossings of the spectrum or cospectrum (larger than the first zero-crossing at the measurement frequency itself).</p>
 
 </div>
 </div>
 </div>
-<h3>References</h3>
+<h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references hanging-indent">
 <div id="ref-Sievers2015">
 <p>Sievers, J., T. Papakyriakou, S. E. Larsen, M. M. Jammet, S. Rysgaard, M. K. Sejr, and L. L. Sørensen. 2015. “Estimating surface fluxes using eddy covariance and numerical ogive optimization.” <em>Atmos Chem Phys</em> 15: 2081–2103. <a href="https://doi.org/10.5194/acp-15-2081-2015">https://doi.org/10.5194/acp-15-2081-2015</a>.</p>
