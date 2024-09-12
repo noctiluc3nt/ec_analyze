@@ -71,11 +71,11 @@ The most recent global flux data set is <a href="https://fluxnet.org/data/fluxne
 **Other packages for processing of eddy-covariance data:** Multiple other packages for eddy-covariance data processing exist with different applications and different degrees of specialization as well as in different languages. The main focus of these packages is the post-processing of raw eddy-covariance data and the main application area are ecosystem studies. 
 In this regard, [Reddy](https://github.com/noctiluc3nt/Reddy) <span style="color: darkblue;">**R**</span> fills a gap, as it is tailored to meteorological applications and allows for a fully customized post-processing and analysis of eddy-covariance data. <br>
 
-- [EddyPro®](https://github.com/LI-COR-Environmental/eddypro-engine) <span style="color: darkblue;">**Fortran**</span>: Post-processing of eddy-covariance data (LI-COR Biosciences)
-- [ONEFlux](https://github.com/fluxnet/ONEFlux) <span style="color: darkblue;">**C**</span> ("Open Network-Enabled Flux processing pipeline"): Post-processing of (half-)hourly eddy-covariance data used to create the FLUXNET2015 dataset [@Pastorello2020]
-- [REddyProc](https://cran.r-project.org/web/packages/REddyProc/index.html) <span style="color: darkblue;">**R**</span>: Post-processing of (half-)hourly eddy-covariance measurements
-- [openeddy](https://github.com/lsigut/openeddy) <span style="color: darkblue;">**R**</span>: Post-processing of eddy-covariance data, aligned with REddyProc
-- [RFlux](https://github.com/domvit81/RFlux/) <span style="color: darkblue;">**R**</span>: GUI for post-processing of eddy-covariance raw data by calling [EddyPro®](https://github.com/LI-COR-Environmental/eddypro-engine) (LI-COR Biosciences, 2019)
+- [EddyPro®](https://github.com/LI-COR-Environmental/eddypro-engine) <span style="color: darkblue;">**Fortran**</span>: Post-processing of eddy-covariance data (LI-COR Biosciences).
+- [ONEFlux](https://github.com/fluxnet/ONEFlux) <span style="color: darkblue;">**C**</span> ("Open Network-Enabled Flux processing pipeline"): Post-processing of (half-)hourly eddy-covariance data used to create the FLUXNET2015 dataset [@Pastorello2020].
+- [REddyProc](https://cran.r-project.org/web/packages/REddyProc/index.html) <span style="color: darkblue;">**R**</span>: Post-processing of (half-)hourly eddy-covariance measurements.
+- [openeddy](https://github.com/lsigut/openeddy) <span style="color: darkblue;">**R**</span>: Post-processing of eddy-covariance data, aligned with REddyProc.
+- [RFlux](https://github.com/domvit81/RFlux/) <span style="color: darkblue;">**R**</span>: GUI for post-processing of eddy-covariance raw data by calling [EddyPro®](https://github.com/LI-COR-Environmental/eddypro-engine) (LI-COR Biosciences, 2019).
 - [eddy4R](https://github.com/NEONScience/eddy4R) <span style="color: darkblue;">**R**</span> [@Metzger2017] : Family of several R-package for eddy-covariance post-processing in a DevOps framework.
-- [icoscp](https://pypi.org/project/icoscp/) <span style="color: darkblue;">**Python**</span>: accessing data from ICOS data portal
+- [icoscp](https://pypi.org/project/icoscp/) <span style="color: darkblue;">**Python**</span>: Accessing data from ICOS data portal.
 - [flux-data-qaqc](https://github.com/Open-ET/flux-data-qaqc) <span style="color: darkblue;">**Python**</span> [@Volk2021] : Post-processing of eddy-covariance measurements to derive daily or monthly evapotranspiration in a energy balance framework.

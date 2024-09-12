@@ -225,7 +225,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[ \hat{x} = \frac{x-\overline{x}}{\sigma_x}\]</span>
 by substracting the mean value <span class="math inline">\(\overline{x}\)</span> and dividing by <span class="math inline">\(\sigma_x\)</span> to make different variables with different value ranges comparable and centered around zero. Based on this, strength <span class="math inline">\(S_i\)</span> and duration <span class="math inline">\(D_i\)</span> of each quadrant (<span class="math inline">\(i=1, ..., 4\)</span>) can be calculated:
 <span class="math display">\[ S_i = \frac{\overline{\hat{x}&#39;\hat{w}&#39;}_i}{\overline{\hat{x}\hat{w}}}, \quad\quad D_i = \frac{1}{t_s} \int_0^{t_s} I_i(t) dt\]</span>
-<span class="math inline">\(S_i\)</span> represents the relative strength of the respective quadrant (normalized by the total covariance) and <span class="math inline">\(D_i\)</span> the occurrence frequency of each quadrant (with averaging time <span class="math inline">\(t_s\)</span> and indicator function <span class="math inline">\(I_i\)</span>).
+<span class="math inline">\(S_i\)</span> represents the relative strength of the respective quadrant (normalized by the total covariance) and <span class="math inline">\(D_i\)</span> the occurrence frequency of each quadrant (with averaging time <span class="math inline">\(t_s\)</span> and indicator function <span class="math inline">\(I_i\)</span>). To get an overall measure for the contribution of disorganized (i.e. counter-gradient contribution) versus organized (i.e. down-gradient contribution) structures, the exuberance <span class="math inline">\(E\)</span> <span class="citation">(Shaw, Tavanger, and Ward <a href="#ref-Shaw1983" role="doc-biblioref">1983</a>)</span> and the organization ratio <span class="math inline">\(OR\)</span> <span class="citation">(Mack et al. <a href="#ref-Mack2024" role="doc-biblioref">2024</a>)</span> can be defined as:
+<span class="math display">\[ E = \frac{S(disorganized)}{S(organized)}, \quad\quad OR = \frac{D(disorganized)}{D(organized)}\]</span>
+For example, for the sensible heat flux warm updrafts and cold downdrafts are the organized structures, and oppositely cold updrafts and warm downdrafts the disorganized ones (in the figure below, organized structures are shaded and disorganized are not shaded). <br>
 To filter out particularly strong coherent structures, a hole size can be applied with the filter conditions <span class="math inline">\(\vert \hat{x}\hat{y} \vert \le H \cdot \vert \overline{\hat{x}&#39;\hat{y}&#39;}\vert\)</span> (hyperbolic curves in the figure). Usually, <span class="math inline">\(y\)</span> is chosen to be the vertical velocity <span class="math inline">\(w\)</span>. The quadrant analysis is directly related to the fluxes by using the respective constituting quantities: <span class="math inline">\((u,w)\)</span> for momentum flux, <span class="math inline">\((T,w)\)</span> for sensible heat flux, <span class="math inline">\((q,w)\)</span> for latent heat flux and <span class="math inline">\((c,w)\)</span> for CO<span class="math inline">\(_2\)</span> flux – as visualized in the figure (adapted from <span class="citation">Mack et al. (<a href="#ref-Mack2024" role="doc-biblioref">2024</a>)</span>).</p>
 <p><img src="../figures/schema/qa_schema.png" /></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="quadrant-analysis.html#cb15-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
@@ -245,15 +247,17 @@ The function <code>calc_quadrant_analysis</code> counts the occurrence frequency
 <span id="cb16-3"><a href="quadrant-analysis.html#cb16-3" aria-hidden="true"></a></span>
 <span id="cb16-4"><a href="quadrant-analysis.html#cb16-4" aria-hidden="true"></a>qa_Tw=<span class="kw">calc_quadrant_analysis</span>(tmp<span class="op">$</span>T_degC,tmp<span class="op">$</span>w_m.s) <span class="co">#based on the raw data (10 Hz) directly (i.e., unrotated)</span></span>
 <span id="cb16-5"><a href="quadrant-analysis.html#cb16-5" aria-hidden="true"></a><span class="kw">str</span>(qa_Tw)</span></code></pre></div>
-<pre><code>List of 8
- $ hole_sizes       : int [1:11] 0 1 2 3 4 5 6 7 8 9 ...
- $ occurrence       : int [1:4, 1:11] 5448 2975 6619 2958 4689 144 3812 300 4232 8 ...
- $ product          : num [1:4, 1:11] 1.068 -0.291 0.619 -0.42 0.816 ...
- $ covariance       : num [1:4, 1:11] 0.10672 0.05309 -0.00914 0.03226 0.31902 ...
- $ covariance_total : num 0.15
- $ correlation_total: num 0.434
- $ product_total    : num [1:18000] 0.0448 -0.0544 -0.4983 0.115 0.3095 ...
- $ meta             : chr &quot;Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns represent selected hole sizes&quot;</code></pre>
+<pre><code>List of 10
+ $ hole_sizes        : int [1:11] 0 1 2 3 4 5 6 7 8 9 ...
+ $ occurrence        : int [1:4, 1:11] 5448 2975 6619 2958 4689 144 3812 300 4232 8 ...
+ $ product           : num [1:4, 1:11] 1.068 -0.291 0.619 -0.42 0.816 ...
+ $ covariance        : num [1:4, 1:11] 0.10672 0.05309 -0.00914 0.03226 0.31902 ...
+ $ covariance_total  : num 0.15
+ $ correlation_total : num 0.434
+ $ product_total     : num [1:18000] 0.0448 -0.0544 -0.4983 0.115 0.3095 ...
+ $ exuberance        : num [1:11] -0.422 -2.699 -5.521 -7.411 NaN ...
+ $ organization_ratio: num [1:11] 0.491672 0.052229 0.00992 0.002498 0.000495 ...
+ $ meta              : chr &quot;Output format: rows represent the quadrants Q1, Q2, Q3, Q4 -- columns represent selected hole sizes&quot;</code></pre>
 </div>
 <div id="plotting-quadrant-analysis-with-plot_quadrant_analysis" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Plotting quadrant analysis with <code>plot_quadrant_analysis</code><a href="quadrant-analysis.html#plotting-quadrant-analysis-with-plot_quadrant_analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -343,6 +347,9 @@ F-statistic: 632.5 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="ref-Mack2024">
 <p>Mack, L., T. K. Berntsen, N. Vercauteren, and N. Pirk. 2024. “Transfer Efficiency and Organization in Turbulent Transport over Alpine Tundra.” <em>Boundary-Layer Meteorol</em> 190 (38). <a href="https://doi.org/10.1007/s10546-024-00879-5">https://doi.org/10.1007/s10546-024-00879-5</a>.</p>
+</div>
+<div id="ref-Shaw1983">
+<p>Shaw, R. H., J. Tavanger, and D. P. Ward. 1983. “Structure of the Reynolds Stress in a Canopy Layer.” <em>J Climate Applied Meteorol</em> 22: 1922–31.</p>
 </div>
 <div id="ref-Wallace2016">
 <p>Wallace, J. 2016. “Quadrant Analysis in Turbulence Research: History and Evolution.” <em>Annu Rev Fluid Mech</em> 48: 131–58. <a href="https://doi.org/10.1146/annurev-fluid-122414-034550">https://doi.org/10.1146/annurev-fluid-122414-034550</a>.</p>
