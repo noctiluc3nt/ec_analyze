@@ -9,3 +9,4 @@
 
 *.odp
 *series*
+*.travis.yml

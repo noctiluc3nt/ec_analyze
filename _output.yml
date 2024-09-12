@@ -14,7 +14,7 @@ bookdown::gitbook:
       after: |
         <li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2024)</a></li>
     edit: 
-    download: ["pdf"]
+#    download: ["pdf"]
     sharing:
       facebook: false
       github: true

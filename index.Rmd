@@ -1,14 +1,15 @@
 --- 
 title: "Reddy: An open-source package for analyzing eddy-covariance data"
 author: ""
-date: "" #"`r Sys.Date()`"
+date: ""
 site: bookdown::bookdown_site
-# output: bookdown::gitbook
+output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: noctiluc3nt/Reddy
+url: https://noctiluc3nt.github.io/ec_analyze/
 description: ""
 ---
 
