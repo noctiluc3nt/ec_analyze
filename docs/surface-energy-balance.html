@@ -195,8 +195,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#surface-energy-balance-closure"><i class="fa fa-check"></i><b>8.1</b> Surface energy balance closure</a></li>
 <li class="chapter" data-level="8.2" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#calculating-surface-energy-balance"><i class="fa fa-check"></i><b>8.2</b> Calculating surface energy balance</a></li>
-<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Bowen ratio and evaporative fraction</a></li>
-<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#clear-sky-index-csi-for-contextualization-calc_csi"><i class="fa fa-check"></i><b>8.4</b> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)</a></li>
+<li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Hydrological measures: Bowen ratio and evaporative fraction</a></li>
+<li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#meteorological-contextualization"><i class="fa fa-check"></i><b>8.4</b> Meteorological contextualization</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
@@ -838,8 +838,8 @@ Multiple R-squared:  0.8417,    Adjusted R-squared:  0.8405
 F-statistic: 664.7 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="figures/fig_0802.png" width="500" /></p>
 </div>
-<div id="bowen-ratio-and-evaporative-fraction" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Bowen ratio and evaporative fraction<a href="surface-energy-balance.html#bowen-ratio-and-evaporative-fraction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hydrological-measures-bowen-ratio-and-evaporative-fraction" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Hydrological measures: Bowen ratio and evaporative fraction<a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Bowen ratio <span class="math inline">\(BR\)</span> and the evaporative fraction <span class="math inline">\(EF\)</span> are given by
 <span class="math display">\[
     BR:= \frac{SH}{LH}\quad\quad\textrm{and}\quad\quad EF:= \frac{LH}{LH+SH}
@@ -850,12 +850,13 @@ and are both a way to describe the heat transfer by sensible vs latent heat. The
 <pre><code>[1] &quot;BR (average): 1.2715665126865&quot;
 [1] &quot;EF (average): 0.440224837976387&quot;</code></pre>
 </div>
-<div id="clear-sky-index-csi-for-contextualization-calc_csi" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Clear-Sky-Index (CSI) for contextualization (<code>calc_csi</code>)<a href="surface-energy-balance.html#clear-sky-index-csi-for-contextualization-calc_csi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity <span class="math inline">\(\epsilon_{actual}\)</span> and theoretical (clear-sky) emissivity <span class="math inline">\(\epsilon_{theoretical}\)</span>. If <span class="math inline">\(\epsilon_{actual} \le \epsilon_{theoretical}\)</span>, i.e. <span class="math inline">\(CSI \le 1\)</span>, than the sky is assumed to be clear-sky (see e.g. in the review paper <span class="citation">Lehner, Rotach, and Obleitner (<a href="#ref-Lehner2021" role="doc-biblioref">2021</a>)</span>).</p>
+<div id="meteorological-contextualization" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Meteorological contextualization<a href="surface-energy-balance.html#meteorological-contextualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
+Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity <span class="math inline">\(\epsilon_{actual}\)</span> and theoretical (clear-sky) emissivity <span class="math inline">\(\epsilon_{theoretical}\)</span>. If <span class="math inline">\(\epsilon_{actual} \le \epsilon_{theoretical}\)</span>, i.e. <span class="math inline">\(CSI \le 1\)</span>, than the sky is assumed to be clear-sky (see e.g. in the review paper <span class="citation">Lehner, Rotach, and Obleitner (<a href="#ref-Lehner2021" role="doc-biblioref">2021</a>)</span>).</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance.html#cb51-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
 <span id="cb51-2"><a href="surface-energy-balance.html#cb51-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>
-<p><img src="figures/fig_0803.png" width="500" /></p>
+<p><img src="figures/fig_0803.png" width="400" /></p>
 
 </div>
 </div>

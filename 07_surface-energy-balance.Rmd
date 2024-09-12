@@ -116,7 +116,7 @@ plot_seb(dat$swin,dat$swout,dat$lwin,dat$lwout,dat$sh,dat$lh,dat$shf1)
 
 
 
-## Bowen ratio and evaporative fraction
+## Hydrological measures: Bowen ratio and evaporative fraction
 The Bowen ratio $BR$ and the evaporative fraction $EF$ are given by
 $$
     BR:= \frac{SH}{LH}\quad\quad\textrm{and}\quad\quad EF:= \frac{LH}{LH+SH}
@@ -133,7 +133,8 @@ print(paste("EF (average):", calc_ef(mean(dat$sh),mean(dat$lh))))
     [1] "EF (average): 0.440224837976387"
 
 
-## Clear-Sky-Index (CSI) for contextualization (`calc_csi`)
+## Meteorological contextualization
+The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
 Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity $\epsilon_{actual}$ and theoretical (clear-sky) emissivity $\epsilon_{theoretical}$. If $\epsilon_{actual} \le \epsilon_{theoretical}$, i.e. $CSI \le 1$, than the sky is assumed to be clear-sky (see e.g. in the review paper @Lehner2021).
 
 
@@ -144,6 +145,6 @@ plot(dat$csi,type="l",lwd=2,ylab="CSI")
 
 
     
-![](figures/fig_0803.png){width=500}
+![](figures/fig_0803.png){width=400}
     
 

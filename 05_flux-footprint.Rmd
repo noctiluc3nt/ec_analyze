@@ -10,8 +10,8 @@ By treating streamwise and crosswise velocity independently, the footprint can b
 $$
     f(x,y) = \overline{f^y}(x)D_y.
 $$
-This assumption leads to a symmtric footprint in crosswind direction. For further derivations a concrete footprint model has to be applied, which is in Kljun et al., 2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities.
-
+This assumption leads to a symmtric footprint in crosswind direction. For further derivations a concrete footprint model has to be applied, which is in Kljun et al., 2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities. <br>
+There are several other approaches to flux footprint estimation (e.g. @Hsieh2000 and @Kormann2001), but the @Kljun2015 model is the most common approach today.
 
 ```R
 #load Reddy package
