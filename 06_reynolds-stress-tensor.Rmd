@@ -8,6 +8,7 @@ $$ R := \overline{u_i ' u_j '} = \begin{pmatrix}
 			\overline{w'u'} & \overline{w'v'} & w'^2 
 		\end{pmatrix}, \quad \textrm{with} \quad R = R^T$$
 summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle -- called *barycentric map* (@Banerjee2007, see figure) -- with the coordinates $(x_B,y_B)$, can be constructed, which allows to characterize the anisotropy ($y_B$) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.
+The 2-component limit represents "disk-like" turbulence associated with strong wind shear and the 1-component limit "rod-like" turbulence, which is related to wave-like motions, e.g. internal gravity waves.
 
 <img src="./figures/schema/triangle_schema.png" width=550 />
 
@@ -63,11 +64,12 @@ plot_barycentric_map(rey_ana$xb,rey_ana$yb)
     
 
 
-The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, "sphere-like") at $(0.5,\sqrt{3}/2$), 2-component limit ("disk-like") at $(0,0)$ and 1-component limit ("rod-like") at $(1,0)$. $y_B$ is a measure for anisotropy (from $y_B = 0$ completely anisotropic to $y_B = \sqrt(3)/2$ perfectly isotropic.  
+The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, "sphere-like") at $(0.5,\sqrt{3}/2$), 2-component limit ("disk-like") at $(0,0)$ and 1-component limit ("rod-like") at $(1,0)$. $y_B$ is a measure for anisotropy -- from $y_B = 0$ completely anisotropic to $y_B = \sqrt(3)/2$ perfectly isotropic. <br>
+Anisotropy leads to deviations from classical scaling functions used in Monin-Obukhov similarity theory, e.g. @Stiperski2019 and @Stiperski2022.
 
 ## Anisotropy and velocity aspect ratio (VAR)
 
-The velocity aspect ratio VAR (`calc_var`) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., $\sigma_u, \sigma_v,\sigma_w$, into account. A deviation from a linear regression between VAR and $y_B$ allows quantify the effect of shear stresses. As seen in the plot below, for small values of $y_B$, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of $y_B$.
+The velocity aspect ratio VAR (`calc_var`) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., $\sigma_u, \sigma_v,\sigma_w$, into account [@Mahrt2010]. A deviation from a linear regression between VAR and $y_B$ allows quantify the effect of shear stresses. As seen in the plot below, for small values of $y_B$, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of $y_B$.
 
 
 ```R

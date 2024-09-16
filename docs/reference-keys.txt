@@ -8,9 +8,9 @@ choosing-a-suitable-averaging-time
 overview-of-correction-procedures-applied-to-the-raw-data
 an-example-post-processing-routine
 turbulence-diagnostics
-standard-turbulence-diagnostics-and-simple-timeseries-plots
+standard-turbulence-diagnostics-and-fluxes
 stability-dependence
-turbulence-regimes
+turbulence-regimes-and-hockey-stick-model
 quadrant-analysis
 calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis
 plotting-quadrant-analysis-with-plot_quadrant_analysis

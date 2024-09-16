@@ -154,9 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html"><i class="fa fa-check"></i><b>3</b> Turbulence diagnostics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-simple-timeseries-plots"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and simple timeseries plots</a></li>
+<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
-<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes</a></li>
+<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -287,11 +287,11 @@ There are several other approaches to flux footprint estimation (e.g. <span cla
 </div>
 <div id="plotting-of-flux-footprint-with-plot_flux_footprint" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Plotting of flux footprint with <code>plot_flux_footprint</code><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The function <code>plot_flux_footprint</code> takes as input an obeject returned by <code>calc_flux_footprint</code> and plots the cross-wind integrated footprint and the 2d footprint.</p>
+<p>The function <code>plot_flux_footprint</code> takes as input an object returned by <code>calc_flux_footprint</code> and plots the cross-wind integrated footprint and the 2d footprint.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="flux-footprint.html#cb43-1" aria-hidden="true"></a><span class="kw">plot_flux_footprint</span>(ffp)</span></code></pre></div>
 <p><img src="figures/fig_0601.png" width="500" /></p>
 <p><img src="figures/fig_0602.png" width="500" /></p>
-<p>Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage <a href="https://www.footprint.kljun.net/" class="uri">https://www.footprint.kljun.net/</a>. The flux footprint can then be plotted on an aerial photo or a ecosystem type classification, see e.g. <span class="citation">Kljun et al. (<a href="#ref-Kljun2015" role="doc-biblioref">2015</a>)</span> therein Fig. 5 or <span class="citation">Pirk et al. (<a href="#ref-Pirk2023a" role="doc-biblioref">2023</a>)</span> therein Fig. 4.</p>
+<p>Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage <a href="https://www.footprint.kljun.net/" class="uri">https://www.footprint.kljun.net/</a>. The flux footprint can then be plotted on an aerial photo or an ecosystem type classification, see e.g. <span class="citation">Kljun et al. (<a href="#ref-Kljun2015" role="doc-biblioref">2015</a>)</span> therein Fig. 5 or <span class="citation">Pirk et al. (<a href="#ref-Pirk2023a" role="doc-biblioref">2023</a>)</span> therein Fig. 4.</p>
 
 </div>
 </div>

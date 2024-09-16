@@ -10,6 +10,7 @@ with net radiation $R_{net} = SW\downarrow - SW\uparrow + LW\downarrow - LW\upar
 				SH = \rho c_p \overline{w'T'} \quad \textrm{  and  } \quad LH = \rho L_v \overline{w'q'}
 			\end{align}
 			with the air density $\rho$, the heat capacity of air (under constant pressure) $c_p$ and the latent heat of vaporization $L_v$.
+			The sensible heat flux SH is positive under unstable conditions (ground heats atmosphere) and negative under stable conditions (atmosphere heats ground). 
 			Positive latent heat fluxes (LH) represent evaporation or transpiration, whereas negative LH indicates condensation or deposition of water (vapor).
 			The last term $I_{SEB}$ describes the imbalance (or residual flux). Depending on the value of $I_{SEB}$, the SEB is called closed or unclosed
 			\begin{align}
@@ -23,7 +24,7 @@ with net radiation $R_{net} = SW\downarrow - SW\uparrow + LW\downarrow - LW\upar
 				\ne 1 \rightarrow \textrm{unclosed},
 			\end{cases}	
 			\end{align}
-			which can also be expressed in a relative measure, the closure ratio CR. The advantage of the closure ratio is the normalization by the available radiation, but the disadvantage is a cancellation of biases. @Wilson2002 showed based on the FLUXNET towers, that there is on average a SEB unclosure of 20-30 \%. Reasons for the unclosure are (similar to the TKE budget unclosure) horizontal advection, flux divergence, submeso-scale motions, different measurement footprints, melting, runoff or rain fluxes, canopy interactions as well as possible measurement and post-processing errors (as in great detail reviewed by @Mauder2020). Notably, @Stoy2013 found a larger unclosure in heterogeneous terrain and a correlation with friction velocity. 
+			which can also be expressed in a relative measure, the closure ratio CR. The advantage of the closure ratio is the normalization by the available radiation, but the disadvantage is a cancellation of biases. @Wilson2002 showed based on the FLUXNET towers, that there is on average a SEB unclosure of 20-30 \%. Reasons for the unclosure are (similar to the TKE budget unclosure) horizontal advection, flux divergence, submeso-scale motions, different measurement footprints, melting, runoff or rain fluxes, canopy interactions as well as possible measurement and post-processing errors (as in great detail reviewed by @Mauder2020). @Stoy2013 found a larger unclosure in heterogeneous terrain and a correlation with friction velocity. 
 
 ## Calculating surface energy balance
 
@@ -42,7 +43,7 @@ dat$TIME=as.POSIXct(dat$time,format="%F %T")
 
 **Plotting of surface energy balance with `plot_seb`** <br>
 The function `plot_seb`plots the surface energy balance as time series and as scatter plot (R-GH, SH+LH) with linear regression as well as calculates the residual flux and the closure ratio.
-
+In addition to the turbulence data used so far (which contains the two turbulent fluxes `SH, LH`), we now also need additional radiative measurements (all four radiative fluxes `SWin, SWout, LWin, LWout`) and the ground heat flux (`GH`), which are available in the file `../data/radiation-data_30min/biomet_data.csv` as 30 minutes averages.
 
 ```R
 #read in radiation data
@@ -121,7 +122,7 @@ The Bowen ratio $BR$ and the evaporative fraction $EF$ are given by
 $$
     BR:= \frac{SH}{LH}\quad\quad\textrm{and}\quad\quad EF:= \frac{LH}{LH+SH}
 $$
-and are both a way to describe the heat transfer by sensible vs latent heat. They are related to the surface and the water abundance therein, and can be used to compare different surface types in different climates. Therefore, it usually applied on monthly/seasonal/annual averages (so here just exemplarily calculated on daily basis).
+and are both a way to describe the heat transfer by sensible vs latent heat. They are related to the surface and the water abundance therein, and can be used to compare different surface types in different climates. Therefore, it is usually applied on monthly, seasonal or annual averages (so here just exemplarily calculated on daily basis).
 
 
 ```R
@@ -134,8 +135,8 @@ print(paste("EF (average):", calc_ef(mean(dat$sh),mean(dat$lh))))
 
 
 ## Meteorological contextualization
-The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
-Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity $\epsilon_{actual}$ and theoretical (clear-sky) emissivity $\epsilon_{theoretical}$. If $\epsilon_{actual} \le \epsilon_{theoretical}$, i.e. $CSI \le 1$, than the sky is assumed to be clear-sky (see e.g. in the review paper @Lehner2021).
+The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in a complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
+Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity $\epsilon_{actual}$ and theoretical (clear-sky) emissivity $\epsilon_{theoretical}$. If $\epsilon_{actual} \le \epsilon_{theoretical}$, i.e. $CSI \le 1$, then the sky is assumed to be clear-sky (see e.g. the review paper @Lehner2021).
 
 
 ```R

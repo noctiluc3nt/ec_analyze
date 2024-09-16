@@ -154,9 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html"><i class="fa fa-check"></i><b>3</b> Turbulence diagnostics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-simple-timeseries-plots"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and simple timeseries plots</a></li>
+<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
-<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes</a></li>
+<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -333,23 +333,35 @@ Residual standard error: 0.9829 on 17998 degrees of freedom
 Multiple R-squared:  0.03395,   Adjusted R-squared:  0.0339 
 F-statistic: 632.5 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="figures/fig_0903.png" width="500" /></p>
-<p>Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., <code>rotate_double</code>) visually. The concept can be extended to a combination of three variables in the framework of octant analysis.</p>
+<p>Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., <code>rotate_double</code>) visually. Quadrant analysis has been used to study coherent structures, and how they affect fluxes and cause flux dissimilarity, e.g. <span class="citation">Thomas and Foken (<a href="#ref-Thomas2007" role="doc-biblioref">2007</a>)</span>, <span class="citation">Li and Bou-Zeid (<a href="#ref-Li2011" role="doc-biblioref">2011</a>)</span>, <span class="citation">Schmutz and Vogt (<a href="#ref-Schmutz2019" role="doc-biblioref">2019</a>)</span> and <span class="citation">Mack et al. (<a href="#ref-Mack2024" role="doc-biblioref">2024</a>)</span>. The concept can be extended to a combination of three variables in the framework of octant analysis, e.g. <span class="citation">Guo et al. (<a href="#ref-Guo2022" role="doc-biblioref">2022</a>)</span>.</p>
 
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references hanging-indent">
+<div id="ref-Guo2022">
+<p>Guo, X., W. Yang, Z Gao, L. Wang, J. Hong, B. Ding, L. Zhao, D. Zhou, and K. Yang. 2022. “Katabatic Flow Structures Indicative of the Flux Dissimilarity for Stable Stratification.” <em>Boundary-Layer Meteorol</em> 182: 379–415. <a href="https://doi.org/10.1007/s10546-021-00660-y">https://doi.org/10.1007/s10546-021-00660-y</a>.</p>
+</div>
 <div id="ref-Jimenez2018">
 <p>Jimenez, J. 2018. “Coherent structures in wall-bounded turbulence.” <em>J Fluid Mech</em> 842 (P1). <a href="https://doi.org/10.1017/jfm.2018.144">https://doi.org/10.1017/jfm.2018.144</a>.</p>
 </div>
 <div id="ref-Katul1997">
 <p>Katul, G., G. Kuhn, J. Schieldge, and C.-I. Hsieh. 1997. “The ejection-sweep character of scalar fluxes in the unstable surface layer.” <em>Boundary-Layer Meteorol</em> 83: 1–26.</p>
 </div>
+<div id="ref-Li2011">
+<p>Li, D., and E. Bou-Zeid. 2011. “Coherent Structures and the Dissimilarity of Turbulent Transport of Momentum and Scalars in the Unstable Atmospheric Surface Layer.” <em>Boundary-Layer Meteorol</em> 140: 243–62. <a href="https://doi.org/10.1007/s10546-011-9613-5">https://doi.org/10.1007/s10546-011-9613-5</a>.</p>
+</div>
 <div id="ref-Mack2024">
 <p>Mack, L., T. K. Berntsen, N. Vercauteren, and N. Pirk. 2024. “Transfer Efficiency and Organization in Turbulent Transport over Alpine Tundra.” <em>Boundary-Layer Meteorol</em> 190 (38). <a href="https://doi.org/10.1007/s10546-024-00879-5">https://doi.org/10.1007/s10546-024-00879-5</a>.</p>
 </div>
+<div id="ref-Schmutz2019">
+<p>Schmutz, M., and R. Vogt. 2019. “Flux Similarity and Turbulent Transport of Momentum, Heat and Carbon Dioxide in the Urban Boundary Layer.” <em>Boundary-Layer Meteorol</em> 172: 45–65. <a href="https://doi.org/10.1007/s10546-019-00431-w">https://doi.org/10.1007/s10546-019-00431-w</a>.</p>
+</div>
 <div id="ref-Shaw1983">
 <p>Shaw, R. H., J. Tavanger, and D. P. Ward. 1983. “Structure of the Reynolds Stress in a Canopy Layer.” <em>J Climate Applied Meteorol</em> 22: 1922–31.</p>
+</div>
+<div id="ref-Thomas2007">
+<p>Thomas, C., and T. Foken. 2007. “Flux contribution of coherent structures and its implications for the exchange of energy and matter in a tall spruce canopy.” <em>Boundary-Layer Meteorol</em> 123: 317–37. <a href="https://doi.org/10.1007/s10546-006-9144-7">https://doi.org/10.1007/s10546-006-9144-7</a>.</p>
 </div>
 <div id="ref-Wallace2016">
 <p>Wallace, J. 2016. “Quadrant Analysis in Turbulence Research: History and Evolution.” <em>Annu Rev Fluid Mech</em> 48: 131–58. <a href="https://doi.org/10.1146/annurev-fluid-122414-034550">https://doi.org/10.1146/annurev-fluid-122414-034550</a>.</p>

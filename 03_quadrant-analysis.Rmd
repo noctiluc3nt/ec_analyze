@@ -163,4 +163,4 @@ plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s,xlab="u (normalized)",ylab="w (normal
     
 
 
-Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., `rotate_double`) visually. The concept can be extended to a combination of three variables in the framework of octant analysis.
+Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., `rotate_double`) visually. Quadrant analysis has been used to study coherent structures, and how they affect fluxes and cause flux dissimilarity, e.g. @Thomas2007, @Li2011, @Schmutz2019 and @Mack2024. The concept can be extended to a combination of three variables in the framework of octant analysis, e.g. @Guo2022.

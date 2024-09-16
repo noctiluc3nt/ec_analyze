@@ -154,9 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html"><i class="fa fa-check"></i><b>3</b> Turbulence diagnostics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-simple-timeseries-plots"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and simple timeseries plots</a></li>
+<li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
-<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes</a></li>
+<li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -227,7 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             \overline{v&#39;u&#39;} &amp; v&#39;^2 &amp; \overline{v&#39;w&#39;} \\
             \overline{w&#39;u&#39;} &amp; \overline{w&#39;v&#39;} &amp; w&#39;^2 
         \end{pmatrix}, \quad \textrm{with} \quad R = R^T\]</span>
-summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle – called <em>barycentric map</em> (<span class="citation">Banerjee et al. (<a href="#ref-Banerjee2007" role="doc-biblioref">2007</a>)</span>, see figure) – with the coordinates <span class="math inline">\((x_B,y_B)\)</span>, can be constructed, which allows to characterize the anisotropy (<span class="math inline">\(y_B\)</span>) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.</p>
+summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle – called <em>barycentric map</em> (<span class="citation">Banerjee et al. (<a href="#ref-Banerjee2007" role="doc-biblioref">2007</a>)</span>, see figure) – with the coordinates <span class="math inline">\((x_B,y_B)\)</span>, can be constructed, which allows to characterize the anisotropy (<span class="math inline">\(y_B\)</span>) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.
+The 2-component limit represents “disk-like” turbulence associated with strong wind shear and the 1-component limit “rod-like” turbulence, which is related to wave-like motions, e.g. internal gravity waves.</p>
 <p><img src="figures/schema/triangle_schema.png" width=550 /></p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="reynolds-stress-tensor.html#cb34-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
 <span id="cb34-2"><a href="reynolds-stress-tensor.html#cb34-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
@@ -263,12 +264,13 @@ and in the order <span class="math inline">\(a_{11}, a_{12}, a_{13}, a_{22}, a_{
 <p>The function <code>plot_barycentric_map</code> takes <code>xb, yb</code> as input (as calculated in the invariant analysis before) and plots them in the barycentric map.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="reynolds-stress-tensor.html#cb37-1" aria-hidden="true"></a><span class="kw">plot_barycentric_map</span>(rey_ana<span class="op">$</span>xb,rey_ana<span class="op">$</span>yb)</span></code></pre></div>
 <p><img src="figures/fig_0701.png" width="500" /></p>
-<p>The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, “sphere-like”) at <span class="math inline">\((0.5,\sqrt{3}/2\)</span>), 2-component limit (“disk-like”) at <span class="math inline">\((0,0)\)</span> and 1-component limit (“rod-like”) at <span class="math inline">\((1,0)\)</span>. <span class="math inline">\(y_B\)</span> is a measure for anisotropy (from <span class="math inline">\(y_B = 0\)</span> completely anisotropic to <span class="math inline">\(y_B = \sqrt(3)/2\)</span> perfectly isotropic.</p>
+<p>The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, “sphere-like”) at <span class="math inline">\((0.5,\sqrt{3}/2\)</span>), 2-component limit (“disk-like”) at <span class="math inline">\((0,0)\)</span> and 1-component limit (“rod-like”) at <span class="math inline">\((1,0)\)</span>. <span class="math inline">\(y_B\)</span> is a measure for anisotropy – from <span class="math inline">\(y_B = 0\)</span> completely anisotropic to <span class="math inline">\(y_B = \sqrt(3)/2\)</span> perfectly isotropic. <br>
+Anisotropy leads to deviations from classical scaling functions used in Monin-Obukhov similarity theory, e.g. <span class="citation">Stiperski, Calaf, and Rotach (<a href="#ref-Stiperski2019" role="doc-biblioref">2019</a>)</span> and <span class="citation">Stiperski and Calaf (<a href="#ref-Stiperski2022" role="doc-biblioref">2023</a>)</span>.</p>
 </div>
 </div>
 <div id="anisotropy-and-velocity-aspect-ratio-var" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Anisotropy and velocity aspect ratio (VAR)<a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The velocity aspect ratio VAR (<code>calc_var</code>) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., <span class="math inline">\(\sigma_u, \sigma_v,\sigma_w\)</span>, into account. A deviation from a linear regression between VAR and <span class="math inline">\(y_B\)</span> allows quantify the effect of shear stresses. As seen in the plot below, for small values of <span class="math inline">\(y_B\)</span>, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of <span class="math inline">\(y_B\)</span>.</p>
+<p>The velocity aspect ratio VAR (<code>calc_var</code>) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., <span class="math inline">\(\sigma_u, \sigma_v,\sigma_w\)</span>, into account <span class="citation">(Mahrt <a href="#ref-Mahrt2010" role="doc-biblioref">2010</a>)</span>. A deviation from a linear regression between VAR and <span class="math inline">\(y_B\)</span> allows quantify the effect of shear stresses. As seen in the plot below, for small values of <span class="math inline">\(y_B\)</span>, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of <span class="math inline">\(y_B\)</span>.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="reynolds-stress-tensor.html#cb38-1" aria-hidden="true"></a>var=<span class="kw">calc_var</span>(dat<span class="op">$</span>u_sd,dat<span class="op">$</span>v_sd,dat<span class="op">$</span>w_sd)</span>
 <span id="cb38-2"><a href="reynolds-stress-tensor.html#cb38-2" aria-hidden="true"></a><span class="kw">plot</span>(var,rey_ana<span class="op">$</span>yb,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">xlab=</span><span class="st">&quot;VAR&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;yb&quot;</span>)</span>
 <span id="cb38-3"><a href="reynolds-stress-tensor.html#cb38-3" aria-hidden="true"></a><span class="kw">grid</span>()</span>
@@ -300,6 +302,15 @@ F-statistic:  9534 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="refs" class="references hanging-indent">
 <div id="ref-Banerjee2007">
 <p>Banerjee, S., R. Krahl, F. Durst, and C. Zenger. 2007. “Presentation of anisotropy properties of turbulence, invariants versus eigenvalue approaches.” <em>J Turb</em> 8 (N32). <a href="https://doi.org/10.1080/14685240701506896">https://doi.org/10.1080/14685240701506896</a>.</p>
+</div>
+<div id="ref-Mahrt2010">
+<p>Mahrt, L. 2010. “Variability and Maintenance of Turbulence in the Very Stable Boundary Layer.” <em>Boundary-Layer Meteorol</em> 135: 1–18. <a href="https://doi.org/10.1007/s10546-009-9463-6">https://doi.org/10.1007/s10546-009-9463-6</a>.</p>
+</div>
+<div id="ref-Stiperski2022">
+<p>Stiperski, I., and M. Calaf. 2023. “Generalizing Monin-Obukhov similarity theory (1954) for complex atmospheric turbulence.” <em>Phys Rev Lett</em> 130. <a href="https://doi.org/10.48550/arXiv.2206.14592">https://doi.org/10.48550/arXiv.2206.14592</a>.</p>
+</div>
+<div id="ref-Stiperski2019">
+<p>Stiperski, I., M. Calaf, and M. W. Rotach. 2019. “Scaling, Anisotropy, and Complexity in Near-Surface Atmospheric Turbulence.” <em>J Geophys Res Atmos</em> 124: 1428–48. <a href="https://doi.org/10.1029/2018JD029383">https://doi.org/10.1029/2018JD029383</a>.</p>
 </div>
 </div>
             </section>

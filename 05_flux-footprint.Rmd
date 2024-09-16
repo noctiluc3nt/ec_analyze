@@ -72,7 +72,7 @@ str(ffp)
 
 ### Plotting of flux footprint with `plot_flux_footprint`
 
-The function `plot_flux_footprint` takes as input an obeject returned by `calc_flux_footprint` and plots the cross-wind integrated footprint and the 2d footprint.
+The function `plot_flux_footprint` takes as input an object returned by `calc_flux_footprint` and plots the cross-wind integrated footprint and the 2d footprint.
 
 
 ```R
@@ -88,4 +88,4 @@ plot_flux_footprint(ffp)
     
 
 
-Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage https://www.footprint.kljun.net/. The flux footprint can then be plotted on an aerial photo or a ecosystem type classification, see e.g. @Kljun2015 therein Fig. 5 or @Pirk2023a therein Fig. 4.
+Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage https://www.footprint.kljun.net/. The flux footprint can then be plotted on an aerial photo or an ecosystem type classification, see e.g. @Kljun2015 therein Fig. 5 or @Pirk2023a therein Fig. 4.
