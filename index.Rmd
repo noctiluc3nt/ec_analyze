@@ -17,10 +17,9 @@ description: ""
 # Introduction
 
 <hr>
-**Package**: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br> 
+**Package source**: <a href="https://github.com/noctiluc3nt/Reddy">Reddy package (Github)</a> <br> 
 **Jupyter notebooks**: <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">jupyter notebooks (Github)</a><br>
-**Publication**: <a href="https://link.springer.com/article/10.1007/s10546-024-00879-5">Link</a><br>
-**Any comments or issues?**: <a href="https://github.com/noctiluc3nt/ec_analyze/issues">create an issue (Github)</a>
+**Any comments or issues?** <a href="https://github.com/noctiluc3nt/ec_analyze/issues">create an issue (Github)</a>
 
 <hr>
 

@@ -284,6 +284,7 @@ There are several other approaches to flux footprint estimation (e.g. <span cla
   ..$ : num [1:133] -3.37 -3.16 -2.37 -1.58 -0.79 ...
   ..$ : num [1:87] -1.91 -1.58 -0.79 0 0.79 ...
  $ contour_levels: num [1:9] 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1</code></pre>
+<p>Therein, <code>fy_mean</code> represents the crosswind-integrated footprint with coordinates <code>x</code> and <code>xmax</code> the location of the maximum footprint. <code>(x2d, y2d, f2d)</code> represent the 2d flux footprint and <code>(xcontour, ycontour)</code> the contour lines of the respective contour levels, which can be specified in the <code>contours</code>argument in <code>calc_flux_footprint</code>. The output list <code>ffp</code> can be easily plotted using the function <code>plot_flux_footprint</code>, as shown in the following.</p>
 </div>
 <div id="plotting-of-flux-footprint-with-plot_flux_footprint" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Plotting of flux footprint with <code>plot_flux_footprint</code><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint" class="anchor-section" aria-label="Anchor link to header"></a></h3>

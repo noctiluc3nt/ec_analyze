@@ -69,6 +69,7 @@ str(ffp)
       ..$ : num [1:87] -1.91 -1.58 -0.79 0 0.79 ...
      $ contour_levels: num [1:9] 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1
 
+Therein, `fy_mean` represents the crosswind-integrated footprint with coordinates `x` and `xmax` the location of the maximum footprint. `(x2d, y2d, f2d)` represent the 2d flux footprint and `(xcontour, ycontour)` the contour lines of the respective contour levels, which can be specified in the `contours`argument in `calc_flux_footprint`. The output list `ffp` can be easily plotted using the function `plot_flux_footprint`, as shown in the following.
 
 ### Plotting of flux footprint with `plot_flux_footprint`
 
