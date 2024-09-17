@@ -29,7 +29,7 @@ However, they require a thought-through technical setup and a special post-proce
 This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
 Each chapter covers one topic and is also available as jupyter notebook, which can be downloaded  <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">here</a>. 
 
-![Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package](./figures/schema/schema.png)
+![Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package](./figures/schema/schema2.png)
 
 
 **Installation of the Reddy package:** The Reddy package can be installed directly from github:
