@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Turbulence diagnostics | Reddy: An open-source package for analyzing eddy-covariance data</title>
-  <meta name="description" content="3 Turbulence diagnostics | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <title>3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
+  <meta name="description" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Turbulence diagnostics | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:title" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Turbulence diagnostics | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="twitter:title" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   
   
   
@@ -211,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source package for analyzing eddy-covariance data</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
           </h1>
         </div>
 
@@ -233,7 +233,10 @@ Based on the generated half-hourly output of the first notebook (<a href="https:
 <span class="math display">\[ TKE = 0.5 (\sigma_u^2 + \sigma_v^2 + \sigma_w^2) =0.5 (\overline{u&#39;^2} + \overline{v&#39;^2} + \overline{w&#39;^2}  ).\]</span>
 From the TKE, a velocity scale can easily be derived <span class="math inline">\(V_{TKE} = \sqrt{TKE}\)</span> (<code>calc_vtke</code>).</li>
 <li><strong>Friction velocity</strong> <span class="math inline">\(u_*\)</span> (<code>calc_ustar</code>): The friction velocity describes the effect of friction in form of a velocity scale
-<span class="math display">\[ u_* = \sqrt[4]{\overline{u&#39;v&#39;}^2+\overline{v&#39;w&#39;}^2}.\]</span></li>
+<span class="math display">\[ u_* = \sqrt[4]{\overline{u&#39;v&#39;}^2+\overline{v&#39;w&#39;}^2}.\]</span>
+If the <strong>surface roughness</strong> <span class="math inline">\(z_0\)</span> (<code>ustar2z0</code>) is not known, friction velocity can also be used to estimate it with an simple estimate
+<span class="math display">\[z_0 = \alpha \frac{u_*^2}{g}\]</span>
+with the Charnock constant <span class="math inline">\(\alpha = 0.016\)</span> and <span class="math inline">\(g=9.81\)</span> m/s.</li>
 <li><strong>Obukhov length</strong> <span class="math inline">\(L\)</span> (<code>calc_L</code>): The Obukhov length is a length scale that describes the effect of buoyancy versus shear (friction velocity) through
 <span class="math display">\[ L = -\frac{u_*^3 \overline{T_v}}{\kappa \,g\,\overline{w&#39;T&#39;}}, \]</span>
 and is central in Monin-Obukhov similarity theory (MOST) for deriving dimensionless scaling parameters, in particular the stability parameter <span class="math inline">\(\zeta\)</span>.
