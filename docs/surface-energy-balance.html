@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Surface energy balance | Reddy: An open-source package for analyzing eddy-covariance data</title>
-  <meta name="description" content="8 Surface energy balance | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <title>8 Surface energy balance | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
+  <meta name="description" content="8 Surface energy balance | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Surface energy balance | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta property="og:title" content="8 Surface energy balance | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Surface energy balance | Reddy: An open-source package for analyzing eddy-covariance data" />
+  <meta name="twitter:title" content="8 Surface energy balance | Reddy: A toolbox for analyzing eddy-covariance measurements" />
   
   
   
@@ -211,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source package for analyzing eddy-covariance data</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
           </h1>
         </div>
 
@@ -854,7 +854,21 @@ and are both a way to describe the heat transfer by sensible vs latent heat. The
 </div>
 <div id="meteorological-contextualization" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Meteorological contextualization<a href="surface-energy-balance.html#meteorological-contextualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in a complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
+<p>For the meteorological contextualization and related unit conversion, Reddy provides several basic function:</p>
+<ul>
+<li>saturation vapor pressure (<code>calc_satvaporpressure</code>)</li>
+<li>vapor pressure deficit (<code>calc_vpd</code>)</li>
+<li>potential temperature (<code>calc_theta</code>)</li>
+<li>virtual temperature (<code>calc_Tv</code>)</li>
+<li>convert pressure to height (<code>pres2height</code>)</li>
+<li>convert relative to specific humidity (<code>rh2q</code>)</li>
+<li>convert relative to absolute humidity (<code>rh2ah</code>)</li>
+<li>convert absolute to relative humidty (<code>ah2rh</code>)</li>
+<li>clear-sky index (<code>calc_csi</code>)</li>
+<li>wind-related functions (<code>calc_windDirection, calc_windSpeed2D, calc_windSpeed3D, calc_gustfactor</code>)</li>
+</ul>
+<p>The clear-sky index is especially suitable to contextualize the surface energy balance:
+The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in a complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
 Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity <span class="math inline">\(\epsilon_{actual}\)</span> and theoretical (clear-sky) emissivity <span class="math inline">\(\epsilon_{theoretical}\)</span>. If <span class="math inline">\(\epsilon_{actual} \le \epsilon_{theoretical}\)</span>, i.e. <span class="math inline">\(CSI \le 1\)</span>, then the sky is assumed to be clear-sky (see e.g. the review paper <span class="citation">Lehner, Rotach, and Obleitner (<a href="#ref-Lehner2021" role="doc-biblioref">2021</a>)</span>).</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance.html#cb51-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
 <span id="cb51-2"><a href="surface-energy-balance.html#cb51-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>

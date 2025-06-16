@@ -13,6 +13,9 @@ $$TI = \frac{\sqrt{\sigma_u^2+\sigma_v^2}}{\overline{u}} ,\quad\quad I_w= \frac{
  From the TKE, a velocity scale can easily be derived $V_{TKE} = \sqrt{TKE}$ (`calc_vtke`).
 - **Friction velocity** $u_*$ (`calc_ustar`): The friction velocity describes the effect of friction in form of a velocity scale
 $$ u_* = \sqrt[4]{\overline{u'v'}^2+\overline{v'w'}^2}.$$
+If the **surface roughness** $z_0$ (`ustar2z0`) is not known, friction velocity can also be used to estimate it with an simple estimate
+$$z_0 = \alpha \frac{u_*^2}{g}$$
+with the Charnock constant $\alpha = 0.016$ and $g=9.81$ m/s.
 - **Obukhov length** $L$ (`calc_L`): The Obukhov length is a length scale that describes the effect of buoyancy versus shear (friction velocity) through
 $$ L = -\frac{u_*^3 \overline{T_v}}{\kappa \,g\,\overline{w'T'}}, $$
 and is central in Monin-Obukhov similarity theory (MOST) for deriving dimensionless scaling parameters, in particular the stability parameter $\zeta$.
