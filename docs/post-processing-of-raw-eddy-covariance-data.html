@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
-<li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2024)</a></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2025)</a></li>
 
 </ul>
 
@@ -259,8 +259,9 @@ Usually, <span class="math inline">\(w\)</span> represents the vertical wind spe
 <li><strong>WPL correction</strong> (<code>WPLcorrection</code>, <span class="citation">Webb, Pearman, and Leuning (<a href="#ref-Webb1980" role="doc-biblioref">1980</a>)</span>): Converts volume- to mass-related quantities for trace gas fluxes. This correction only applies to trace gas concentrations (water vapor, carbon dioxide, methane, …) measured with a gas analyzer.</li>
 <li><strong>Unit conversion (density)</strong> (<code>ppt2rho</code>): Converts ppt to density. Closed-path gas analyzers measure trace gas concentrations in parts-per-… (ppt: … thousand, ppm: … million), which has to be converted to a density based on the respective molar mass.</li>
 <li><strong>Unit conversion (fluxes)</strong> (<code>cov2sh</code>, <code>cov2lh</code>,<code>cov2cf</code>): Converts covariances to the respective flux in W/m<span class="math inline">\(^2\)</span>, i.e., cov(w,T) to sensible heat flux, cov(w,q) to latent heat flux and cov(w,c) to CO<span class="math inline">\(_2\)</span> flux.</li>
+<li><strong>Gap-filling</strong> (<code>gapfilling</code>): Reproduction of timeseries by filling gaps. Gap-filling is necessary if budgets are calculated or a continuous timeseries is desired. Depending on the type of gaps (random gaps, systematic gaps, duration of gaps and available auxillary measurements) different physical and statistical methods for gap-filling exist (see review <span class="citation">Moffat and others (<a href="#ref-Moffat2007" role="doc-biblioref">2007</a>)</span>). In meteorology, particulary for studying turbulent fluxes under stable conditions statistically, gap-filling is usually not used to avoid introducing artificial “measurements” created under the assumptions of the used gap-filling method.</li>
 </ul>
-<p>There are more (and partly controversial) correction methods, details are discussed in <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span>. Further correction methods are required when spectra are considered (spectral corrections) or budgets are calculated (gap-filling of missing values, to avoid a bias due to the discarded data).</p>
+<p>There are more (and partly controversial) correction methods, details are discussed in <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span>. Further correction methods are required when spectra are considered (spectral corrections) or budgets are calculated (e.g. more sophisticated gap-filling of missing values, to avoid a bias due to systematically discarded data).</p>
 </div>
 </div>
 <div id="an-example-post-processing-routine" class="section level2 hasAnchor" number="2.3">
@@ -912,6 +913,9 @@ Generally, it should be noted that different sensors may require different corre
 </div>
 <div id="ref-Mauder2013">
 <p>Mauder, M., M. Cuntz, C. Drüe, A. Graf, C. Rebmann, H. P. Schmid, M. Schmidt, and R. Steinbrecher. 2013. “A strategy for quality and uncertainty assessment of long-term eddy-covariance measurements.” <em>Agric Forest Meteorol</em> 169: 122–35. <a href="https://doi.org/10.1016/j.agrformet.2012.09.006">https://doi.org/10.1016/j.agrformet.2012.09.006</a>.</p>
+</div>
+<div id="ref-Moffat2007">
+<p>Moffat, A. M., and others. 2007. “Comprehensive comparison of gap-filling techniques for eddy covariance net carbon fluxes.” <em>Agricultural and Forest Meteorology</em> 147: 209–32.</p>
 </div>
 <div id="ref-Schotanus1983">
 <p>Schotanus, P., F. T. M. Nieuwstadt, and H. A. R. DeBruin. 1983. “Temperature measurement with a sonic anemometer and its application to heat and moisture fluctuations.” <em>Boundary-Layer Meteorol</em> 26: 81–93.</p>
