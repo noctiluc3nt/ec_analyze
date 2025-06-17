@@ -135,6 +135,20 @@ print(paste("EF (average):", calc_ef(mean(dat$sh),mean(dat$lh))))
 
 
 ## Meteorological contextualization
+For the meteorological contextualization and related unit conversion, Reddy provides several basic function:
+
+- saturation vapor pressure (`calc_satvaporpressure`)
+- vapor pressure deficit (`calc_vpd`)
+- potential temperature (`calc_theta`)
+- virtual temperature (`calc_Tv`)
+- convert pressure to height (`pres2height`)
+- convert relative to specific humidity (`rh2q`)
+- convert relative to absolute humidity (`rh2ah`)
+- convert absolute to relative humidty (`ah2rh`)
+- clear-sky index (`calc_csi`)
+- wind-related functions (`calc_windDirection, calc_windSpeed2D, calc_windSpeed3D, calc_gustfactor`)
+
+The clear-sky index is especially suitable to contextualize the surface energy balance:
 The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in a complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
 Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity $\epsilon_{actual}$ and theoretical (clear-sky) emissivity $\epsilon_{theoretical}$. If $\epsilon_{actual} \le \epsilon_{theoretical}$, i.e. $CSI \le 1$, then the sky is assumed to be clear-sky (see e.g. the review paper @Lehner2021).
 

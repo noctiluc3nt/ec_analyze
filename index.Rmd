@@ -1,5 +1,5 @@
 --- 
-title: "Reddy: An open-source package for analyzing eddy-covariance data"
+title: "Reddy: A toolbox for analyzing eddy-covariance measurements"
 author: ""
 date: ""
 site: bookdown::bookdown_site
@@ -26,7 +26,7 @@ description: ""
 **Overview:** Eddy-covariance (EC) measurements allow to *measure turbulent fluxes directly and non-invasively over long periods of time*, and thus represent the standard measurement method for turbulent exchange processes between atmosphere and land, vegetation, cryosphere or hydrosphere. 
 <br>
 However, they require a thought-through technical setup and a special post-processing, before further analysis can be carried out. 
-This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package Reddy, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
+This gitbook provides an overview about the setup, post-processing and meteorological evaluation of EC measurements, which can be used for research and teaching. The structure of this gitbook is detailed in figure 1. All described functions are implemented in the R-package <a href="https://github.com/noctiluc3nt/Reddy">Reddy</a>, which was specially developed to allow a reproducible and comprehensive analysis of EC measurements.
 Each chapter covers one topic and is also available as jupyter notebook, which can be downloaded  <a href="https://github.com/noctiluc3nt/ec_analyze/tree/main/notebooks">here</a>. 
 
 ![Figure 1: Overview of the topics in this gitbook and the functionality of the Reddy package](./figures/schema/schema2.png)
@@ -78,4 +78,4 @@ In this regard, [Reddy](https://github.com/noctiluc3nt/Reddy) <span style="color
 - [RFlux](https://github.com/domvit81/RFlux/) <span style="color: darkblue;">**R**</span>: GUI for post-processing of eddy-covariance raw data by calling EddyPro®.
 - [eddy4R](https://github.com/NEONScience/eddy4R) <span style="color: darkblue;">**R**</span> [@Metzger2017] : Family of several R-package for eddy-covariance post-processing in a DevOps framework.
 - [icoscp](https://pypi.org/project/icoscp/) <span style="color: darkblue;">**Python**</span>: Access to data from ICOS (Integrated Carbon Observation System) data portal.
-- [flux-data-qaqc](https://github.com/Open-ET/flux-data-qaqc) <span style="color: darkblue;">**Python**</span> [@Volk2021] : Post-processing of eddy-covariance measurements to derive daily or monthly evapotranspiration in a energy balance framework.
+- [flux-data-qaqc](https://github.com/Open-ET/flux-data-qaqc) <span style="color: darkblue;">**Python**</span> [@Volk2021] : Post-processing of eddy-covariance measurements to derive daily or monthly evapotranspiration in an energy balance framework.
