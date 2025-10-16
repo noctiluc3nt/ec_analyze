@@ -157,6 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
 <li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
+<li class="chapter" data-level="3.4" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#decoupling-metric"><i class="fa fa-check"></i><b>3.4</b> Decoupling metric</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -166,12 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
-<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#frequency-spectrum-with-fft"><i class="fa fa-check"></i><b>5.2</b> Frequency spectrum with FFT</a></li>
 <li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="spectra.html"><a href="spectra.html#ogives"><i class="fa fa-check"></i><b>5.4</b> Ogives</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
 <ul>
@@ -190,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-climatology"><i class="fa fa-check"></i><b>7.3</b> Flux footprint climatology</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
 <ul>
@@ -230,12 +233,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 summarizes all normal and shear stresses. Based on an invariant analysis, the most important geometric properties can be derived from its eigenvalues and eigenvectors. Using a linear combination of the three eigenvalues, a two-dimensional mapping into an equilateral triangle – called <em>barycentric map</em> (<span class="citation">Banerjee et al. (<a href="#ref-Banerjee2007" role="doc-biblioref">2007</a>)</span>, see figure) – with the coordinates <span class="math inline">\((x_B,y_B)\)</span>, can be constructed, which allows to characterize the anisotropy (<span class="math inline">\(y_B\)</span>) and the limiting states. The three corners of the triangle represent the three limiting state 1-, 2- and 3-component limit, where the 3-component limit corresponds to isotropic turbulence.
 The 2-component limit represents “disk-like” turbulence associated with strong wind shear and the 1-component limit “rod-like” turbulence, which is related to wave-like motions, e.g. internal gravity waves.</p>
 <p><img src="figures/schema/triangle_schema.png" width=550 /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="reynolds-stress-tensor.html#cb34-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb34-2"><a href="reynolds-stress-tensor.html#cb34-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
-<span id="cb34-3"><a href="reynolds-stress-tensor.html#cb34-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
-<span id="cb34-4"><a href="reynolds-stress-tensor.html#cb34-4" aria-hidden="true"></a></span>
-<span id="cb34-5"><a href="reynolds-stress-tensor.html#cb34-5" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
-<span id="cb34-6"><a href="reynolds-stress-tensor.html#cb34-6" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="reynolds-stress-tensor.html#cb36-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb36-2"><a href="reynolds-stress-tensor.html#cb36-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb36-3"><a href="reynolds-stress-tensor.html#cb36-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb36-4"><a href="reynolds-stress-tensor.html#cb36-4" aria-hidden="true"></a></span>
+<span id="cb36-5"><a href="reynolds-stress-tensor.html#cb36-5" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
+<span id="cb36-6"><a href="reynolds-stress-tensor.html#cb36-6" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
 <div id="invariant-analysis-of-the-reynolds-stress-tensor" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Invariant analysis of the Reynolds stress tensor<a href="reynolds-stress-tensor.html#invariant-analysis-of-the-reynolds-stress-tensor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy" class="section level3 hasAnchor" number="6.1.1">
@@ -248,8 +251,8 @@ The 2-component limit represents “disk-like” turbulence associated with stro
         \end{pmatrix}
 \]</span>
 and in the order <span class="math inline">\(a_{11}, a_{12}, a_{13}, a_{22}, a_{23}, a_{33}\)</span>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="reynolds-stress-tensor.html#cb35-1" aria-hidden="true"></a>rey_ana =<span class="st"> </span><span class="kw">calc_anisotropy</span>(dat<span class="op">$</span>u_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_uv,dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>v_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_vw,dat<span class="op">$</span>w_sd<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb35-2"><a href="reynolds-stress-tensor.html#cb35-2" aria-hidden="true"></a><span class="kw">str</span>(rey_ana)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="reynolds-stress-tensor.html#cb37-1" aria-hidden="true"></a>rey_ana =<span class="st"> </span><span class="kw">calc_anisotropy</span>(dat<span class="op">$</span>u_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_uv,dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>v_sd<span class="op">^</span><span class="dv">2</span>,dat<span class="op">$</span>cov_vw,dat<span class="op">$</span>w_sd<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb37-2"><a href="reynolds-stress-tensor.html#cb37-2" aria-hidden="true"></a><span class="kw">str</span>(rey_ana)</span></code></pre></div>
 <pre><code>List of 6
  $ xb          : num [1:127] 0.348 0.249 0.326 0.257 0.188 ...
  $ yb          : num [1:127] 0.119 0.124 0.101 0.103 0.117 ...
@@ -262,7 +265,7 @@ and in the order <span class="math inline">\(a_{11}, a_{12}, a_{13}, a_{22}, a_{
 <div id="plotting-the-barycentric-map-using-plot_barycentric_map" class="section level3 hasAnchor" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Plotting the barycentric map using <code>plot_barycentric_map</code><a href="reynolds-stress-tensor.html#plotting-the-barycentric-map-using-plot_barycentric_map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The function <code>plot_barycentric_map</code> takes <code>xb, yb</code> as input (as calculated in the invariant analysis before) and plots them in the barycentric map.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="reynolds-stress-tensor.html#cb37-1" aria-hidden="true"></a><span class="kw">plot_barycentric_map</span>(rey_ana<span class="op">$</span>xb,rey_ana<span class="op">$</span>yb)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="reynolds-stress-tensor.html#cb39-1" aria-hidden="true"></a><span class="kw">plot_barycentric_map</span>(rey_ana<span class="op">$</span>xb,rey_ana<span class="op">$</span>yb)</span></code></pre></div>
 <p><img src="figures/fig_0701.png" width="500" /></p>
 <p>The three corners of the tringle represent the three limiting state: 3-component limit (isotropic, “sphere-like”) at <span class="math inline">\((0.5,\sqrt{3}/2\)</span>), 2-component limit (“disk-like”) at <span class="math inline">\((0,0)\)</span> and 1-component limit (“rod-like”) at <span class="math inline">\((1,0)\)</span>. <span class="math inline">\(y_B\)</span> is a measure for anisotropy – from <span class="math inline">\(y_B = 0\)</span> completely anisotropic to <span class="math inline">\(y_B = \sqrt(3)/2\)</span> perfectly isotropic. <br>
 Anisotropy leads to deviations from classical scaling functions used in Monin-Obukhov similarity theory, e.g. <span class="citation">Stiperski, Calaf, and Rotach (<a href="#ref-Stiperski2019" role="doc-biblioref">2019</a>)</span> and <span class="citation">Stiperski and Calaf (<a href="#ref-Stiperski2022" role="doc-biblioref">2023</a>)</span>.</p>
@@ -271,12 +274,12 @@ Anisotropy leads to deviations from classical scaling functions used in Monin-Ob
 <div id="anisotropy-and-velocity-aspect-ratio-var" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Anisotropy and velocity aspect ratio (VAR)<a href="reynolds-stress-tensor.html#anisotropy-and-velocity-aspect-ratio-var" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The velocity aspect ratio VAR (<code>calc_var</code>) is an approximation of anisotropy that only takes the diagonal elements of the Reynolds stress tensor, i.e., <span class="math inline">\(\sigma_u, \sigma_v,\sigma_w\)</span>, into account <span class="citation">(Mahrt <a href="#ref-Mahrt2010" role="doc-biblioref">2010</a>)</span>. A deviation from a linear regression between VAR and <span class="math inline">\(y_B\)</span> allows quantify the effect of shear stresses. As seen in the plot below, for small values of <span class="math inline">\(y_B\)</span>, i.e., very anisotropic, is the deviation from the linear fit larger than for higher values of <span class="math inline">\(y_B\)</span>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="reynolds-stress-tensor.html#cb38-1" aria-hidden="true"></a>var=<span class="kw">calc_var</span>(dat<span class="op">$</span>u_sd,dat<span class="op">$</span>v_sd,dat<span class="op">$</span>w_sd)</span>
-<span id="cb38-2"><a href="reynolds-stress-tensor.html#cb38-2" aria-hidden="true"></a><span class="kw">plot</span>(var,rey_ana<span class="op">$</span>yb,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">xlab=</span><span class="st">&quot;VAR&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;yb&quot;</span>)</span>
-<span id="cb38-3"><a href="reynolds-stress-tensor.html#cb38-3" aria-hidden="true"></a><span class="kw">grid</span>()</span>
-<span id="cb38-4"><a href="reynolds-stress-tensor.html#cb38-4" aria-hidden="true"></a>fit=<span class="kw">lm</span>(rey_ana<span class="op">$</span>yb<span class="op">~</span>var)</span>
-<span id="cb38-5"><a href="reynolds-stress-tensor.html#cb38-5" aria-hidden="true"></a><span class="kw">abline</span>(fit,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
-<span id="cb38-6"><a href="reynolds-stress-tensor.html#cb38-6" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">summary</span>(fit))</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="reynolds-stress-tensor.html#cb40-1" aria-hidden="true"></a>var=<span class="kw">calc_var</span>(dat<span class="op">$</span>u_sd,dat<span class="op">$</span>v_sd,dat<span class="op">$</span>w_sd)</span>
+<span id="cb40-2"><a href="reynolds-stress-tensor.html#cb40-2" aria-hidden="true"></a><span class="kw">plot</span>(var,rey_ana<span class="op">$</span>yb,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">xlab=</span><span class="st">&quot;VAR&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;yb&quot;</span>)</span>
+<span id="cb40-3"><a href="reynolds-stress-tensor.html#cb40-3" aria-hidden="true"></a><span class="kw">grid</span>()</span>
+<span id="cb40-4"><a href="reynolds-stress-tensor.html#cb40-4" aria-hidden="true"></a>fit=<span class="kw">lm</span>(rey_ana<span class="op">$</span>yb<span class="op">~</span>var)</span>
+<span id="cb40-5"><a href="reynolds-stress-tensor.html#cb40-5" aria-hidden="true"></a><span class="kw">abline</span>(fit,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
+<span id="cb40-6"><a href="reynolds-stress-tensor.html#cb40-6" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">summary</span>(fit))</span></code></pre></div>
 <pre><code>Call:
 lm(formula = rey_ana$yb ~ var)
 
@@ -333,42 +336,42 @@ F-statistic:  9534 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"toc depth": 2,
-"github-repo": "noctiluc3nt/ec_analyze"
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "toc depth": 2,
+  "github-repo": "noctiluc3nt/ec_analyze"
 });
 });
 </script>

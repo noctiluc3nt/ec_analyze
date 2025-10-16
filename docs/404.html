@@ -157,6 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
 <li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
+<li class="chapter" data-level="3.4" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#decoupling-metric"><i class="fa fa-check"></i><b>3.4</b> Decoupling metric</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -166,12 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
-<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#frequency-spectrum-with-fft"><i class="fa fa-check"></i><b>5.2</b> Frequency spectrum with FFT</a></li>
 <li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="spectra.html"><a href="spectra.html#ogives"><i class="fa fa-check"></i><b>5.4</b> Ogives</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
 <ul>
@@ -190,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-climatology"><i class="fa fa-check"></i><b>7.3</b> Flux footprint climatology</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
 <ul>
@@ -245,42 +248,42 @@ the table of contents to find the page you are looking for.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"toc depth": 2,
-"github-repo": "noctiluc3nt/ec_analyze"
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "toc depth": 2,
+  "github-repo": "noctiluc3nt/ec_analyze"
 });
 });
 </script>

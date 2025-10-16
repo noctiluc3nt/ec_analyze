@@ -13,9 +13,9 @@ $$TI = \frac{\sqrt{\sigma_u^2+\sigma_v^2}}{\overline{u}} ,\quad\quad I_w= \frac{
  From the TKE, a velocity scale can easily be derived $V_{TKE} = \sqrt{TKE}$ (`calc_vtke`).
 - **Friction velocity** $u_*$ (`calc_ustar`): The friction velocity describes the effect of friction in form of a velocity scale
 $$ u_* = \sqrt[4]{\overline{u'v'}^2+\overline{v'w'}^2}.$$
-If the **surface roughness** $z_0$ (`ustar2z0`) is not known, friction velocity can also be used to estimate it with an simple estimate
+If the **surface roughness** $z_0$ (`ustar2z0`) is not known, friction velocity can also be used to estimate it with a simple estimate
 $$z_0 = \alpha \frac{u_*^2}{g}$$
-with the Charnock constant $\alpha = 0.016$ and $g=9.81$ m/s.
+with the Charnock constant $\alpha = 0.016$ and $g=9.81$ m$^2$/s$^2$.
 - **Obukhov length** $L$ (`calc_L`): The Obukhov length is a length scale that describes the effect of buoyancy versus shear (friction velocity) through
 $$ L = -\frac{u_*^3 \overline{T_v}}{\kappa \,g\,\overline{w'T'}}, $$
 and is central in Monin-Obukhov similarity theory (MOST) for deriving dimensionless scaling parameters, in particular the stability parameter $\zeta$.
@@ -133,7 +133,7 @@ Based on our short example data, we can see that the sensible heat flux is posit
 
 ## Turbulence regimes and "Hockey-stick" model
 The above shown example for stability dependence can be extended to arbitrary variables and is often used to characterize different turbulence regimes. 
-To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, @Sun2012 investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this simple model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.
+To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, @Sun2012 investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this simple model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.
 
 
 ```R
@@ -149,3 +149,14 @@ grid()
 
     
 ![](figures/fig_0303.png){width=400}
+    
+
+
+## Decoupling metric
+During strongly stable stratification land and atmosphere can "decouple", meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (@Derbyshire1999). This processes represents particularly in numerical modelling a big problem, since then are atmospheric and land model also "decoupled" and the atmosphere does not "see" the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, @Peltola2021 introduced the decoupling metric $\Omega$:
+
+- **Decoupling metric** (`calc_omega`): $\Omega$ is defined as the dimensionless ratio between vertical turbulence intenisity and critical vertical wind speed that characterizes the wind speed needed to overcome the hindering force caused by static stability (based on the Brunt-Väisälä frequency $N^2:=g/T \partial T/\partial z$)
+ $$ \Omega := \frac{\sigma_w}{\vert w_{crit}\vert}=\frac{\sigma_w}{\sqrt{2}zN}$$
+
+
+As can be seen, for calculating $N$ the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (`calc_ri`), eddy diffusivities of momentum (`calc_Km`) and heat (`calc_Kh`), the Prandtl number (`calc_Pr`) or the Ozmidov scale (`calc_ozmidov_scale`). 

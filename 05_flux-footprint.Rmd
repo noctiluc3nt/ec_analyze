@@ -1,7 +1,7 @@
 # Flux footprint
 
 ## Flux footprint parametrizations
-The calculation of a 2d flux footprint makes it possible to estimate the size of the surface that contributes to the measured flux. This also allows to analyze whether changes in the flux result from a change in the footprint (e.g. surface composition, vegetation, surface roughness). Here the flux footprint parametrization according to @Kljun2015 is used. <br>
+The calculation of a 2d flux footprint makes it possible to estimate the size of the surface that contributes to the measured flux. This also allows to analyze whether changes in the flux result from a change in the footprint (e.g. surface composition, vegetation, surface roughness). Here the flux footprint parametrization according to @Kormann2001 and @Kljun2015 are used. <br>
 The mathematical idea for deriving a flux footprint parametrization is to express the flux ($F_c$) as integral over the distribution of its sinks and sources ($S_c$) times a transfer function $f$ (the flux footprint):
 $$
     F_c(0,0,z) = \int\int S_c(x,y) f(x,y) \:dx\,dy
@@ -10,8 +10,8 @@ By treating streamwise and crosswise velocity independently, the footprint can b
 $$
     f(x,y) = \overline{f^y}(x)D_y.
 $$
-This assumption leads to a symmtric footprint in crosswind direction. For further derivations a concrete footprint model has to be applied, which is in Kljun et al., 2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities. <br>
-There are several other approaches to flux footprint estimation (e.g. @Hsieh2000 and @Kormann2001), but the @Kljun2015 model is the most common approach today.
+This assumption leads to a symmtric footprint in crosswind direction. For further derivations a concrete footprint model has to be applied, which is in @Kljun2015 an advanced Lagrangian particle dispersion model (LPDM-B) based on 3d particle backtracking between surface and boundary layer height $h$ that is valid for steady flows under all stabilities. The @Kormann2001 model is a simple analytical transport model. There are several other approaches to flux footprint estimation (e.g. @Hsieh2000), and they result in (quite) different surface areas, so the used method has to be chosen carefully. 
+
 
 ```R
 #load Reddy package
@@ -36,40 +36,38 @@ L=calc_L(ustar,dat$T_mean,dat$cov_wT)
 zm=4.4
 h=700
 
-ffp=calc_flux_footprint(zm,dat$u_mean[i],h,L[i],dat$v_sd[i],ustar[i])
+#Kljun et al, 2015
+ffp=calc_flux_footprint_Kljun2015(zm=zm,ws_mean=dat$u_mean[i],blh=h,L=L[i],v_sd=dat$v_sd[i],ustar=ustar[i],plot=FALSE)
 str(ffp)
 ```
 
-    List of 9
+    List of 6
      $ xmax          : num 23
-     $ x             : num [1:999] 4.38 5.17 5.96 6.76 7.55 ...
+     $ x             : num [1:1000] -793 -791 -790 -788 -787 ...
+     $ y             : num [1:1000] -793 -791 -790 -788 -787 ...
      $ fy_mean       : num [1:999] 3.43e-20 3.60e-10 5.56e-07 1.85e-05 1.37e-04 ...
-     $ x2d           : num [1:1499, 1:999] 4.38 4.38 4.38 4.38 4.38 ...
-     $ y2d           : num [1:1499, 1:999] -592 -591 -590 -589 -589 ...
-     $ f2d           : num [1:999, 1:1499] 0 0 0 0 0 0 0 0 0 0 ...
-     $ xcontour      :List of 9
-      ..$ : num [1:1573] 6.76 6.75 6.72 6.7 6.69 ...
-      ..$ : num [1:815] 7.55 7.48 7.42 7.38 7.35 ...
-      ..$ : num [1:543] 8.34 8.25 8.16 8.08 8.03 ...
-      ..$ : num [1:397] 9.13 9.03 8.91 8.81 8.73 ...
-      ..$ : num [1:307] 9.92 9.78 9.64 9.52 9.43 ...
-      ..$ : num [1:235] 10.7 10.7 10.5 10.3 10.2 ...
-      ..$ : num [1:181] 11.5 11.3 11.2 11 11 ...
-      ..$ : num [1:133] 12.3 12.2 12.1 12 12 ...
-      ..$ : num [1:87] 13.9 13.8 13.7 13.7 13.7 ...
-     $ ycontour      :List of 9
-      ..$ : num [1:1573] -2.39 -2.37 -1.58 -0.79 0 ...
-      ..$ : num [1:815] -4.56 -3.95 -3.16 -2.37 -1.58 ...
-      ..$ : num [1:543] -6.14 -5.53 -4.74 -3.95 -3.16 ...
-      ..$ : num [1:397] -6.85 -6.32 -5.53 -4.74 -3.95 ...
-      ..$ : num [1:307] -6.95 -6.32 -5.53 -4.74 -3.95 ...
-      ..$ : num [1:235] -6.48 -6.32 -5.53 -4.74 -3.95 ...
-      ..$ : num [1:181] -5.45 -4.74 -3.95 -3.16 -2.37 ...
-      ..$ : num [1:133] -3.37 -3.16 -2.37 -1.58 -0.79 ...
-      ..$ : num [1:87] -1.91 -1.58 -0.79 0 0.79 ...
+     $ f2d           : num [1:1000, 1:1000] 0 0 0 0 0 0 0 0 0 0 ...
      $ contour_levels: num [1:9] 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1
 
+
 Therein, `fy_mean` represents the crosswind-integrated footprint with coordinates `x` and `xmax` the location of the maximum footprint. `(x2d, y2d, f2d)` represent the 2d flux footprint and `(xcontour, ycontour)` the contour lines of the respective contour levels, which can be specified in the `contours`argument in `calc_flux_footprint`. The output list `ffp` can be easily plotted using the function `plot_flux_footprint`, as shown in the following.
+
+
+```R
+#Kormann and Meixner, 2001
+i=3
+ffp_KM=calc_flux_footprint_KM2001(zm=zm,ws_mean=dat$u_mean[i],wd_mean=dat$wd_mean[i],L=L[i],v_sd=dat$v_sd[i],ustar=ustar[i],plot=FALSE)
+str(ffp)
+```
+
+    List of 6
+     $ xmax          : num 23
+     $ x             : num [1:1000] -793 -791 -790 -788 -787 ...
+     $ y             : num [1:1000] -793 -791 -790 -788 -787 ...
+     $ fy_mean       : num [1:999] 3.43e-20 3.60e-10 5.56e-07 1.85e-05 1.37e-04 ...
+     $ f2d           : num [1:1000, 1:1000] 0 0 0 0 0 0 0 0 0 0 ...
+     $ contour_levels: num [1:9] 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1
+
 
 ### Plotting of flux footprint with `plot_flux_footprint`
 
@@ -77,16 +75,34 @@ The function `plot_flux_footprint` takes as input an object returned by `calc_fl
 
 
 ```R
-plot_flux_footprint(ffp)
+plot_flux_footprint(ffp) 
 ```
 
 
     
-![](figures/fig_0601.png){width=500}
-    
-
-![](figures/fig_0602.png){width=500}
+![](figures/ffp/output_7_0.png){width=400}
     
 
 
-Flux footprint climatologies can be create as composite footprints by averaging over several FFP calculations, see the dedicated webpage https://www.footprint.kljun.net/. The flux footprint can then be plotted on an aerial photo or an ecosystem type classification, see e.g. @Kljun2015 therein Fig. 5 or @Pirk2023a therein Fig. 4.
+
+```R
+plot_flux_footprint(ffp_KM) #different time step and rotated according to wind direction
+```
+
+
+    
+![](figures/ffp/output_8_0.png){width=400}
+    
+
+
+## Flux footprint climatology
+Flux footprint climatologies can be created as composites of single flux footprints by averaging over several FFP calculations (with `calc_flux_footprint_climatology` for both discussed flux footprint models).
+
+
+```R
+i=8:10
+ffp_clim=calc_flux_footprint_climatology(zm=zm,ws_mean=dat$u_mean[i],wd_mean=dat$wd_mean[i],L=L[i],
+                                         v_sd=dat$v_sd[i],ustar=ustar[i],method="KM2001",plot=FALSE)
+```
+
+The flux footprint (climatology) can then be plotted on an aerial photo or an ecosystem type classification, see e.g. @Kljun2015 therein Fig. 5 or @Pirk2023 therein Fig. 4.

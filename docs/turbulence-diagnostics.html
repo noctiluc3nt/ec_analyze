@@ -157,6 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
 <li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
+<li class="chapter" data-level="3.4" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#decoupling-metric"><i class="fa fa-check"></i><b>3.4</b> Decoupling metric</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -166,12 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
-<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#frequency-spectrum-with-fft"><i class="fa fa-check"></i><b>5.2</b> Frequency spectrum with FFT</a></li>
 <li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="spectra.html"><a href="spectra.html#ogives"><i class="fa fa-check"></i><b>5.4</b> Ogives</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
 <ul>
@@ -190,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-climatology"><i class="fa fa-check"></i><b>7.3</b> Flux footprint climatology</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
 <ul>
@@ -234,9 +237,9 @@ Based on the generated half-hourly output of the first notebook (<a href="https:
 From the TKE, a velocity scale can easily be derived <span class="math inline">\(V_{TKE} = \sqrt{TKE}\)</span> (<code>calc_vtke</code>).</li>
 <li><strong>Friction velocity</strong> <span class="math inline">\(u_*\)</span> (<code>calc_ustar</code>): The friction velocity describes the effect of friction in form of a velocity scale
 <span class="math display">\[ u_* = \sqrt[4]{\overline{u&#39;v&#39;}^2+\overline{v&#39;w&#39;}^2}.\]</span>
-If the <strong>surface roughness</strong> <span class="math inline">\(z_0\)</span> (<code>ustar2z0</code>) is not known, friction velocity can also be used to estimate it with an simple estimate
+If the <strong>surface roughness</strong> <span class="math inline">\(z_0\)</span> (<code>ustar2z0</code>) is not known, friction velocity can also be used to estimate it with a simple estimate
 <span class="math display">\[z_0 = \alpha \frac{u_*^2}{g}\]</span>
-with the Charnock constant <span class="math inline">\(\alpha = 0.016\)</span> and <span class="math inline">\(g=9.81\)</span> m/s.</li>
+with the Charnock constant <span class="math inline">\(\alpha = 0.016\)</span> and <span class="math inline">\(g=9.81\)</span> m<span class="math inline">\(^2\)</span>/s<span class="math inline">\(^2\)</span>.</li>
 <li><strong>Obukhov length</strong> <span class="math inline">\(L\)</span> (<code>calc_L</code>): The Obukhov length is a length scale that describes the effect of buoyancy versus shear (friction velocity) through
 <span class="math display">\[ L = -\frac{u_*^3 \overline{T_v}}{\kappa \,g\,\overline{w&#39;T&#39;}}, \]</span>
 and is central in Monin-Obukhov similarity theory (MOST) for deriving dimensionless scaling parameters, in particular the stability parameter <span class="math inline">\(\zeta\)</span>.
@@ -439,7 +442,7 @@ NA
 <div id="turbulence-regimes-and-hockey-stick-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Turbulence regimes and “Hockey-stick” model<a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The above shown example for stability dependence can be extended to arbitrary variables and is often used to characterize different turbulence regimes.
-To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, <span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span> investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or <span class="math inline">\(\sigma_w\)</span> and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) – this simple model is now commonly referred to as “Hockey-stick model” (<span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span>, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.</p>
+To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, <span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span> investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or <span class="math inline">\(\sigma_w\)</span> and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) – this simple model is now commonly referred to as “Hockey-stick model” (<span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span>, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="turbulence-diagnostics.html#cb14-1" aria-hidden="true"></a><span class="co">#some basic plots</span></span>
 <span id="cb14-2"><a href="turbulence-diagnostics.html#cb14-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>ws_mean,dat<span class="op">$</span>tke,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">7</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>),<span class="dt">xlab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;TKE [$m^2/s^2$]&quot;</span>),<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>))</span>
 <span id="cb14-3"><a href="turbulence-diagnostics.html#cb14-3" aria-hidden="true"></a>cond=(dat<span class="op">$</span>ws_mean<span class="op">&gt;</span><span class="dv">4</span>)</span>
@@ -448,11 +451,23 @@ To diagnose different turbulence regimes, scatter plots of different turbulence 
 <span id="cb14-6"><a href="turbulence-diagnostics.html#cb14-6" aria-hidden="true"></a><span class="co">#abline(0.1,0.1,col=4,lty=2)</span></span>
 <span id="cb14-7"><a href="turbulence-diagnostics.html#cb14-7" aria-hidden="true"></a><span class="kw">grid</span>()</span></code></pre></div>
 <p><img src="figures/fig_0303.png" width="400" /></p>
+</div>
+<div id="decoupling-metric" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Decoupling metric<a href="turbulence-diagnostics.html#decoupling-metric" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>During strongly stable stratification land and atmosphere can “decouple”, meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (<span class="citation">Derbyshire (<a href="#ref-Derbyshire1999" role="doc-biblioref">1999</a>)</span>). This processes represents particularly in numerical modelling a big problem, since then are atmospheric and land model also “decoupled” and the atmosphere does not “see” the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, <span class="citation">Peltola, Lapo, and Thomas (<a href="#ref-Peltola2021" role="doc-biblioref">2021</a>)</span> introduced the decoupling metric <span class="math inline">\(\Omega\)</span>:</p>
+<ul>
+<li><strong>Decoupling metric</strong> (<code>calc_omega</code>): <span class="math inline">\(\Omega\)</span> is defined as the dimensionless ratio between vertical turbulence intenisity and critical vertical wind speed that characterizes the wind speed needed to overcome the hindering force caused by static stability (based on the Brunt-Väisälä frequency <span class="math inline">\(N^2:=g/T \partial T/\partial z\)</span>)
+<span class="math display">\[ \Omega := \frac{\sigma_w}{\vert w_{crit}\vert}=\frac{\sigma_w}{\sqrt{2}zN}\]</span></li>
+</ul>
+<p>As can be seen, for calculating <span class="math inline">\(N\)</span> the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (<code>calc_ri</code>), eddy diffusivities of momentum (<code>calc_Km</code>) and heat (<code>calc_Kh</code>), the Prandtl number (<code>calc_Pr</code>) or the Ozmidov scale (<code>calc_ozmidov_scale</code>).</p>
 
 </div>
 </div>
 <h3> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references hanging-indent">
+<div id="ref-Derbyshire1999">
+<p>Derbyshire, S. H. 1999. “Boundary-layer decoupling over cold surfaces as a physical boundary-instability.” <em>Boundary-Layer Meteorology</em> 90: 297–325.</p>
+</div>
 <div id="ref-Li2011">
 <p>Li, D., and E. Bou-Zeid. 2011. “Coherent Structures and the Dissimilarity of Turbulent Transport of Momentum and Scalars in the Unstable Atmospheric Surface Layer.” <em>Boundary-Layer Meteorol</em> 140: 243–62. <a href="https://doi.org/10.1007/s10546-011-9613-5">https://doi.org/10.1007/s10546-011-9613-5</a>.</p>
 </div>
@@ -464,6 +479,9 @@ To diagnose different turbulence regimes, scatter plots of different turbulence 
 </div>
 <div id="ref-Nieuwstadt1984">
 <p>Nieuwstadt, F. T. M. 1984. “The Turbulent Structures of the Stable, Nocturnal Boundary Layer.” <em>J Atmos Sci</em> 41 (14): 2202–16.</p>
+</div>
+<div id="ref-Peltola2021">
+<p>Peltola, O., K. Lapo, and C. K. Thomas. 2021. “A Physics-Based Universal Indicator for Vertical Decoupling and Mixing Across Canopies Architectures and Dynamic Stabilities.” <em>Geophysical Research Letters</em> 48 (e2020GL091615). <a href="https://doi.org/10.1029/2020GL091615">https://doi.org/10.1029/2020GL091615</a>.</p>
 </div>
 <div id="ref-Schmutz2019">
 <p>Schmutz, M., and R. Vogt. 2019. “Flux Similarity and Turbulent Transport of Momentum, Heat and Carbon Dioxide in the Urban Boundary Layer.” <em>Boundary-Layer Meteorol</em> 172: 45–65. <a href="https://doi.org/10.1007/s10546-019-00431-w">https://doi.org/10.1007/s10546-019-00431-w</a>.</p>
@@ -492,42 +510,42 @@ To diagnose different turbulence regimes, scatter plots of different turbulence 
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"toc depth": 2,
-"github-repo": "noctiluc3nt/ec_analyze"
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "toc depth": 2,
+  "github-repo": "noctiluc3nt/ec_analyze"
 });
 });
 </script>

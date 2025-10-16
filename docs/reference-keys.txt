@@ -11,15 +11,17 @@ turbulence-diagnostics
 standard-turbulence-diagnostics-and-fluxes
 stability-dependence
 turbulence-regimes-and-hockey-stick-model
+decoupling-metric
 quadrant-analysis
 calculation-of-occurrence-frequencies-and-strengths-of-the-four-quadrants-with-calc_quadrant_analysis
 plotting-quadrant-analysis-with-plot_quadrant_analysis
 spectra
 spectral-analysis-of-timeseries
-fft-spectrum-and-comparison-to-theoretical-spectra
+frequency-spectrum-with-fft
 multiresolution-decomposition-mrd
 calculating-multiresolution-decomposition-with-calc_mrd
 plotting-multiresolution-decomposition-with-plot_mrd
+ogives
 reynolds-stress-tensor
 invariant-analysis-of-the-reynolds-stress-tensor
 performing-the-invariant-analysis-of-the-reynolds-stress-tensor-with-calc_anisotropy
@@ -30,6 +32,7 @@ flux-footprint-parametrizations
 d-flux-footprint-estimate
 calculate-2d-flux-footprint-estimate-with-calc_flux_footprint
 plotting-of-flux-footprint-with-plot_flux_footprint
+flux-footprint-climatology
 surface-energy-balance
 surface-energy-balance-closure
 calculating-surface-energy-balance

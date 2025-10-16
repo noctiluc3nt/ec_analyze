@@ -157,6 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
 <li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
+<li class="chapter" data-level="3.4" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#decoupling-metric"><i class="fa fa-check"></i><b>3.4</b> Decoupling metric</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -166,12 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
-<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#frequency-spectrum-with-fft"><i class="fa fa-check"></i><b>5.2</b> Frequency spectrum with FFT</a></li>
 <li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="spectra.html"><a href="spectra.html#ogives"><i class="fa fa-check"></i><b>5.4</b> Ogives</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
 <ul>
@@ -190,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-climatology"><i class="fa fa-check"></i><b>7.3</b> Flux footprint climatology</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
 <ul>
@@ -250,24 +253,24 @@ which can also be expressed in a relative measure, the closure ratio CR. The adv
 </div>
 <div id="calculating-surface-energy-balance" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Calculating surface energy balance<a href="surface-energy-balance.html#calculating-surface-energy-balance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="surface-energy-balance.html#cb44-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb44-2"><a href="surface-energy-balance.html#cb44-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
-<span id="cb44-3"><a href="surface-energy-balance.html#cb44-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
-<span id="cb44-4"><a href="surface-energy-balance.html#cb44-4" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb44-5"><a href="surface-energy-balance.html#cb44-5" aria-hidden="true"></a>sigma=<span class="fl">5.67</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span>(<span class="op">-</span><span class="dv">8</span>)</span>
-<span id="cb44-6"><a href="surface-energy-balance.html#cb44-6" aria-hidden="true"></a></span>
-<span id="cb44-7"><a href="surface-energy-balance.html#cb44-7" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
-<span id="cb44-8"><a href="surface-energy-balance.html#cb44-8" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span>
-<span id="cb44-9"><a href="surface-energy-balance.html#cb44-9" aria-hidden="true"></a>dat<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="surface-energy-balance.html#cb50-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb50-2"><a href="surface-energy-balance.html#cb50-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb50-3"><a href="surface-energy-balance.html#cb50-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb50-4"><a href="surface-energy-balance.html#cb50-4" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb50-5"><a href="surface-energy-balance.html#cb50-5" aria-hidden="true"></a>sigma=<span class="fl">5.67</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span>(<span class="op">-</span><span class="dv">8</span>)</span>
+<span id="cb50-6"><a href="surface-energy-balance.html#cb50-6" aria-hidden="true"></a></span>
+<span id="cb50-7"><a href="surface-energy-balance.html#cb50-7" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
+<span id="cb50-8"><a href="surface-energy-balance.html#cb50-8" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span>
+<span id="cb50-9"><a href="surface-energy-balance.html#cb50-9" aria-hidden="true"></a>dat<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
 <p><strong>Plotting of surface energy balance with <code>plot_seb</code></strong> <br>
 The function <code>plot_seb</code>plots the surface energy balance as time series and as scatter plot (R-GH, SH+LH) with linear regression as well as calculates the residual flux and the closure ratio.
 In addition to the turbulence data used so far (which contains the two turbulent fluxes <code>SH, LH</code>), we now also need additional radiative measurements (all four radiative fluxes <code>SWin, SWout, LWin, LWout</code>) and the ground heat flux (<code>GH</code>), which are available in the file <code>../data/radiation-data_30min/biomet_data.csv</code> as 30 minutes averages.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="surface-energy-balance.html#cb45-1" aria-hidden="true"></a><span class="co">#read in radiation data</span></span>
-<span id="cb45-2"><a href="surface-energy-balance.html#cb45-2" aria-hidden="true"></a>dat_rad=<span class="kw">read.table</span>(<span class="st">&quot;../data//radiation-data_30min//biomet_data.csv&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
-<span id="cb45-3"><a href="surface-energy-balance.html#cb45-3" aria-hidden="true"></a><span class="kw">colnames</span>(dat_rad)=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;rh&quot;</span>,<span class="st">&quot;ta&quot;</span>,<span class="st">&quot;swin&quot;</span>,<span class="st">&quot;swout&quot;</span>,<span class="st">&quot;lwin&quot;</span>,<span class="st">&quot;lwout&quot;</span>,<span class="st">&quot;shf1&quot;</span>,<span class="st">&quot;shf2&quot;</span>)</span>
-<span id="cb45-4"><a href="surface-energy-balance.html#cb45-4" aria-hidden="true"></a>dat_rad<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat_rad<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="surface-energy-balance.html#cb46-1" aria-hidden="true"></a>dat=<span class="kw">inner_join</span>(dat,dat_rad,<span class="dt">by=</span><span class="st">&quot;TIME&quot;</span>)</span>
-<span id="cb46-2"><a href="surface-energy-balance.html#cb46-2" aria-hidden="true"></a><span class="kw">head</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance.html#cb51-1" aria-hidden="true"></a><span class="co">#read in radiation data</span></span>
+<span id="cb51-2"><a href="surface-energy-balance.html#cb51-2" aria-hidden="true"></a>dat_rad=<span class="kw">read.table</span>(<span class="st">&quot;../data//radiation-data_30min//biomet_data.csv&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">header=</span>T)</span>
+<span id="cb51-3"><a href="surface-energy-balance.html#cb51-3" aria-hidden="true"></a><span class="kw">colnames</span>(dat_rad)=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;rh&quot;</span>,<span class="st">&quot;ta&quot;</span>,<span class="st">&quot;swin&quot;</span>,<span class="st">&quot;swout&quot;</span>,<span class="st">&quot;lwin&quot;</span>,<span class="st">&quot;lwout&quot;</span>,<span class="st">&quot;shf1&quot;</span>,<span class="st">&quot;shf2&quot;</span>)</span>
+<span id="cb51-4"><a href="surface-energy-balance.html#cb51-4" aria-hidden="true"></a>dat_rad<span class="op">$</span>TIME=<span class="kw">as.POSIXct</span>(dat_rad<span class="op">$</span>time,<span class="dt">format=</span><span class="st">&quot;%F %T&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="surface-energy-balance.html#cb52-1" aria-hidden="true"></a>dat=<span class="kw">inner_join</span>(dat,dat_rad,<span class="dt">by=</span><span class="st">&quot;TIME&quot;</span>)</span>
+<span id="cb52-2"><a href="surface-energy-balance.html#cb52-2" aria-hidden="true"></a><span class="kw">head</span>(dat)</span></code></pre></div>
 <table class="dataframe">
 <caption>
 A data.frame: 6 × 40
@@ -819,7 +822,7 @@ shf2
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="surface-energy-balance.html#cb47-1" aria-hidden="true"></a><span class="kw">plot_seb</span>(dat<span class="op">$</span>swin,dat<span class="op">$</span>swout,dat<span class="op">$</span>lwin,dat<span class="op">$</span>lwout,dat<span class="op">$</span>sh,dat<span class="op">$</span>lh,dat<span class="op">$</span>shf1)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="surface-energy-balance.html#cb53-1" aria-hidden="true"></a><span class="kw">plot_seb</span>(dat<span class="op">$</span>swin,dat<span class="op">$</span>swout,dat<span class="op">$</span>lwin,dat<span class="op">$</span>lwout,dat<span class="op">$</span>sh,dat<span class="op">$</span>lh,dat<span class="op">$</span>shf1)</span></code></pre></div>
 <p><img src="figures/fig_0801.png" width="500" /></p>
 <pre><code>Call:
 lm(formula = y ~ x)
@@ -847,8 +850,8 @@ F-statistic: 664.7 on 1 and 125 DF,  p-value: &lt; 2.2e-16</code></pre>
     BR:= \frac{SH}{LH}\quad\quad\textrm{and}\quad\quad EF:= \frac{LH}{LH+SH}
 \]</span>
 and are both a way to describe the heat transfer by sensible vs latent heat. They are related to the surface and the water abundance therein, and can be used to compare different surface types in different climates. Therefore, it is usually applied on monthly, seasonal or annual averages (so here just exemplarily calculated on daily basis).</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="surface-energy-balance.html#cb49-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BR (average):&quot;</span>, <span class="kw">calc_br</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span>
-<span id="cb49-2"><a href="surface-energy-balance.html#cb49-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;EF (average):&quot;</span>, <span class="kw">calc_ef</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="surface-energy-balance.html#cb55-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BR (average):&quot;</span>, <span class="kw">calc_br</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span>
+<span id="cb55-2"><a href="surface-energy-balance.html#cb55-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;EF (average):&quot;</span>, <span class="kw">calc_ef</span>(<span class="kw">mean</span>(dat<span class="op">$</span>sh),<span class="kw">mean</span>(dat<span class="op">$</span>lh))))</span></code></pre></div>
 <pre><code>[1] &quot;BR (average): 1.2715665126865&quot;
 [1] &quot;EF (average): 0.440224837976387&quot;</code></pre>
 </div>
@@ -870,8 +873,8 @@ and are both a way to describe the heat transfer by sensible vs latent heat. The
 <p>The clear-sky index is especially suitable to contextualize the surface energy balance:
 The turbulent fluxes are mainly driven by the available energy through incoming solar and longwave radiation, which is in the atmosphere attenuated by clouds in a complex way, depending on cloud height and type. A way to estimate the cloud cover without directly measuring it is the clear sky-index.
 Based on longwave incoming radiation, temperature and humidity, an estimate of the clear-sky-index (CSI) can be derived as ratio of actual emissivity <span class="math inline">\(\epsilon_{actual}\)</span> and theoretical (clear-sky) emissivity <span class="math inline">\(\epsilon_{theoretical}\)</span>. If <span class="math inline">\(\epsilon_{actual} \le \epsilon_{theoretical}\)</span>, i.e. <span class="math inline">\(CSI \le 1\)</span>, then the sky is assumed to be clear-sky (see e.g. the review paper <span class="citation">Lehner, Rotach, and Obleitner (<a href="#ref-Lehner2021" role="doc-biblioref">2021</a>)</span>).</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="surface-energy-balance.html#cb51-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
-<span id="cb51-2"><a href="surface-energy-balance.html#cb51-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="surface-energy-balance.html#cb57-1" aria-hidden="true"></a>dat<span class="op">$</span>csi=<span class="kw">calc_csi</span>(dat<span class="op">$</span>T_mean<span class="fl">+273.15</span>,dat<span class="op">$</span>lwin,dat<span class="op">$</span>rh)</span>
+<span id="cb57-2"><a href="surface-energy-balance.html#cb57-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>csi,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;CSI&quot;</span>)</span></code></pre></div>
 <p><img src="figures/fig_0803.png" width="400" /></p>
 
 </div>
@@ -911,42 +914,42 @@ Based on longwave incoming radiation, temperature and humidity, an estimate of t
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"toc depth": 2,
-"github-repo": "noctiluc3nt/ec_analyze"
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "toc depth": 2,
+  "github-repo": "noctiluc3nt/ec_analyze"
 });
 });
 </script>

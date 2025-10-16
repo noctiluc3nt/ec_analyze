@@ -157,6 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#standard-turbulence-diagnostics-and-fluxes"><i class="fa fa-check"></i><b>3.1</b> Standard turbulence diagnostics and fluxes</a></li>
 <li class="chapter" data-level="3.2" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#stability-dependence"><i class="fa fa-check"></i><b>3.2</b> Stability dependence</a></li>
 <li class="chapter" data-level="3.3" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model"><i class="fa fa-check"></i><b>3.3</b> Turbulence regimes and “Hockey-stick” model</a></li>
+<li class="chapter" data-level="3.4" data-path="turbulence-diagnostics.html"><a href="turbulence-diagnostics.html#decoupling-metric"><i class="fa fa-check"></i><b>3.4</b> Decoupling metric</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="quadrant-analysis.html"><a href="quadrant-analysis.html"><i class="fa fa-check"></i><b>4</b> Quadrant analysis</a>
 <ul>
@@ -166,12 +167,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="spectra.html"><a href="spectra.html"><i class="fa fa-check"></i><b>5</b> Spectra</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="spectra.html"><a href="spectra.html#spectral-analysis-of-timeseries"><i class="fa fa-check"></i><b>5.1</b> Spectral analysis of timeseries</a></li>
-<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#fft-spectrum-and-comparison-to-theoretical-spectra"><i class="fa fa-check"></i><b>5.2</b> FFT spectrum and comparison to theoretical spectra</a></li>
+<li class="chapter" data-level="5.2" data-path="spectra.html"><a href="spectra.html#frequency-spectrum-with-fft"><i class="fa fa-check"></i><b>5.2</b> Frequency spectrum with FFT</a></li>
 <li class="chapter" data-level="5.3" data-path="spectra.html"><a href="spectra.html#multiresolution-decomposition-mrd"><i class="fa fa-check"></i><b>5.3</b> Multiresolution decomposition (MRD)</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="spectra.html"><a href="spectra.html#calculating-multiresolution-decomposition-with-calc_mrd"><i class="fa fa-check"></i><b>5.3.1</b> Calculating multiresolution decomposition with <code>calc_mrd</code></a></li>
 <li class="chapter" data-level="5.3.2" data-path="spectra.html"><a href="spectra.html#plotting-multiresolution-decomposition-with-plot_mrd"><i class="fa fa-check"></i><b>5.3.2</b> Plotting multiresolution decomposition with <code>plot_mrd</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="spectra.html"><a href="spectra.html#ogives"><i class="fa fa-check"></i><b>5.4</b> Ogives</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="reynolds-stress-tensor.html"><a href="reynolds-stress-tensor.html"><i class="fa fa-check"></i><b>6</b> Reynolds stress tensor</a>
 <ul>
@@ -190,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="flux-footprint.html"><a href="flux-footprint.html#calculate-2d-flux-footprint-estimate-with-calc_flux_footprint"><i class="fa fa-check"></i><b>7.2.1</b> Calculate 2D flux footprint estimate with <code>calc_flux_footprint</code></a></li>
 <li class="chapter" data-level="7.2.2" data-path="flux-footprint.html"><a href="flux-footprint.html#plotting-of-flux-footprint-with-plot_flux_footprint"><i class="fa fa-check"></i><b>7.2.2</b> Plotting of flux footprint with <code>plot_flux_footprint</code></a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="flux-footprint.html"><a href="flux-footprint.html#flux-footprint-climatology"><i class="fa fa-check"></i><b>7.3</b> Flux footprint climatology</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html"><i class="fa fa-check"></i><b>8</b> Surface energy balance</a>
 <ul>
@@ -230,6 +233,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Banerjee, S., R. Krahl, F. Durst, and C. Zenger. 2007. “Presentation of anisotropy properties of turbulence, invariants versus eigenvalue approaches.” <em>J Turb</em> 8 (N32). <a href="https://doi.org/10.1080/14685240701506896">https://doi.org/10.1080/14685240701506896</a>.</p>
 </div>
 <div>
+<p>Derbyshire, S. H. 1999. “Boundary-layer decoupling over cold surfaces as a physical boundary-instability.” <em>Boundary-Layer Meteorology</em> 90: 297–325.</p>
+</div>
+<div>
 <p>Foken, T. 2017. “Micrometeorology.” <em>Springer Berlin, Heidelberg</em>. <a href="https://doi.org/10.1007/978-3-642-25440-6">https://doi.org/10.1007/978-3-642-25440-6</a>.</p>
 </div>
 <div>
@@ -240,6 +246,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div>
 <p>Hsieh, C. I., G. Katul, and T. Chi. 2000. “An approximate analytical model for footprint estimation of scalar fluxes in thermally stratified atmospheric flows.” <em>Advances in Water Resources</em> 23 (7): 765–72. <a href="https://doi.org/10.1016/S0309-1708(99)00042-1">https://doi.org/10.1016/S0309-1708(99)00042-1</a>.</p>
+</div>
+<div>
+<p>Ibrom, A., E. Dellwik, S. E. Larsen, and K. Pilegaard. 2007. “On the use of the Webb–Pearman–Leuning theory for closed-path eddy correlation measurements.” <em>Tellus B: Chemical and Physical Meteorology</em> 59 (5): 937–46. <a href="https://doi.org/10.1111/j.1600-0889.2007.00311.x">https://doi.org/10.1111/j.1600-0889.2007.00311.x</a>.</p>
 </div>
 <div>
 <p>Jimenez, J. 2018. “Coherent structures in wall-bounded turbulence.” <em>J Fluid Mech</em> 842 (P1). <a href="https://doi.org/10.1017/jfm.2018.144">https://doi.org/10.1017/jfm.2018.144</a>.</p>
@@ -285,6 +294,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div>
 <p>Pastorello, G., A. Trotta, E. Canfora, and others. 2020. “The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data.” <em>Sci Data</em> 7 (225). <a href="https://doi.org/10.1038/s41597-020-0534-3">https://doi.org/10.1038/s41597-020-0534-3</a>.</p>
+</div>
+<div>
+<p>Peltola, O., K. Lapo, and C. K. Thomas. 2021. “A Physics-Based Universal Indicator for Vertical Decoupling and Mixing Across Canopies Architectures and Dynamic Stabilities.” <em>Geophysical Research Letters</em> 48 (e2020GL091615). <a href="https://doi.org/10.1029/2020GL091615">https://doi.org/10.1029/2020GL091615</a>.</p>
 </div>
 <div>
 <p>Pirk, N., K. Aalstad, Y. A. Yilmaz, A. Vatne, A. L. Popp, P. Horvath, A. Bryn, et al. 2023. “Snow-Vegetation-Atmosphere Interactions in Alpine Tundra.” <em>Biogeosciences</em> 20: 2031–47. <a href="https://doi.org/10.5194/bg-20-2031-2023">https://doi.org/10.5194/bg-20-2031-2023</a>.</p>
@@ -359,42 +371,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-},
-"toc depth": 2,
-"github-repo": "noctiluc3nt/ec_analyze"
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "toc depth": 2,
+  "github-repo": "noctiluc3nt/ec_analyze"
 });
 });
 </script>
