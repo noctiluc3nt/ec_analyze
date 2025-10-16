@@ -60,7 +60,7 @@ spectrum_u = calc_spectrum1D(tmp$u_m.s)
 ## Multiresolution decomposition (MRD)
 Multiresolution decomposition (MRD) is a method to characterize the timescale dependence of variances (spectrum) or covariances (cospectrum) and to find scale gaps between turbulent and submeso-scale motions. It uses Haar wavelets, which have the advantage over Fourier analysis that no periodicity is assumed. For this, the time series is step-by-step cut in half, as visualized in the figure.
 
-<img src="../figures/schema/mrd_schema.png" width=600 />
+<img src="./figures/spectra/mrd_schema.png" width=600 />
 
 
 ### Calculating multiresolution decomposition with `calc_mrd`
