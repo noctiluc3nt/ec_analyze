@@ -36,7 +36,7 @@ spectrum(tmp$u_m.s)
 
 
     
-![](figures/spectra/output_3_0.png){width=400}
+![](../figures/spectra/output_3_0.png){width=400}
     
 
 
@@ -53,14 +53,14 @@ spectrum_u = calc_spectrum1D(tmp$u_m.s)
 
 
     
-![](figures/spectra/output_5_1.png){width=400}
+![](../figures/spectra/output_5_1.png){width=400}
     
 
 
 ## Multiresolution decomposition (MRD)
 Multiresolution decomposition (MRD) is a method to characterize the timescale dependence of variances (spectrum) or covariances (cospectrum) and to find scale gaps between turbulent and submeso-scale motions. It uses Haar wavelets, which have the advantage over Fourier analysis that no periodicity is assumed. For this, the time series is step-by-step cut in half, as visualized in the figure.
 
-<img src="./figures/spectra/mrd_schema.png" width=600 />
+<img src="../figures/schema/mrd_schema.png" width=600 />
 
 
 ### Calculating multiresolution decomposition with `calc_mrd`
@@ -76,27 +76,39 @@ mrd_ww=calc_mrd(tmp$w_m.s,tmp$w_m.s,time_res=0.1) #vertical veloctiy
 mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
 ```
 
-
-    
-![](figures/spectra/output_7_0.png){width=400}
-    
+    [1] "suggested averaging time (i.e. first zero-crossing): 1.62 min"
 
 
 
     
-![](figures/spectra/output_7_1.png){width=400}
+![](../figures/spectra/output_7_1.png){width=400}
     
 
 
-
-    
-![](figures/spectra/output_7_2.png){width=400}
-    
+    [1] "No zero-crossing of the MRD (co)spectrum was detected."
 
 
 
     
-![](figures/spectra/output_7_3.png){width=400}
+![](../figures/spectra/output_7_3.png){width=400}
+    
+
+
+    [1] "No zero-crossing of the MRD (co)spectrum was detected."
+
+
+
+    
+![](../figures/spectra/output_7_5.png){width=400}
+    
+
+
+    [1] "No zero-crossing of the MRD (co)spectrum was detected."
+
+
+
+    
+![](../figures/spectra/output_7_7.png){width=400}
     
 
 
@@ -145,11 +157,16 @@ mrd_uw
 plot_mrd(mrd_uw, main="Cospectrum (u,w)")
 ```
 
+    [1] "suggested averaging time (i.e. first zero-crossing): 1.62 min"
+
+
 
     
-![](figures/spectra/output_12_0.png){width=400}
+![](../figures/spectra/output_12_1.png){width=400}
     
 
+
+**suggested averaging time:** @Vickers2003 developed a simple objective algorithm for suggesting an averaging time based on the MRD (co)spectrum. By starting from the smallest averaging time and going to larger averaging times, a (local) maximum in the turbulent fluxes is detected and the thereafter following first zero-crossing is regarded as suitable averaging time. In `plot_mrd` the option `suggest_avgtime` returns and plots it (orange line).
 
 
 ```R
@@ -166,9 +183,12 @@ plot_mrd(mrd_uw, main="Cospectrum (u,w)")
 plot_mrd(mrd_TT, main="Spectrum (T,T)")
 ```
 
+    [1] "No zero-crossing of the MRD (co)spectrum was detected."
+
+
 
     
-![](figures/spectra/output_15_0.png){width=400}
+![](../figures/spectra/output_16_1.png){width=400}
     
 
 
@@ -184,7 +204,7 @@ ogive_uw=calc_ogive(mrd_uw) #from previously calculated MRD for momentum flux
 
 
     
-![](figures/spectra/output_18_0.png){width=400}
+![](../figures/spectra/output_19_0.png){width=400}
     
 
 
@@ -195,6 +215,6 @@ ogive_TT=calc_ogive(mrd_TT) #from previously calculated MRD for temperature fluc
 
 
     
-![](figures/spectra/output_19_0.png){width=400}
+![](../figures/spectra/output_20_0.png){width=400}
     
 
