@@ -293,7 +293,7 @@ Here, the temperature is given directly in <span class="math inline">\(^\circ\)<
 <span id="cb5-9"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-9" aria-hidden="true"></a>    tmp<span class="op">$</span>w_m.s=<span class="kw">despiking</span>(tmp<span class="op">$</span>w_m.s,<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
 <span id="cb5-10"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-10" aria-hidden="true"></a>    <span class="co">#wind before rotation</span></span>
 <span id="cb5-11"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-11" aria-hidden="true"></a>    dat<span class="op">$</span>ws_mean[i]=<span class="kw">sqrt</span>(<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T)<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T)<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb5-12"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-12" aria-hidden="true"></a>    dat<span class="op">$</span>wd_mean[i]=<span class="kw">atan2</span>(<span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T),<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T))</span>
+<span id="cb5-12"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-12" aria-hidden="true"></a>    dat<span class="op">$</span>wd_mean[i]=(<span class="dv">180</span><span class="op">+</span><span class="dv">180</span><span class="op">/</span>pi<span class="op">*</span><span class="kw">atan2</span>(<span class="kw">mean</span>(tmp<span class="op">$</span>v_m.s,<span class="dt">na.rm=</span>T),<span class="kw">mean</span>(tmp<span class="op">$</span>u_m.s,<span class="dt">na.rm=</span>T)))<span class="op">%%</span><span class="dv">360</span></span>
 <span id="cb5-13"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-13" aria-hidden="true"></a>    <span class="co">#rotation</span></span>
 <span id="cb5-14"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-14" aria-hidden="true"></a>    rot_wind=<span class="kw">rotate_double</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>v_m.s,tmp<span class="op">$</span>w_m.s)</span>
 <span id="cb5-15"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-15" aria-hidden="true"></a>    tmp<span class="op">$</span>u_m.s=rot_wind<span class="op">$</span>u</span>
@@ -500,7 +500,7 @@ lh
 2.873170
 </td>
 <td>
--2.289284
+48.83370
 </td>
 <td>
 15.86938
@@ -568,7 +568,7 @@ NA
 2.864538
 </td>
 <td>
--2.326045
+46.72741
 </td>
 <td>
 16.55190
@@ -636,7 +636,7 @@ NA
 4.002522
 </td>
 <td>
--2.035397
+63.38033
 </td>
 <td>
 17.05704
@@ -704,7 +704,7 @@ NA
 4.997530
 </td>
 <td>
--1.977737
+66.68404
 </td>
 <td>
 17.60447
@@ -772,7 +772,7 @@ NA
 4.880696
 </td>
 <td>
--2.014489
+64.57826
 </td>
 <td>
 18.08994
@@ -840,7 +840,7 @@ NA
 5.223984
 </td>
 <td>
--2.261205
+50.44251
 </td>
 <td>
 18.24207
