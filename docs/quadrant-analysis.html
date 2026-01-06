@@ -201,7 +201,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#hydrological-measures-bowen-ratio-and-evaporative-fraction"><i class="fa fa-check"></i><b>8.3</b> Hydrological measures: Bowen ratio and evaporative fraction</a></li>
 <li class="chapter" data-level="8.4" data-path="surface-energy-balance.html"><a href="surface-energy-balance.html#meteorological-contextualization"><i class="fa fa-check"></i><b>8.4</b> Meteorological contextualization</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="chapter" data-level="9" data-path="turbulence-parameterizations.html"><a href="turbulence-parameterizations.html"><i class="fa fa-check"></i><b>9</b> Turbulence parameterizations</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="turbulence-parameterizations.html"><a href="turbulence-parameterizations.html#flux-variance-relations"><i class="fa fa-check"></i><b>9.1</b> Flux-variance relations</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="turbulence-parameterizations.html"><a href="turbulence-parameterizations.html#example-latent-heat-flux-from-flux-variance-relation"><i class="fa fa-check"></i><b>9.1.1</b> Example: Latent heat flux from flux-variance relation</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="turbulence-parameterizations.html"><a href="turbulence-parameterizations.html#flux-profile-relations-and-vertical-profiles-of-temperature-and-wind-speed"><i class="fa fa-check"></i><b>9.2</b> Flux-profile relations and vertical profiles of temperature and wind speed</a></li>
+<li class="chapter" data-level="9.3" data-path="turbulence-parameterizations.html"><a href="turbulence-parameterizations.html#using-nwp-model-output"><i class="fa fa-check"></i><b>9.3</b> Using NWP model output</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2025)</a></li>
 
@@ -290,7 +299,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual standard error: 0.9011 on 17998 degrees of freedom
 Multiple R-squared:  0.1881,    Adjusted R-squared:  0.1881 
 F-statistic:  4170 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><img src="figures/fig_0901.png" width="500" /></p>
+<p><img src="figures/fig_0401.png" width="500" /></p>
 <p><strong>Example: Quadrant Analysis (T,w) during nighttime</strong></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="quadrant-analysis.html#cb20-1" aria-hidden="true"></a>i=<span class="dv">38</span> <span class="co">#select a file -- a nighttime example</span></span>
 <span id="cb20-2"><a href="quadrant-analysis.html#cb20-2" aria-hidden="true"></a><span class="kw">print</span>(files[i])</span>
@@ -315,7 +324,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual standard error: 0.9553 on 17998 degrees of freedom
 Multiple R-squared:  0.08745,   Adjusted R-squared:  0.0874 
 F-statistic:  1725 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><img src="figures/fig_0902.png" width="500" /></p>
+<p><img src="figures/fig_0402.png" width="500" /></p>
 <p><strong>Example: Quadrant Analysis (u,w) during nighttime</strong></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="quadrant-analysis.html#cb22-1" aria-hidden="true"></a><span class="kw">plot_quadrant_analysis</span>(tmp<span class="op">$</span>u_m.s,tmp<span class="op">$</span>w_m.s,<span class="dt">xlab=</span><span class="st">&quot;u (normalized)&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;w (normalized)&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Quadrant Analysis (u,w)&quot;</span>) <span class="co">#based on the raw data (10 Hz) directly (i.e., unrotated)</span></span></code></pre></div>
 <pre><code>Call:
@@ -335,7 +344,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual standard error: 0.9829 on 17998 degrees of freedom
 Multiple R-squared:  0.03395,   Adjusted R-squared:  0.0339 
 F-statistic: 632.5 on 1 and 17998 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><img src="figures/fig_0903.png" width="500" /></p>
+<p><img src="figures/fig_0403.png" width="500" /></p>
 <p>Quadrant analysis can be applied to any combination of two measured quantities and also allows to check the measurement quality or significance of the relation between them. It can also be used to check the effect of the coordinate rotation (e.g., <code>rotate_double</code>) visually. Quadrant analysis has been used to study coherent structures, and how they affect fluxes and cause flux dissimilarity, e.g. <span class="citation">Thomas and Foken (<a href="#ref-Thomas2007" role="doc-biblioref">2007</a>)</span>, <span class="citation">Li and Bou-Zeid (<a href="#ref-Li2011" role="doc-biblioref">2011</a>)</span>, <span class="citation">Schmutz and Vogt (<a href="#ref-Schmutz2019" role="doc-biblioref">2019</a>)</span> and <span class="citation">Mack et al. (<a href="#ref-Mack2024" role="doc-biblioref">2024</a>)</span>. The concept can be extended to a combination of three variables in the framework of octant analysis, e.g. <span class="citation">Guo et al. (<a href="#ref-Guo2022" role="doc-biblioref">2022</a>)</span>.</p>
 
 </div>

@@ -38,4 +38,9 @@ surface-energy-balance-closure
 calculating-surface-energy-balance
 hydrological-measures-bowen-ratio-and-evaporative-fraction
 meteorological-contextualization
+turbulence-parameterizations
+flux-variance-relations
+example-latent-heat-flux-from-flux-variance-relation
+flux-profile-relations-and-vertical-profiles-of-temperature-and-wind-speed
+using-nwp-model-output
 references

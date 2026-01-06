@@ -87,7 +87,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s,xlab="T (normalized)",ylab="w (norma
 
 
     
-![](figures/fig_0901.png){width=500}
+![](figures/fig_0401.png){width=500}
     
 
 
@@ -125,7 +125,7 @@ plot_quadrant_analysis(tmp$T_degC,tmp$w_m.s,xlab="T (normalized)",ylab="w (norma
 
 
     
-![](figures/fig_0902.png){width=500}
+![](figures/fig_0402.png){width=500}
     
 
 
@@ -159,7 +159,7 @@ plot_quadrant_analysis(tmp$u_m.s,tmp$w_m.s,xlab="u (normalized)",ylab="w (normal
 
 
     
-![](figures/fig_0903.png){width=500}
+![](figures/fig_0403.png){width=500}
     
 
 
