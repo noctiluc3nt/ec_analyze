@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
-<li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2025)</a></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown <br>(Laura Mack, 2026)</a></li>
 
 </ul>
 
@@ -301,7 +301,18 @@ Integrating the flux-profile relations w.r.t. height allows to retrieve <span cl
 <span class="math display">\[ U(z) = \frac{u_*}{\kappa}( \ln(\frac{z}{z_0})-\Psi_m(\zeta)) \]</span>
 temperature profile:
 <span class="math display">\[ T(z) = T_0 + \frac{u_*}{\kappa}(\ln(\frac{z}{z_0})-\Psi_h(\zeta)) \]</span></p>
-<p>Thereby, <span class="math inline">\(\Psi_m\)</span> and <span class="math inline">\(\Psi_h\)</span> are the integral forms of <span class="math inline">\(\Phi_m\)</span> and <span class="math inline">\(\Phi_h\)</span>.</p>
+<p>Thereby, <span class="math inline">\(\Psi_m\)</span> and <span class="math inline">\(\Psi_h\)</span> are the integral forms of <span class="math inline">\(\Phi_m\)</span> and <span class="math inline">\(\Phi_h\)</span>. With the function <code>calc_windprofile</code>, the vertical wind speed profile can be calculated using the above equation and the Businger-Dyer relation as scaling function. The example shows, that the wind speed increases faster with height under stable conditions (due to less eddy viscosity) given the same friction velocity.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="turbulence-parameterizations.html#cb69-1" aria-hidden="true"></a><span class="co">#calculate vertical wind speed profile</span></span>
+<span id="cb69-2"><a href="turbulence-parameterizations.html#cb69-2" aria-hidden="true"></a>u_neutral=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>)</span>
+<span id="cb69-3"><a href="turbulence-parameterizations.html#cb69-3" aria-hidden="true"></a>u_unstable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="op">-</span><span class="fl">0.2</span>)</span>
+<span id="cb69-4"><a href="turbulence-parameterizations.html#cb69-4" aria-hidden="true"></a>u_stable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="fl">0.2</span>)</span>
+<span id="cb69-5"><a href="turbulence-parameterizations.html#cb69-5" aria-hidden="true"></a><span class="co">#plot</span></span>
+<span id="cb69-6"><a href="turbulence-parameterizations.html#cb69-6" aria-hidden="true"></a><span class="kw">plot</span>(u_neutral<span class="op">$</span>windspeed,u_neutral<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">xlab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;height [m]&quot;</span>,</span>
+<span id="cb69-7"><a href="turbulence-parameterizations.html#cb69-7" aria-hidden="true"></a>    <span class="dt">main=</span><span class="st">&quot;wind speed profile (MOST)&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span>
+<span id="cb69-8"><a href="turbulence-parameterizations.html#cb69-8" aria-hidden="true"></a><span class="kw">points</span>(u_unstable<span class="op">$</span>windspeed,u_unstable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb69-9"><a href="turbulence-parameterizations.html#cb69-9" aria-hidden="true"></a><span class="kw">points</span>(u_stable<span class="op">$</span>windspeed,u_stable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue3&quot;</span>)</span>
+<span id="cb69-10"><a href="turbulence-parameterizations.html#cb69-10" aria-hidden="true"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;unstable&quot;</span>,<span class="st">&quot;neutral&quot;</span>,<span class="st">&quot;stable&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="dv">1</span>,<span class="st">&quot;blue3&quot;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="figures/fig_0902.png" width="400" /></p>
 </div>
 <div id="using-nwp-model-output" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Using NWP model output<a href="turbulence-parameterizations.html#using-nwp-model-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>

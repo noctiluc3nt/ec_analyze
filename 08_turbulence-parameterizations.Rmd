@@ -95,7 +95,27 @@ $$ U(z) = \frac{u_*}{\kappa}( \ln(\frac{z}{z_0})-\Psi_m(\zeta)) $$
 temperature profile:
 $$ T(z) = T_0 + \frac{u_*}{\kappa}(\ln(\frac{z}{z_0})-\Psi_h(\zeta)) $$
 
-Thereby, $\Psi_m$ and $\Psi_h$ are the integral forms of $\Phi_m$ and $\Phi_h$.
+Thereby, $\Psi_m$ and $\Psi_h$ are the integral forms of $\Phi_m$ and $\Phi_h$. With the function `calc_windprofile`, the vertical wind speed profile can be calculated using the above equation and the Businger-Dyer relation as scaling function. The example shows, that the wind speed increases faster with height under stable conditions (due to less eddy viscosity) given the same friction velocity.
+
+
+```R
+#calculate vertical wind speed profile
+u_neutral=calc_windprofile(1:100,ustar=0.6)
+u_unstable=calc_windprofile(1:100,ustar=0.6,zeta=-0.2)
+u_stable=calc_windprofile(1:100,ustar=0.6,zeta=0.2)
+#plot
+plot(u_neutral$windspeed,u_neutral$height,type="l",lwd=1.5,xlab="wind speed [m/s]",ylab="height [m]",
+    main="wind speed profile (MOST)",xlim=c(1,10))
+points(u_unstable$windspeed,u_unstable$height,type="l",lwd=1.5,col="orange")
+points(u_stable$windspeed,u_stable$height,type="l",lwd=1.5,col="blue3")
+legend("topleft",legend=c("unstable","neutral","stable"),col=c("orange",1,"blue3"),lty=1,lwd=1.5)
+```
+
+
+    
+![](figures/fig_0902.png){width=400}
+    
+
 
 ## Using NWP model output
 The Reddy package also provides functions to work with output from numerical weather prediction models, e.g. converting different types of vertical levels (e.g. `sigma2height, height2pres`), find closest grid points to station locations (`find_closest_grid_point`), calculate derivative (`df_dx,df_dy`) and to deaccumulate model fluxes (`deaccumulate1h`). By applying Taylor hypothesis, time differences can be converted to spatial differences using the function `dt2dx_taylor`. <br>
