@@ -36,7 +36,7 @@ spectrum(tmp$u_m.s)
 
 
     
-![](../figures/spectra/output_3_0.png){width=400}
+![](figures/spectra/output_3_0.png){width=400}
     
 
 
@@ -53,7 +53,7 @@ spectrum_u = calc_spectrum1D(tmp$u_m.s)
 
 
     
-![](../figures/spectra/output_5_1.png){width=400}
+![](figures/spectra/output_5_1.png){width=400}
     
 
 
@@ -81,7 +81,7 @@ mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
 
 
     
-![](../figures/spectra/output_7_1.png){width=400}
+![](figures/spectra/output_7_1.png){width=400}
     
 
 
@@ -90,7 +90,7 @@ mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
 
 
     
-![](../figures/spectra/output_7_3.png){width=400}
+![](figures/spectra/output_7_3.png){width=400}
     
 
 
@@ -99,7 +99,7 @@ mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
 
 
     
-![](../figures/spectra/output_7_5.png){width=400}
+![](figures/spectra/output_7_5.png){width=400}
     
 
 
@@ -108,7 +108,7 @@ mrd_TT=calc_mrd(tmp$T_degC,tmp$T_degC,time_res=0.1) #temperature
 
 
     
-![](../figures/spectra/output_7_7.png){width=400}
+![](figures/spectra/output_7_7.png){width=400}
     
 
 
@@ -162,7 +162,7 @@ plot_mrd(mrd_uw, main="Cospectrum (u,w)")
 
 
     
-![](../figures/spectra/output_12_1.png){width=400}
+![](figures/spectra/output_12_1.png){width=400}
     
 
 
@@ -188,7 +188,7 @@ plot_mrd(mrd_TT, main="Spectrum (T,T)")
 
 
     
-![](../figures/spectra/output_16_1.png){width=400}
+![](figures/spectra/output_16_1.png){width=400}
     
 
 
@@ -204,7 +204,7 @@ ogive_uw=calc_ogive(mrd_uw) #from previously calculated MRD for momentum flux
 
 
     
-![](../figures/spectra/output_19_0.png){width=400}
+![](figures/spectra/output_19_0.png){width=400}
     
 
 
@@ -215,6 +215,6 @@ ogive_TT=calc_ogive(mrd_TT) #from previously calculated MRD for temperature fluc
 
 
     
-![](../figures/spectra/output_20_0.png){width=400}
+![](figures/spectra/output_20_0.png){width=400}
     
 
