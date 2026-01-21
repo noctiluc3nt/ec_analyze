@@ -1,5 +1,5 @@
 --- 
-title: "Reddy: A toolbox for analyzing eddy-covariance measurements"
+title: "Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments"
 author: ""
 date: ""
 site: bookdown::bookdown_site

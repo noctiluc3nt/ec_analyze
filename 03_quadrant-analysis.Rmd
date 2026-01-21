@@ -14,7 +14,7 @@ To filter out particularly strong coherent structures, a hole size can be applie
 
 ```R
 #loading Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 
 #ec data files

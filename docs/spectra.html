@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Spectra | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
-  <meta name="description" content="5 Spectra | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <title>5 Spectra | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</title>
+  <meta name="description" content="5 Spectra | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Spectra | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta property="og:title" content="5 Spectra | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Spectra | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta name="twitter:title" content="5 Spectra | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   
   
   
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</a>
           </h1>
         </div>
 
@@ -236,14 +236,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="spectral-analysis-of-timeseries" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Spectral analysis of timeseries<a href="spectra.html#spectral-analysis-of-timeseries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Turbulence is associated with different scales, which interact in a complex manner and to investigate them spectra can be examined. Thereby, the measurements are transformed from time to frequency domain. The most common approach is to represent the timeseries with a series of sine and cosine function (with different frequencies), which is referred to as Fourier analysis. A numerical optimized way to calculate the Fourier transformation is to use Fast Fourier Transform (FFT, in rbase: <code>fft</code>). However, periodicity is not always a suitable assumption, such that other basis functions and approaches might be more applicable. With a wavelet transform information in time and frequency domain is retained and different wavelet basis functions (e.g., Morlet wavelets or Haar-wavelets) allow to represent localized and non-periodic behaviour (<code>WaveletComp::wt.image</code>). A very practical discrete wavelet transform is multiresolution decomposition (MRD, <span class="citation">Vickers and Mahrt (<a href="#ref-Vickers2003" role="doc-biblioref">2003</a>)</span>, <code>Reddy::calc_mrd</code>), which is routinley applied in the analysis of eddy-covariance data (see details below). <br>
-A related method used for flux calculations from eddy-covariance data is based on Ogives, that is a cumulative frequency distribution, i.e. the sum of the cospectral energy. <span class="citation">Sievers et al. (<a href="#ref-Sievers2015" role="doc-biblioref">2015</a>)</span> developed an Ogive optimization, which allows to disentangle low frequency contributions on flux estimates. This approach is particular relevant under low-flux conditions, e.g. with changing signs in one averaging interval. The low frequency contributions are generally associated with non-local features, e.g. topography, while high-frequency contributions are local.</p>
+A related method used for flux calculations from eddy-covariance data is based on Ogives (<code>Reddy::calc_ogive</code>), that is a cumulative frequency distribution, i.e. the sum of the cospectral energy. <span class="citation">Sievers et al. (<a href="#ref-Sievers2015" role="doc-biblioref">2015</a>)</span> developed an Ogive optimization, which allows to disentangle low frequency contributions on flux estimates. This approach is particular relevant under low-flux conditions, e.g. with changing signs in one averaging interval. The low frequency contributions are generally associated with non-local features, e.g. topography, while high-frequency contributions are local.</p>
 <p><strong>Quick overview:</strong> <br>
 - Fast Fourier Transform FFT (rbase: <code>fft</code>, <code>spectrum</code>)
 - Wavelets (<code>WaveletComp::wt.image</code>)
 - Multiresolution decomposition MRD (<code>Reddy::calc_mrd</code>)
 - Ogives (<code>Reddy::calc_ogive</code>)</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="spectra.html#cb24-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb24-2"><a href="spectra.html#cb24-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb24-2"><a href="spectra.html#cb24-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;,repos=NULL,source=TRUE,quiet=TRUE)</span></span>
 <span id="cb24-3"><a href="spectra.html#cb24-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
 <span id="cb24-4"><a href="spectra.html#cb24-4" aria-hidden="true"></a></span>
 <span id="cb24-5"><a href="spectra.html#cb24-5" aria-hidden="true"></a><span class="co">#ec data files</span></span>

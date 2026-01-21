@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
-  <meta name="description" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <title>3 Turbulence diagnostics | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</title>
+  <meta name="description" content="3 Turbulence diagnostics | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta property="og:title" content="3 Turbulence diagnostics | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Turbulence diagnostics | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta name="twitter:title" content="3 Turbulence diagnostics | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   
   
   
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</a>
           </h1>
         </div>
 
@@ -259,7 +259,7 @@ The fluxes used in the calculation are either the surface fluxes for global scal
 </ul>
 <p>Now, we use some of the Reddy functions to calculate and plot time series of these basic turbulent diagnostics.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="turbulence-diagnostics.html#cb9-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb9-2"><a href="turbulence-diagnostics.html#cb9-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb9-2"><a href="turbulence-diagnostics.html#cb9-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;,repos=NULL,source=TRUE,quiet=TRUE)</span></span>
 <span id="cb9-3"><a href="turbulence-diagnostics.html#cb9-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
 <span id="cb9-4"><a href="turbulence-diagnostics.html#cb9-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="turbulence-diagnostics.html#cb10-1" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
@@ -272,7 +272,9 @@ The fluxes used in the calculation are either the surface fluxes for global scal
 <span id="cb11-6"><a href="turbulence-diagnostics.html#cb11-6" aria-hidden="true"></a>dat<span class="op">$</span>ustar=<span class="kw">calc_ustar</span>(dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>cov_vw)</span>
 <span id="cb11-7"><a href="turbulence-diagnostics.html#cb11-7" aria-hidden="true"></a>dat<span class="op">$</span>L=<span class="kw">calc_L</span>(dat<span class="op">$</span>ustar,dat<span class="op">$</span>T_mean,dat<span class="op">$</span>cov_wT)</span>
 <span id="cb11-8"><a href="turbulence-diagnostics.html#cb11-8" aria-hidden="true"></a>dat<span class="op">$</span>zeta=<span class="kw">calc_zeta</span>(<span class="fl">4.4</span>,dat<span class="op">$</span>L)</span>
-<span id="cb11-9"><a href="turbulence-diagnostics.html#cb11-9" aria-hidden="true"></a>dat<span class="op">$</span>alpha_uw=<span class="kw">calc_dshear</span>(dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>cov_vw)</span></code></pre></div>
+<span id="cb11-9"><a href="turbulence-diagnostics.html#cb11-9" aria-hidden="true"></a>dat<span class="op">$</span>alpha_uw=<span class="kw">calc_dshear</span>(dat<span class="op">$</span>cov_uw,dat<span class="op">$</span>cov_vw)</span>
+<span id="cb11-10"><a href="turbulence-diagnostics.html#cb11-10" aria-hidden="true"></a><span class="co">#store them in file</span></span>
+<span id="cb11-11"><a href="turbulence-diagnostics.html#cb11-11" aria-hidden="true"></a><span class="kw">saveRDS</span>(dat,<span class="dt">file=</span><span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="turbulence-diagnostics.html#cb12-1" aria-hidden="true"></a><span class="co">#simple timeseries plots</span></span>
 <span id="cb12-2"><a href="turbulence-diagnostics.html#cb12-2" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb12-3"><a href="turbulence-diagnostics.html#cb12-3" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>T_mean,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;temperature [°C]&quot;</span>,<span class="dt">col=</span><span class="dv">4</span>)</span>
@@ -291,9 +293,9 @@ The fluxes used in the calculation are either the surface fluxes for global scal
 <span id="cb12-16"><a href="turbulence-diagnostics.html#cb12-16" aria-hidden="true"></a><span class="kw">grid</span>()</span>
 <span id="cb12-17"><a href="turbulence-diagnostics.html#cb12-17" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>cov_wT,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;cov(T,w) [$K m/s$]&quot;</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb12-18"><a href="turbulence-diagnostics.html#cb12-18" aria-hidden="true"></a><span class="kw">grid</span>()</span>
-<span id="cb12-19"><a href="turbulence-diagnostics.html#cb12-19" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>cov_h2ow,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;cov(q,w) [$mmol m/s$]&quot;</span>),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb12-19"><a href="turbulence-diagnostics.html#cb12-19" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>cov_h2ow,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;cov(q,w) [mmol m/s]&quot;</span>),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb12-20"><a href="turbulence-diagnostics.html#cb12-20" aria-hidden="true"></a><span class="kw">grid</span>()</span>
-<span id="cb12-21"><a href="turbulence-diagnostics.html#cb12-21" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>cov_co2w,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;cov(c,w) [$ppm m/s$]&quot;</span>),<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb12-21"><a href="turbulence-diagnostics.html#cb12-21" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>cov_co2w,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;cov(c,w) [ppm m/s]&quot;</span>),<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
 <span id="cb12-22"><a href="turbulence-diagnostics.html#cb12-22" aria-hidden="true"></a><span class="kw">grid</span>()</span></code></pre></div>
 <p><img src="figures/fig_0301.png" width="550" /></p>
 <p>As we can see, the stratification is unstable during daytime, where also the latent heat flux is positive, indicating evapotranspiration. The momentum flux is always negative, which indicates downward momentum transport (kinetic energy dissipation) in agreement with a typical logarithmic wind profile. Thereby the magnitude of the momentum flux is higher during daytime in accordance with the higher windspeeds and higher TKE there (shear-generated turbulence). The CO<span class="math inline">\(_2\)</span> flux is negative during daytime (CO<span class="math inline">\(_2\)</span> uptake due to photosynthesis) and positive at nighttime (CO<span class="math inline">\(_2\)</span> release).</p>
@@ -305,7 +307,7 @@ The fluxes used in the calculation are either the surface fluxes for global scal
 <span id="cb13-2"><a href="turbulence-diagnostics.html#cb13-2" aria-hidden="true"></a>sh_binned=<span class="kw">binning</span>(dat<span class="op">$</span>sh,dat<span class="op">$</span>zeta,zeta_bins)</span>
 <span id="cb13-3"><a href="turbulence-diagnostics.html#cb13-3" aria-hidden="true"></a>sh_binned <span class="co">#look at output</span></span>
 <span id="cb13-4"><a href="turbulence-diagnostics.html#cb13-4" aria-hidden="true"></a>xbins=<span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span><span class="op">^</span>(<span class="dv">2</span><span class="op">:-</span><span class="dv">1</span>),<span class="dv">0</span>,<span class="dv">5</span><span class="op">^</span>(<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</span>
-<span id="cb13-5"><a href="turbulence-diagnostics.html#cb13-5" aria-hidden="true"></a><span class="kw">plot</span>(xbins,sh_binned[,<span class="dv">2</span>],<span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">150</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">xlab=</span><span class="st">&quot;stability parameter [-]&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;SH [W/m$^2$]&quot;</span>))</span>
+<span id="cb13-5"><a href="turbulence-diagnostics.html#cb13-5" aria-hidden="true"></a><span class="kw">plot</span>(xbins,sh_binned[,<span class="dv">2</span>],<span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">120</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">xlab=</span><span class="st">&quot;stability parameter [-]&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;SH [W/m$^2$]&quot;</span>))</span>
 <span id="cb13-6"><a href="turbulence-diagnostics.html#cb13-6" aria-hidden="true"></a><span class="kw">points</span>(xbins,sh_binned[,<span class="dv">3</span>],<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
 <span id="cb13-7"><a href="turbulence-diagnostics.html#cb13-7" aria-hidden="true"></a><span class="kw">points</span>(xbins,sh_binned[,<span class="dv">4</span>],<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
 <span id="cb13-8"><a href="turbulence-diagnostics.html#cb13-8" aria-hidden="true"></a><span class="co">#polygon(c(xbins,rev(xbins)),c(sh_binned[,3],rev(sh_binned[,4])),lty=0,col=rgb(0.8,0,0,0.2) )</span></span>
@@ -319,58 +321,58 @@ A matrix: 9 × 4 of type dbl
 <tbody>
 <tr>
 <td>
-122.045246
+98.478286
 </td>
 <td>
-116.804837
+106.304109
 </td>
 <td>
-109.052920
+78.304007
 </td>
 <td>
-129.797163
-</td>
-</tr>
-<tr>
-<td>
-120.620398
-</td>
-<td>
-125.471467
-</td>
-<td>
-75.448402
-</td>
-<td>
-167.986972
+112.924636
 </td>
 </tr>
 <tr>
 <td>
-17.306097
+70.983867
 </td>
 <td>
-12.061651
+71.092753
 </td>
 <td>
-5.647776
+42.781914
 </td>
 <td>
-24.415438
+101.963983
 </td>
 </tr>
 <tr>
 <td>
-1.823135
+7.549193
 </td>
 <td>
-1.864732
+5.478099
 </td>
 <td>
-1.093005
+1.904821
 </td>
 <td>
-2.574063
+10.784041
+</td>
+</tr>
+<tr>
+<td>
+1.303564
+</td>
+<td>
+1.303564
+</td>
+<td>
+1.303564
+</td>
+<td>
+1.303564
 </td>
 </tr>
 <tr>
@@ -389,58 +391,58 @@ NA
 </tr>
 <tr>
 <td>
--3.564331
+-1.423699
 </td>
 <td>
--3.564331
+-1.423699
 </td>
 <td>
--3.564331
+-1.423699
 </td>
 <td>
--3.564331
-</td>
-</tr>
-<tr>
-<td>
--11.192381
-</td>
-<td>
--12.213284
-</td>
-<td>
--13.937180
-</td>
-<td>
--8.561890
+-1.423699
 </td>
 </tr>
 <tr>
 <td>
--18.102981
+-4.880663
 </td>
 <td>
--19.201199
+-5.534620
 </td>
 <td>
--22.358905
+-6.844104
 </td>
 <td>
--14.674265
+-3.571180
 </td>
 </tr>
 <tr>
 <td>
--8.655841
+-8.987205
 </td>
 <td>
--10.389901
+-9.804536
 </td>
 <td>
--11.853905
+-10.276137
 </td>
 <td>
--6.324807
+-5.852241
+</td>
+</tr>
+<tr>
+<td>
+-6.890053
+</td>
+<td>
+-5.906051
+</td>
+<td>
+-9.847449
+</td>
+<td>
+-4.119589
 </td>
 </tr>
 </tbody>
@@ -451,7 +453,7 @@ NA
 <div id="turbulence-regimes-and-hockey-stick-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Turbulence regimes and “Hockey-stick” model<a href="turbulence-diagnostics.html#turbulence-regimes-and-hockey-stick-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The above shown example for stability dependence can be extended to arbitrary variables and is often used to characterize different turbulence regimes.
-To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, <span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span> investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or <span class="math inline">\(\sigma_w\)</span> and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) – this simple model is now commonly referred to as “Hockey-stick model” (<span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span>, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.</p>
+To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, <span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span> investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or <span class="math inline">\(\sigma_w\)</span> and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) – this simple model is now commonly referred to as “Hockey-stick model” (<span class="citation">Sun et al. (<a href="#ref-Sun2012" role="doc-biblioref">2012</a>)</span>, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like ours) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="turbulence-diagnostics.html#cb14-1" aria-hidden="true"></a><span class="co">#some basic plots</span></span>
 <span id="cb14-2"><a href="turbulence-diagnostics.html#cb14-2" aria-hidden="true"></a><span class="kw">plot</span>(dat<span class="op">$</span>ws_mean,dat<span class="op">$</span>tke,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">7</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>),<span class="dt">xlab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>,<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;TKE [$m^2/s^2$]&quot;</span>),<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>))</span>
 <span id="cb14-3"><a href="turbulence-diagnostics.html#cb14-3" aria-hidden="true"></a>cond=(dat<span class="op">$</span>ws_mean<span class="op">&gt;</span><span class="dv">4</span>)</span>
@@ -463,12 +465,12 @@ To diagnose different turbulence regimes, scatter plots of different turbulence 
 </div>
 <div id="decoupling-metric" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Decoupling metric<a href="turbulence-diagnostics.html#decoupling-metric" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>During strongly stable stratification land and atmosphere can “decouple”, meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (<span class="citation">Derbyshire (<a href="#ref-Derbyshire1999" role="doc-biblioref">1999</a>)</span>). This processes represents particularly in numerical modelling a big problem, since then are atmospheric and land model also “decoupled” and the atmosphere does not “see” the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, <span class="citation">Peltola, Lapo, and Thomas (<a href="#ref-Peltola2021" role="doc-biblioref">2021</a>)</span> introduced the decoupling metric <span class="math inline">\(\Omega\)</span>:</p>
+<p>During strongly stable stratification land and atmosphere can “decouple”, meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (<span class="citation">Derbyshire (<a href="#ref-Derbyshire1999" role="doc-biblioref">1999</a>)</span>). This process represents particularly in numerical modelling a big problem, since then atmospheric and land model are also “decoupled” and the atmosphere does not “see” the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, <span class="citation">Peltola, Lapo, and Thomas (<a href="#ref-Peltola2021" role="doc-biblioref">2021</a>)</span> introduced the decoupling metric <span class="math inline">\(\Omega\)</span>:</p>
 <ul>
 <li><strong>Decoupling metric</strong> (<code>calc_omega</code>): <span class="math inline">\(\Omega\)</span> is defined as the dimensionless ratio between vertical turbulence intenisity and critical vertical wind speed that characterizes the wind speed needed to overcome the hindering force caused by static stability (based on the Brunt-Väisälä frequency <span class="math inline">\(N^2:=g/T \partial T/\partial z\)</span>)
 <span class="math display">\[ \Omega := \frac{\sigma_w}{\vert w_{crit}\vert}=\frac{\sigma_w}{\sqrt{2}zN}\]</span></li>
 </ul>
-<p>As can be seen, for calculating <span class="math inline">\(N\)</span> the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (<code>calc_ri</code>), eddy diffusivities of momentum (<code>calc_Km</code>) and heat (<code>calc_Kh</code>), the Prandtl number (<code>calc_Pr</code>) or the Ozmidov scale (<code>calc_ozmidov_scale</code>).</p>
+<p>As can be seen, for calculating <span class="math inline">\(N\)</span> the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (<code>calc_Ri</code>), eddy diffusivities of momentum (<code>calc_Km</code>) and heat (<code>calc_Kh</code>), the Prandtl number (<code>calc_Pr</code>) or the Ozmidov scale (<code>calc_ozmidov_scale</code>).</p>
 
 </div>
 </div>

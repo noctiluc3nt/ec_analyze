@@ -9,8 +9,7 @@ with net radiation $R_{net} = SW\downarrow - SW\uparrow + LW\downarrow - LW\upar
 			\begin{align}
 				SH = \rho c_p \overline{w'T'} \quad \textrm{  and  } \quad LH = \rho L_v \overline{w'q'}
 			\end{align}
-			with the air density $\rho$, the heat capacity of air (under constant pressure) $c_p$ and the latent heat of vaporization $L_v$.
-			The sensible heat flux SH is positive under unstable conditions (ground heats atmosphere) and negative under stable conditions (atmosphere heats ground). 
+			with the air density $\rho$, the heat capacity of air (under constant pressure) $c_p$ and the latent heat of vaporization $L_v$. The sensible heat flux SH is positive under unstable conditions (ground heats atmosphere) and negative under stable conditions (atmosphere heats ground). 
 			Positive latent heat fluxes (LH) represent evaporation or transpiration, whereas negative LH indicates condensation or deposition of water (vapor).
 			The last term $I_{SEB}$ describes the imbalance (or residual flux). Depending on the value of $I_{SEB}$, the SEB is called closed or unclosed
 			\begin{align}
@@ -31,19 +30,34 @@ with net radiation $R_{net} = SW\downarrow - SW\uparrow + LW\downarrow - LW\upar
 
 ```R
 #loading Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 library(dplyr)
-sigma=5.67*10^(-8)
 
 #read in processed example data
 dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
 dat$TIME=as.POSIXct(dat$time,format="%F %T")
 ```
 
+    
+    Attaching package: ‘dplyr’
+    
+    
+    The following objects are masked from ‘package:stats’:
+    
+        filter, lag
+    
+    
+    The following objects are masked from ‘package:base’:
+    
+        intersect, setdiff, setequal, union
+    
+    
+
+
 **Plotting of surface energy balance with `plot_seb`** <br>
-The function `plot_seb`plots the surface energy balance as time series and as scatter plot (R-GH, SH+LH) with linear regression as well as calculates the residual flux and the closure ratio.
-In addition to the turbulence data used so far (which contains the two turbulent fluxes `SH, LH`), we now also need additional radiative measurements (all four radiative fluxes `SWin, SWout, LWin, LWout`) and the ground heat flux (`GH`), which are available in the file `../data/radiation-data_30min/biomet_data.csv` as 30 minutes averages.
+The function `plot_seb`plots the surface energy balance as time series and as scatter plot (R-GH, SH+LH) with linear regression as well as calculates the residual flux and the closure ratio. In addition to the turbulence data used so far (which contains the two turbulent fluxes `SH, LH`), we now also need additional radiative measurements (all four radiative fluxes `SWin, SWout, LWin, LWout`) and the ground heat flux (`GH`), which are available in the file `../data/radiation-data_30min/biomet_data.csv` as 30 minutes averages.
+
 
 ```R
 #read in radiation data
@@ -60,18 +74,18 @@ head(dat)
 
 
 <table class="dataframe">
-<caption>A data.frame: 6 × 40</caption>
+<caption>A data.frame: 6 × 48</caption>
 <thead>
 	<tr><th></th><th scope=col>time.x</th><th scope=col>u_mean</th><th scope=col>v_mean</th><th scope=col>w_mean</th><th scope=col>ws_mean</th><th scope=col>wd_mean</th><th scope=col>T_mean</th><th scope=col>h2o_mean</th><th scope=col>co2_mean</th><th scope=col>u_sd</th><th scope=col>⋯</th><th scope=col>TIME</th><th scope=col>time.y</th><th scope=col>rh</th><th scope=col>ta</th><th scope=col>swin</th><th scope=col>swout</th><th scope=col>lwin</th><th scope=col>lwout</th><th scope=col>shf1</th><th scope=col>shf2</th></tr>
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>2018-07-20 08:30:00</td><td>2.872084</td><td>-3.939352e-16</td><td> 6.931732e-06</td><td>2.873170</td><td>-2.289284</td><td>15.86938</td><td>0.007254132</td><td>0.0006009614</td><td>1.062143</td><td>⋯</td><td>2018-07-20 08:30:00</td><td>2018-07-20 08:30:00</td><td>56.54792</td><td>16.28775</td><td>715.4410</td><td>105.7314</td><td>312.4243</td><td>458.7009</td><td>21.59691</td><td>1.682706</td></tr>
-	<tr><th scope=row>2</th><td>2018-07-20 09:00:00</td><td>2.864793</td><td> 7.504684e-17</td><td> 9.052527e-08</td><td>2.864538</td><td>-2.326045</td><td>16.55190</td><td>0.007584267</td><td>0.0005978138</td><td>1.105122</td><td>⋯</td><td>2018-07-20 09:00:00</td><td>2018-07-20 09:00:00</td><td>54.34070</td><td>16.77433</td><td>756.2658</td><td>109.9171</td><td>319.3567</td><td>460.9099</td><td>26.81290</td><td>1.952374</td></tr>
-	<tr><th scope=row>3</th><td>2018-07-20 09:30:00</td><td>3.996526</td><td> 9.365292e-16</td><td> 3.049021e-05</td><td>4.002522</td><td>-2.035397</td><td>17.05704</td><td>0.007472065</td><td>0.0005954894</td><td>1.409495</td><td>⋯</td><td>2018-07-20 09:30:00</td><td>2018-07-20 09:30:00</td><td>47.65451</td><td>17.40209</td><td>797.9751</td><td>112.8786</td><td>301.3082</td><td>463.2456</td><td>30.59997</td><td>2.139507</td></tr>
-	<tr><th scope=row>4</th><td>2018-07-20 10:00:00</td><td>4.998016</td><td>-2.812846e-16</td><td>-2.391239e-06</td><td>4.997530</td><td>-1.977737</td><td>17.60447</td><td>0.006762097</td><td>0.0005953881</td><td>1.289326</td><td>⋯</td><td>2018-07-20 10:00:00</td><td>2018-07-20 10:00:00</td><td>36.98989</td><td>18.08719</td><td>809.7048</td><td>114.7406</td><td>295.6089</td><td>467.7517</td><td>33.01136</td><td>2.270067</td></tr>
-	<tr><th scope=row>5</th><td>2018-07-20 10:30:00</td><td>4.879095</td><td> 4.062636e-16</td><td> 2.187117e-05</td><td>4.880696</td><td>-2.014489</td><td>18.08994</td><td>0.005410862</td><td>0.0005948927</td><td>1.469949</td><td>⋯</td><td>2018-07-20 10:30:00</td><td>2018-07-20 10:30:00</td><td>30.13753</td><td>18.32750</td><td>823.0150</td><td>117.3849</td><td>291.3130</td><td>469.1732</td><td>34.70869</td><td>2.299792</td></tr>
-	<tr><th scope=row>6</th><td>2018-07-20 11:00:00</td><td>5.225037</td><td>-8.977916e-17</td><td>-6.972624e-06</td><td>5.223984</td><td>-2.261205</td><td>18.24207</td><td>0.004422858</td><td>0.0005954766</td><td>1.319227</td><td>⋯</td><td>2018-07-20 11:00:00</td><td>2018-07-20 11:00:00</td><td>25.45414</td><td>18.60887</td><td>827.8588</td><td>118.4659</td><td>288.2217</td><td>467.7229</td><td>34.78918</td><td>2.284315</td></tr>
+	<tr><th scope=row>1</th><td>2018-07-20 08:30:00</td><td>2.872084</td><td>0.3645577</td><td>0.1206889</td><td>2.873170</td><td>48.83370</td><td>15.86938</td><td>0.007254132</td><td>0.0006009614</td><td>1.062143</td><td>⋯</td><td>2018-07-20 08:30:00</td><td>2018-07-20 08:30:00</td><td>56.54792</td><td>16.28775</td><td>715.4410</td><td>105.7314</td><td>312.4243</td><td>458.7009</td><td>21.59691</td><td>1.682706</td></tr>
+	<tr><th scope=row>2</th><td>2018-07-20 09:00:00</td><td>2.864793</td><td>0.3848472</td><td>0.1330429</td><td>2.864538</td><td>46.72741</td><td>16.55190</td><td>0.007584267</td><td>0.0005978138</td><td>1.105122</td><td>⋯</td><td>2018-07-20 09:00:00</td><td>2018-07-20 09:00:00</td><td>54.34070</td><td>16.77433</td><td>756.2658</td><td>109.9171</td><td>319.3567</td><td>460.9099</td><td>26.81290</td><td>1.952374</td></tr>
+	<tr><th scope=row>3</th><td>2018-07-20 09:30:00</td><td>3.996526</td><td>0.4702586</td><td>0.1505031</td><td>4.002522</td><td>63.38033</td><td>17.05704</td><td>0.007472065</td><td>0.0005954894</td><td>1.409495</td><td>⋯</td><td>2018-07-20 09:30:00</td><td>2018-07-20 09:30:00</td><td>47.65451</td><td>17.40209</td><td>797.9751</td><td>112.8786</td><td>301.3082</td><td>463.2456</td><td>30.59997</td><td>2.139507</td></tr>
+	<tr><th scope=row>4</th><td>2018-07-20 10:00:00</td><td>4.998016</td><td>0.6313088</td><td>0.1684323</td><td>4.997530</td><td>66.68404</td><td>17.60447</td><td>0.006762097</td><td>0.0005953881</td><td>1.289326</td><td>⋯</td><td>2018-07-20 10:00:00</td><td>2018-07-20 10:00:00</td><td>36.98989</td><td>18.08719</td><td>809.7048</td><td>114.7406</td><td>295.6089</td><td>467.7517</td><td>33.01136</td><td>2.270067</td></tr>
+	<tr><th scope=row>5</th><td>2018-07-20 10:30:00</td><td>4.879095</td><td>0.5967435</td><td>0.1828934</td><td>4.880696</td><td>64.57826</td><td>18.08994</td><td>0.005410862</td><td>0.0005948927</td><td>1.469949</td><td>⋯</td><td>2018-07-20 10:30:00</td><td>2018-07-20 10:30:00</td><td>30.13753</td><td>18.32750</td><td>823.0150</td><td>117.3849</td><td>291.3130</td><td>469.1732</td><td>34.70869</td><td>2.299792</td></tr>
+	<tr><th scope=row>6</th><td>2018-07-20 11:00:00</td><td>5.225037</td><td>0.6579993</td><td>0.1693293</td><td>5.223984</td><td>50.44251</td><td>18.24207</td><td>0.004422858</td><td>0.0005954766</td><td>1.319227</td><td>⋯</td><td>2018-07-20 11:00:00</td><td>2018-07-20 11:00:00</td><td>25.45414</td><td>18.60887</td><td>827.8588</td><td>118.4659</td><td>288.2217</td><td>467.7229</td><td>34.78918</td><td>2.284315</td></tr>
 </tbody>
 </table>
 
@@ -94,26 +108,28 @@ plot_seb(dat$swin,dat$swout,dat$lwin,dat$lwout,dat$sh,dat$lh,dat$shf1)
     
     Residuals:
         Min      1Q  Median      3Q     Max 
-    -134.13  -19.47   -5.41   28.33  170.39 
+    -85.659 -11.834  -1.481  15.184 115.288 
     
     Coefficients:
                 Estimate Std. Error t value Pr(>|t|)    
-    (Intercept) 27.66214    5.45569    5.07  1.4e-06 ***
-    x            0.52887    0.02051   25.78  < 2e-16 ***
+    (Intercept) 19.02460    3.51021    5.42 2.99e-07 ***
+    x            0.35633    0.01332   26.76  < 2e-16 ***
     ---
     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
     
-    Residual standard error: 48.56 on 125 degrees of freedom
-    Multiple R-squared:  0.8417,	Adjusted R-squared:  0.8405 
-    F-statistic: 664.7 on 1 and 125 DF,  p-value: < 2.2e-16
+    Residual standard error: 31.24 on 124 degrees of freedom
+      (1 observation deleted due to missingness)
+    Multiple R-squared:  0.8524,	Adjusted R-squared:  0.8512 
+    F-statistic: 715.9 on 1 and 124 DF,  p-value: < 2.2e-16
     
+    [1] "mean closure ratio:  1"
+    [1] "mean residual flux:  84 W/m^2"
 
 
 
     
 ![](figures/fig_0802.png){width=500}
     
-
 
 
 
@@ -126,17 +142,16 @@ and are both a way to describe the heat transfer by sensible vs latent heat. The
 
 
 ```R
-print(paste("BR (average):", calc_br(mean(dat$sh),mean(dat$lh))))
-print(paste("EF (average):", calc_ef(mean(dat$sh),mean(dat$lh))))
+print(paste("BR (average):", calc_br(mean(dat$sh,na.rm=TRUE),mean(dat$lh,na.rm=TRUE))))
+print(paste("EF (average):", calc_ef(mean(dat$sh,na.rm=TRUE),mean(dat$lh,na.rm=TRUE))))
 ```
 
-    [1] "BR (average): 1.2715665126865"
-    [1] "EF (average): 0.440224837976387"
+    [1] "BR (average): 1.21550693244542"
+    [1] "EF (average): 0.451363967927749"
 
 
 ## Meteorological contextualization
 For the meteorological contextualization and related unit conversion, Reddy provides several basic function:
-
 - saturation vapor pressure (`calc_satvaporpressure`)
 - vapor pressure deficit (`calc_vpd`)
 - potential temperature (`calc_theta`)

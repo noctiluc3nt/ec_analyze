@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Turbulence parameterizations | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
-  <meta name="description" content="9 Turbulence parameterizations | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <title>9 Turbulence parameterizations | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</title>
+  <meta name="description" content="9 Turbulence parameterizations | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Turbulence parameterizations | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta property="og:title" content="9 Turbulence parameterizations | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Turbulence parameterizations | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta name="twitter:title" content="9 Turbulence parameterizations | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   
   
   
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</a>
           </h1>
         </div>
 
@@ -245,45 +245,43 @@ When measuring fluxes and variances with the eddy-covariance method, the functio
 In Reddy, the variable <span class="math inline">\(x_*\)</span> can be calculated with <code>calc_xstar</code>, and scaling functions for horizontal velocity (<span class="math inline">\(\Phi_u\)</span>, <code>scale_phiu</code>), vertical velocity (<span class="math inline">\(\Phi_w\)</span>, <code>scale_phiw</code>), temperature (<span class="math inline">\(\Phi_T\)</span>, <code>scale_phiT</code>) and passive scalar concentration (<span class="math inline">\(\Phi_c\)</span>, <code>scale_phic</code>) from different studies are available.</p>
 <div id="example-latent-heat-flux-from-flux-variance-relation" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Example: Latent heat flux from flux-variance relation<a href="turbulence-parameterizations.html#example-latent-heat-flux-from-flux-variance-relation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Examplary, we calculate the latent heat flux using the flux-variance relation and compare it with the measured latent heat flux. As humididty is an ‘almost’ passive tracer, we use the scaling function for concentration (in Reddy <code>scale_phic</code>).</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="turbulence-parameterizations.html#cb65-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb65-2"><a href="turbulence-parameterizations.html#cb65-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;,repos=NULL,source=TRUE,quiet=TRUE)</span></span>
-<span id="cb65-3"><a href="turbulence-parameterizations.html#cb65-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
-<span id="cb65-4"><a href="turbulence-parameterizations.html#cb65-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
-<span id="cb65-5"><a href="turbulence-parameterizations.html#cb65-5" aria-hidden="true"></a></span>
-<span id="cb65-6"><a href="turbulence-parameterizations.html#cb65-6" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
-<span id="cb65-7"><a href="turbulence-parameterizations.html#cb65-7" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="turbulence-parameterizations.html#cb66-1" aria-hidden="true"></a>ustar=<span class="kw">calc_ustar</span>(dat<span class="op">$</span>cov_uw)</span>
-<span id="cb66-2"><a href="turbulence-parameterizations.html#cb66-2" aria-hidden="true"></a>L=<span class="kw">calc_L</span>(ustar,dat<span class="op">$</span>T_mean,dat<span class="op">$</span>cov_wT)</span>
-<span id="cb66-3"><a href="turbulence-parameterizations.html#cb66-3" aria-hidden="true"></a>zeta=<span class="kw">calc_zeta</span>(<span class="fl">4.4</span>,L)</span>
-<span id="cb66-4"><a href="turbulence-parameterizations.html#cb66-4" aria-hidden="true"></a><span class="co">#calculate cov(h2o,w) from the flux variance relation</span></span>
-<span id="cb66-5"><a href="turbulence-parameterizations.html#cb66-5" aria-hidden="true"></a>cov_h2ow_fv=dat<span class="op">$</span>cov_h2ow<span class="op">*</span>ustar<span class="op">/</span><span class="kw">scale_phic</span>(zeta)</span></code></pre></div>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="turbulence-parameterizations.html#cb67-1" aria-hidden="true"></a><span class="co">#compare flux-variance relation with measured latent heat flux</span></span>
-<span id="cb67-2"><a href="turbulence-parameterizations.html#cb67-2" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">cov2lh</span>(cov_h2ow_fv),<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">cex=</span><span class="dv">2</span>,</span>
-<span id="cb67-3"><a href="turbulence-parameterizations.html#cb67-3" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="kw">TeX</span>(<span class="st">&quot;LH [W/m$^2$] (from flux-variance relation)&quot;</span>),<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;LH [W/m$^2$] (measured)&quot;</span>),</span>
-<span id="cb67-4"><a href="turbulence-parameterizations.html#cb67-4" aria-hidden="true"></a>     <span class="dt">main=</span><span class="st">&quot;Latent Heat Flux</span><span class="ch">\n</span><span class="st">Comparison: Flux-Variance Relation vs EC Measurement&quot;</span>)</span>
-<span id="cb67-5"><a href="turbulence-parameterizations.html#cb67-5" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red3&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span>
-<span id="cb67-6"><a href="turbulence-parameterizations.html#cb67-6" aria-hidden="true"></a><span class="kw">grid</span>()</span>
-<span id="cb67-7"><a href="turbulence-parameterizations.html#cb67-7" aria-hidden="true"></a>fit=<span class="kw">lm</span>(<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow) <span class="op">~</span><span class="st"> </span><span class="kw">cov2lh</span>(cov_h2ow_fv))</span>
-<span id="cb67-8"><a href="turbulence-parameterizations.html#cb67-8" aria-hidden="true"></a><span class="kw">summary</span>(fit) <span class="co">#R^2 = 0.987</span></span></code></pre></div>
+<p>Examplary, we calculate the latent heat flux using the flux-variance relation and compare it with the measured latent heat flux. As humidity is an ‘almost’ passive tracer, we use the scaling function for concentration (in Reddy <code>scale_phic</code>).</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="turbulence-parameterizations.html#cb66-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
+<span id="cb66-2"><a href="turbulence-parameterizations.html#cb66-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;,repos=NULL,source=TRUE,quiet=TRUE)</span></span>
+<span id="cb66-3"><a href="turbulence-parameterizations.html#cb66-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span>
+<span id="cb66-4"><a href="turbulence-parameterizations.html#cb66-4" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb66-5"><a href="turbulence-parameterizations.html#cb66-5" aria-hidden="true"></a></span>
+<span id="cb66-6"><a href="turbulence-parameterizations.html#cb66-6" aria-hidden="true"></a><span class="co">#read in processed example data</span></span>
+<span id="cb66-7"><a href="turbulence-parameterizations.html#cb66-7" aria-hidden="true"></a>dat=<span class="kw">readRDS</span>(<span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="turbulence-parameterizations.html#cb67-1" aria-hidden="true"></a><span class="co">#calculate cov(h2o,w) from the flux variance relation</span></span>
+<span id="cb67-2"><a href="turbulence-parameterizations.html#cb67-2" aria-hidden="true"></a>Phic=<span class="kw">scale_phic</span>(dat<span class="op">$</span>zeta,<span class="dv">1</span>)</span>
+<span id="cb67-3"><a href="turbulence-parameterizations.html#cb67-3" aria-hidden="true"></a>cov_h2ow_fv=dat<span class="op">$</span>h2o_sd<span class="op">*</span>dat<span class="op">$</span>ustar<span class="op">/</span>Phic<span class="op">/</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="turbulence-parameterizations.html#cb68-1" aria-hidden="true"></a><span class="co">#compare flux-variance relation with measured latent heat flux</span></span>
+<span id="cb68-2"><a href="turbulence-parameterizations.html#cb68-2" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">cov2lh</span>(cov_h2ow_fv),<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow),<span class="dt">pch=</span><span class="dv">20</span>,<span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">110</span>),</span>
+<span id="cb68-3"><a href="turbulence-parameterizations.html#cb68-3" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="kw">TeX</span>(<span class="st">&quot;LH [W/m$^2$] (from flux-variance relation)&quot;</span>),<span class="dt">ylab=</span><span class="kw">TeX</span>(<span class="st">&quot;LH [W/m$^2$] (measured)&quot;</span>),</span>
+<span id="cb68-4"><a href="turbulence-parameterizations.html#cb68-4" aria-hidden="true"></a>     <span class="dt">main=</span><span class="st">&quot;Latent Heat Flux</span><span class="ch">\n</span><span class="st">Comparison: Flux-Variance Relation vs EC Measurement&quot;</span>)</span>
+<span id="cb68-5"><a href="turbulence-parameterizations.html#cb68-5" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red3&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb68-6"><a href="turbulence-parameterizations.html#cb68-6" aria-hidden="true"></a><span class="kw">grid</span>()</span>
+<span id="cb68-7"><a href="turbulence-parameterizations.html#cb68-7" aria-hidden="true"></a>fit=<span class="kw">lm</span>(<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow) <span class="op">~</span><span class="st"> </span><span class="kw">cov2lh</span>(cov_h2ow_fv))</span>
+<span id="cb68-8"><a href="turbulence-parameterizations.html#cb68-8" aria-hidden="true"></a><span class="kw">summary</span>(fit) <span class="co">#R^2 = 0.987</span></span></code></pre></div>
 <pre><code>Call:
 lm(formula = cov2lh(dat$cov_h2ow) ~ cov2lh(cov_h2ow_fv))
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--10.0789  -2.8135  -0.4376   3.1445   7.6008 
+-155.342  -14.557   -3.211   13.687   54.464 
 
 Coefficients:
                     Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         4.386407   0.456952   9.599   &lt;2e-16 ***
-cov2lh(cov_h2ow_fv) 0.813245   0.008209  99.067   &lt;2e-16 ***
+(Intercept)         14.67877    2.63752   5.565 1.54e-07 ***
+cov2lh(cov_h2ow_fv)  0.52684    0.04353  12.102  &lt; 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 3.838 on 124 degrees of freedom
+Residual standard error: 23.27 on 124 degrees of freedom
   (1 observation deleted due to missingness)
-Multiple R-squared:  0.9875,    Adjusted R-squared:  0.9874 
-F-statistic:  9814 on 1 and 124 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.5415,    Adjusted R-squared:  0.5378 
+F-statistic: 146.4 on 1 and 124 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="figures/fig_0901.png" width="400" /></p>
 <p>We see, that the agreement is generally quite good but deteriorates at higher fluxes (convective conditions). Here, we used the variance from the high-frequency gas analyzer measurements, but the method is also applicable if the measurement frequency of the concentration is lower.</p>
 </div>
@@ -302,16 +300,16 @@ Integrating the flux-profile relations w.r.t. height allows to retrieve <span cl
 temperature profile:
 <span class="math display">\[ T(z) = T_0 + \frac{u_*}{\kappa}(\ln(\frac{z}{z_0})-\Psi_h(\zeta)) \]</span></p>
 <p>Thereby, <span class="math inline">\(\Psi_m\)</span> and <span class="math inline">\(\Psi_h\)</span> are the integral forms of <span class="math inline">\(\Phi_m\)</span> and <span class="math inline">\(\Phi_h\)</span>. With the function <code>calc_windprofile</code>, the vertical wind speed profile can be calculated using the above equation and the Businger-Dyer relation as scaling function. The example shows, that the wind speed increases faster with height under stable conditions (due to less eddy viscosity) given the same friction velocity.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="turbulence-parameterizations.html#cb69-1" aria-hidden="true"></a><span class="co">#calculate vertical wind speed profile</span></span>
-<span id="cb69-2"><a href="turbulence-parameterizations.html#cb69-2" aria-hidden="true"></a>u_neutral=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>)</span>
-<span id="cb69-3"><a href="turbulence-parameterizations.html#cb69-3" aria-hidden="true"></a>u_unstable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="op">-</span><span class="fl">0.2</span>)</span>
-<span id="cb69-4"><a href="turbulence-parameterizations.html#cb69-4" aria-hidden="true"></a>u_stable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="fl">0.2</span>)</span>
-<span id="cb69-5"><a href="turbulence-parameterizations.html#cb69-5" aria-hidden="true"></a><span class="co">#plot</span></span>
-<span id="cb69-6"><a href="turbulence-parameterizations.html#cb69-6" aria-hidden="true"></a><span class="kw">plot</span>(u_neutral<span class="op">$</span>windspeed,u_neutral<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">xlab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;height [m]&quot;</span>,</span>
-<span id="cb69-7"><a href="turbulence-parameterizations.html#cb69-7" aria-hidden="true"></a>    <span class="dt">main=</span><span class="st">&quot;wind speed profile (MOST)&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span>
-<span id="cb69-8"><a href="turbulence-parameterizations.html#cb69-8" aria-hidden="true"></a><span class="kw">points</span>(u_unstable<span class="op">$</span>windspeed,u_unstable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb69-9"><a href="turbulence-parameterizations.html#cb69-9" aria-hidden="true"></a><span class="kw">points</span>(u_stable<span class="op">$</span>windspeed,u_stable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue3&quot;</span>)</span>
-<span id="cb69-10"><a href="turbulence-parameterizations.html#cb69-10" aria-hidden="true"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;unstable&quot;</span>,<span class="st">&quot;neutral&quot;</span>,<span class="st">&quot;stable&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="dv">1</span>,<span class="st">&quot;blue3&quot;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="turbulence-parameterizations.html#cb70-1" aria-hidden="true"></a><span class="co">#calculate vertical wind speed profile</span></span>
+<span id="cb70-2"><a href="turbulence-parameterizations.html#cb70-2" aria-hidden="true"></a>u_neutral=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>)</span>
+<span id="cb70-3"><a href="turbulence-parameterizations.html#cb70-3" aria-hidden="true"></a>u_unstable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="op">-</span><span class="fl">0.2</span>)</span>
+<span id="cb70-4"><a href="turbulence-parameterizations.html#cb70-4" aria-hidden="true"></a>u_stable=<span class="kw">calc_windprofile</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">ustar=</span><span class="fl">0.6</span>,<span class="dt">zeta=</span><span class="fl">0.2</span>)</span>
+<span id="cb70-5"><a href="turbulence-parameterizations.html#cb70-5" aria-hidden="true"></a><span class="co">#plot</span></span>
+<span id="cb70-6"><a href="turbulence-parameterizations.html#cb70-6" aria-hidden="true"></a><span class="kw">plot</span>(u_neutral<span class="op">$</span>windspeed,u_neutral<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">xlab=</span><span class="st">&quot;wind speed [m/s]&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;height [m]&quot;</span>,</span>
+<span id="cb70-7"><a href="turbulence-parameterizations.html#cb70-7" aria-hidden="true"></a>    <span class="dt">main=</span><span class="st">&quot;wind speed profile (MOST)&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span>
+<span id="cb70-8"><a href="turbulence-parameterizations.html#cb70-8" aria-hidden="true"></a><span class="kw">points</span>(u_unstable<span class="op">$</span>windspeed,u_unstable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb70-9"><a href="turbulence-parameterizations.html#cb70-9" aria-hidden="true"></a><span class="kw">points</span>(u_stable<span class="op">$</span>windspeed,u_stable<span class="op">$</span>height,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue3&quot;</span>)</span>
+<span id="cb70-10"><a href="turbulence-parameterizations.html#cb70-10" aria-hidden="true"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;unstable&quot;</span>,<span class="st">&quot;neutral&quot;</span>,<span class="st">&quot;stable&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="dv">1</span>,<span class="st">&quot;blue3&quot;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="figures/fig_0902.png" width="400" /></p>
 </div>
 <div id="using-nwp-model-output" class="section level2 hasAnchor" number="9.3">

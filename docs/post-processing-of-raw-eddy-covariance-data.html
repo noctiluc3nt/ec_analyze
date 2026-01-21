@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Post-processing of raw eddy-covariance data | Reddy: A toolbox for analyzing eddy-covariance measurements</title>
-  <meta name="description" content="2 Post-processing of raw eddy-covariance data | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <title>2 Post-processing of raw eddy-covariance data | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</title>
+  <meta name="description" content="2 Post-processing of raw eddy-covariance data | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Post-processing of raw eddy-covariance data | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta property="og:title" content="2 Post-processing of raw eddy-covariance data | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="noctiluc3nt/Reddy" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Post-processing of raw eddy-covariance data | Reddy: A toolbox for analyzing eddy-covariance measurements" />
+  <meta name="twitter:title" content="2 Post-processing of raw eddy-covariance data | Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments" />
   
   
   
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: A toolbox for analyzing eddy-covariance measurements</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reddy: An open-source toolbox for analyzing eddy-covariance measurements in heterogeneous environments</a>
           </h1>
         </div>
 
@@ -233,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="post-processing-of-raw-eddy-covariance-data" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> Post-processing of raw eddy-covariance data<a href="post-processing-of-raw-eddy-covariance-data.html#post-processing-of-raw-eddy-covariance-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To derive turbulent fluxes and other turbulence characteristics from eddy-covariance measurements, they have to be post-processed first. In the following, we will have a look a the required steps – starting with the theoretical foundation of the method and the necessary physical and technical considerations for the raw data processing. The upcoming analyses (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/02_basic-turbulence-diagnostics.ipynb">02_basic-turbulence-diagnostics.ipynb</a>) build upon this and allow for a more detailed investigation (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/03_quadrant-analysis.ipynb">03_quadrant-analysis.ipynb</a>).</p>
+<p>To derive turbulent fluxes and other turbulence characteristics from eddy-covariance measurements, the raw data have to be post-processed first. In the following, we will have a look a the required steps – starting with the theoretical foundation of the method and the necessary physical and technical considerations for the raw data processing. The upcoming analyses (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/02_basic-turbulence-diagnostics.ipynb">02_basic-turbulence-diagnostics.ipynb</a>) build upon this and allow for a more detailed investigation (e.g., <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/03_quadrant-analysis.ipynb">03_quadrant-analysis.ipynb</a>).</p>
 <div id="eddy-covariance-method" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Eddy-covariance method<a href="post-processing-of-raw-eddy-covariance-data.html#eddy-covariance-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>How do we derive a flux from the sonic measurements? The eddy-covariance method is based on the Reynolds decomposition, which is applied to every measured quantity <span class="math inline">\(x\)</span> through
@@ -252,7 +252,7 @@ Usually, <span class="math inline">\(w\)</span> represents the vertical wind spe
 <p>For applying the described eddy-covariance method to the measurements, we have to decide on an averaging time <span class="math inline">\(t_s\)</span>, have to perform quality control of the raw data and have to check the fulfillment of the made assumptions.</p>
 <div id="choosing-a-suitable-averaging-time" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Choosing a suitable averaging time<a href="post-processing-of-raw-eddy-covariance-data.html#choosing-a-suitable-averaging-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As we have seen above, for calculating the fluxes with the eddy-covariance method, a suitable averaging time (<span class="math inline">\(t_s\)</span>) should be chosen. For this, several things need to be considered: Generally, one can say that the longer the averaging time, the less likely it is that the conditions are steady (which is an assumption in the EC method), but short averaging times lose low frequency contributions. So usually, an averaging time of 30 minutes is chosen. However, this averaging time can still be too long if the turbulence is very intermittent, which is the case for very stable conditions. Consequently, some studies use the 30 minutes average just for unstable stratification and an averaging time of 1 to 10 minutes for stable conditions. It is recommendable to first study the characteristics of the sampled raw data (e.g., based on spectra) and then choose an averaging time.<br></p>
+<p>As we have seen above, for calculating the fluxes with the eddy-covariance method, a suitable averaging time (<span class="math inline">\(t_s\)</span>) should be chosen. For this, several things need to be considered: Generally, one can say that the longer the averaging time, the less likely it is that the conditions are steady (which is an assumption in the EC method), but short averaging times lose low frequency contributions. So usually, an averaging time of 30 minutes is chosen. However, this averaging time can still be too long if the turbulence is very intermittent, which is the case for very stable conditions. Consequently, some studies use the 30 minutes average just for unstable stratification and an averaging time of 1 to 10 minutes for stable conditions. It is recommendable to first study the characteristics of the sampled raw data (e.g., based on spectra, see <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/04_spectra.ipynb">04_spectra.ipynb</a>)) and then choose an averaging time.<br></p>
 </div>
 <div id="overview-of-correction-procedures-applied-to-the-raw-data" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Overview of correction procedures applied to the raw data<a href="post-processing-of-raw-eddy-covariance-data.html#overview-of-correction-procedures-applied-to-the-raw-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -260,13 +260,13 @@ Usually, <span class="math inline">\(w\)</span> represents the vertical wind spe
 <li><strong>Despiking</strong> (<code>despiking</code>): Removing of spikes in the raw data. For this usually three methods are applied: (1) based on pre-defined thresholds (i.e., an expected temperature or wind speed interval), (2) median deviation (MAD) test, i.e., all measurements lie within a pre-defined range around the median, and (3) based on skewness (3. moment) and kurtosis (4. moment), i.e., the skewness and kurtosis of the considered interval do not exceed pre-defined values. Details see e.g. <span class="citation">Mauder et al. (<a href="#ref-Mauder2013" role="doc-biblioref">2013</a>)</span>.</li>
 <li><strong>Lag-time correction</strong> (<code>shift2maxccf</code>): Lag-time can occur if several loggers are used or the inlet tube of the gas analyzer is very long, such that there is a time offset between the different measured variables. This can be corrected by calculating the maximum cross-correlation and shift the time series according to the lag difference, which is done by the function <code>shift2maxccf</code>.</li>
 <li><strong>Linear detrending</strong> (<code>pracma::detrending</code>): Linear detrending by substracting the mean value (however, linear detrending is not consistent with Reynolds decomposition, so it should be used/interpreted with caution, see e.g. <span class="citation">Baldocchi (<a href="#ref-Baldocchi2003" role="doc-biblioref">2003</a>)</span>). However, linear detrending should be applied before calculating higher order moments (as skewness and kurtosis) or spectra/structure functions.</li>
-<li><strong>Rotation</strong> (<code>rotate_double</code> or <code>rotate_planar</code>): Rotation of the sonic coordinate system. Since the orientation of the sonic is arbitrary, the measurements have to be interpreted in a suitable coordinate system. For this, the natural coordinate systems is used, which means that it follows the streamlines and the coordinates are then given by the streamwise velocity component <span class="math inline">\(u\)</span>, the crosswise velocity component <span class="math inline">\(v\)</span> and the vertical velocity component <span class="math inline">\(w\)</span>. To determine the orientation, two main approaches exist: Double rotation (<code>rotate_double</code>) alignes the sonic coordinate system with the streamlines for every averaging interval. Hence, this method can be applied near-real time. Planar fit rotation (<code>rotate_planar</code>, <span class="citation">Wilczak, Oncley, and Stage (<a href="#ref-Wilczak2001" role="doc-biblioref">2001</a>)</span>) aligns the sonic coordinate system with the mean streamlines under the conditions that the mean vertical velocity <span class="math inline">\(\overline{w}\)</span> vanishes. For this, a longer time series (usually the whole measurement campaign) is required and thus near-real time processing is not possible. Generally, it is recommended to use double rotation in relatively simple topography (or for rapidly changing surface conditions, e.g. over growing gras), but planar fit in complex (micro-)topogaphy. The angles around which the sonic coordinate system was rotated also allow to estimate the quality of the measurements (the smaller the angle of rotation, the better and important is that they do not flip signs, in particular for close-to-zero fluxes under very stable stratification).</li>
-<li><strong>Quality flagging</strong> (<code>flag_stationarity</code>,<code>flag_w</code>,<code>flag_distortion</code>,<code>flag_most</code>, e.g. <span class="citation">Foken and Wichura (<a href="#ref-Foken1996" role="doc-biblioref">1996</a>)</span>): Several quality flags (in a 0-1-2 system with 0 (good quality), 1 (medium quality), and 2 (recommended to discard)) can be applied. Common flags are: a stationarity flag (<code>flag_stationarity</code>), that tests the alignment with the stationarity assumption of the eddy-covariance method, a vertical velocity flag (<code>flag_w</code>), which checks that the remaining vertical velocity after the rotation is small, a flow distortion flag (<code>flag_distortion</code>), which removes the pre-defined wind directions that are possibly affected/blocked by the mast, an integral turbulence characteristics flag (<code>flag_itc</code>), which test for the agreement with Monin-Obukhov similarity theory. However, these flags have to be applied purpose-oriented and interpreted with caution. Sometimes particularly “poorly flagged” measurements are interesting for investigating turbulence under challenging (and therefore interesting) conditions, e.g. under very stable stratification.</li>
+<li><strong>Rotation</strong> (<code>rotate_double</code> or <code>rotate_planar</code>): Rotation of the sonic coordinate system. Since the orientation of the sonic is arbitrary, the measurements have to be interpreted in a suitable coordinate system. For this, the natural coordinate system is used, which means that it follows the streamlines and the coordinates are then given by the streamwise velocity component <span class="math inline">\(u\)</span>, the crosswise velocity component <span class="math inline">\(v\)</span> and the vertical velocity component <span class="math inline">\(w\)</span>. To determine the orientation, two main approaches exist: Double rotation (<code>rotate_double</code>) alignes the sonic coordinate system with the streamlines for every averaging interval. Hence, this method can be applied in near-real time. Planar fit rotation (<code>rotate_planar</code>, <span class="citation">Wilczak, Oncley, and Stage (<a href="#ref-Wilczak2001" role="doc-biblioref">2001</a>)</span>) aligns the sonic coordinate system with the mean streamlines under the conditions that the mean vertical velocity <span class="math inline">\(\overline{w}\)</span> vanishes. For this, a longer time series (usually the whole measurement campaign) is required and thus near-real time processing is not possible. Generally, it is recommended to use double rotation in relatively simple topography (or for rapidly changing surface conditions, e.g. over growing gras), but planar fit in complex (micro-)topogaphy. The angles around which the sonic coordinate system was rotated also allow to estimate the quality of the measurements (the smaller the angle of rotation, the better and important is that they do not flip signs, in particular for close-to-zero fluxes under very stable stratification).</li>
+<li><strong>Quality flagging</strong> (<code>flag_stationarity</code>,<code>flag_w</code>,<code>flag_distortion</code>,<code>flag_most</code>, e.g. <span class="citation">Foken and Wichura (<a href="#ref-Foken1996" role="doc-biblioref">1996</a>)</span>): Several quality flags (in a 0-1-2 system with 0 (good quality), 1 (medium quality), and 2 (recommended to discard)) can be applied. Common flags are: a stationarity flag (<code>flag_stationarity</code>), that tests the agreement with the stationarity assumption of the eddy-covariance method, a vertical velocity flag (<code>flag_w</code>), which checks that the remaining vertical velocity after the rotation is small, a flow distortion flag (<code>flag_distortion</code>), which removes the pre-defined wind directions that are possibly affected/blocked by the mast, an integral turbulence characteristics flag (<code>flag_itc</code>), which tests for the agreement with Monin-Obukhov similarity theory. However, these flags have to be applied purpose-oriented and interpreted with caution. Sometimes particularly “poorly flagged” measurements are interesting for investigating turbulence under challenging (and therefore interesting) conditions, e.g. under very stable stratification.</li>
 <li><strong>SND (and cross-wind) correction</strong> (<code>SNDcorrection</code>, <span class="citation">Schotanus, Nieuwstadt, and DeBruin (<a href="#ref-Schotanus1983" role="doc-biblioref">1983</a>)</span>): Converts the buoyancy flux to sensible heat flux. Since most sonics measure the sound propagation speed, the measured temperature (the so called sonic temperature <span class="math inline">\(T_s\)</span>) is similar to the virtual temperature and thus the resulting flux <span class="math inline">\(\overline{w&#39;T_s&#39;}\)</span> represents the buoyancy flux, which is about 10-20 % larger than the sensible heat flux <span class="math inline">\(\overline{w&#39;T&#39;}\)</span>. Note, the used constants in the method depend on the measurement device (default for CSAT3).</li>
 <li><strong>WPL correction</strong> (<code>WPLcorrection</code>, <span class="citation">Webb, Pearman, and Leuning (<a href="#ref-Webb1980" role="doc-biblioref">1980</a>)</span>): Converts volume- to mass-related quantities for trace gas fluxes. This correction only applies to trace gas concentrations (water vapor, carbon dioxide, methane, …) measured with a gas analyzer. <span class="citation">Ibrom et al. (<a href="#ref-Ibrom2007" role="doc-biblioref">2007</a>)</span> suggested an adaption for closed-path systems acounting for desynchonized dilution of water vapor and carbon dioxide flux.</li>
 <li><strong>Unit conversion (density)</strong> (<code>ppt2rho</code>): Converts ppt to density. Closed-path gas analyzers measure trace gas concentrations in parts-per-… (ppt: … thousand, ppm: … million), which has to be converted to a density based on the respective molar mass.</li>
 <li><strong>Unit conversion (fluxes)</strong> (<code>cov2sh</code>, <code>cov2lh</code>,<code>cov2cf</code>): Converts covariances to the respective flux in W/m<span class="math inline">\(^2\)</span>, i.e., cov(w,T) to sensible heat flux, cov(w,q) to latent heat flux and cov(w,c) to CO<span class="math inline">\(_2\)</span> flux.</li>
-<li><strong>Gap-filling</strong> (<code>gapfilling</code>): Reproduction of timeseries by filling gaps. Gap-filling is necessary if budgets are calculated or a continuous timeseries is desired. Depending on the type of gaps (random gaps, systematic gaps, duration of gaps and available auxillary measurements) different physical and statistical methods for gap-filling exist (see review <span class="citation">Moffat and others (<a href="#ref-Moffat2007" role="doc-biblioref">2007</a>)</span>). In meteorology, particulary for studying turbulent fluxes under stable conditions statistically, gap-filling is usually not used to avoid introducing artificial “measurements” created under the assumptions of the used gap-filling method.</li>
+<li><strong>Gap-filling</strong> (<code>gapfilling</code>): Reproduction of timeseries by filling gaps. Gap-filling is necessary if budgets are calculated or a continuous timeseries is desired. Depending on the type of gaps (random gaps, systematic gaps, duration of gaps and available auxillary measurements) different physical and statistical methods for gap-filling exist (see review <span class="citation">Moffat and others (<a href="#ref-Moffat2007" role="doc-biblioref">2007</a>)</span>). In meteorology, particulary for studying turbulent fluxes under stable conditions statistically, gap-filling is usually not used to avoid introducing “artificial measurements” created under the assumptions of the used gap-filling method.</li>
 </ul>
 <p>There are more (and partly controversial) correction methods, details are discussed in <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span>. Further correction methods are required when spectra are considered (spectral corrections) or budgets are calculated (e.g. more sophisticated gap-filling of missing values, to avoid a bias due to systematically discarded data).</p>
 </div>
@@ -275,13 +275,13 @@ Usually, <span class="math inline">\(w\)</span> represents the vertical wind spe
 <h2><span class="header-section-number">2.3</span> An example post-processing routine<a href="post-processing-of-raw-eddy-covariance-data.html#an-example-post-processing-routine" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, we create an example post-processing routine. For this, we use 3 days of raw eddy-covariance measurements (CSAT3/Campbell Scientific and Li-7200/LI-COR closed-path IR gas analyzer) with a 10 Hz sampling frequency from our station in Finse, Hardangervidda, Norway. The data set is in the folder <code>data/ec-data_10Hz_raw</code> and can be downloaded directly or the whole github repository can be cloned with <code>git clone git@github.com:noctiluc3nt/ec_analyze.git</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb2-1" aria-hidden="true"></a><span class="co">#loading Reddy package</span></span>
-<span id="cb2-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb2-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;</span>,<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">source=</span><span class="ot">TRUE</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
+<span id="cb2-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb2-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;../src/Reddy_0.0.0.9000.tar.gz&quot;,repos=NULL,source=TRUE,quiet=TRUE)</span></span>
 <span id="cb2-3"><a href="post-processing-of-raw-eddy-covariance-data.html#cb2-3" aria-hidden="true"></a><span class="kw">library</span>(Reddy)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb3-1" aria-hidden="true"></a><span class="co">#ec data files</span></span>
 <span id="cb3-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb3-2" aria-hidden="true"></a>dir_in=<span class="st">&quot;../data/ec-data_10Hz_raw&quot;</span> </span>
 <span id="cb3-3"><a href="post-processing-of-raw-eddy-covariance-data.html#cb3-3" aria-hidden="true"></a>files=<span class="kw">list.files</span>(dir_in,<span class="dt">full.names=</span><span class="ot">TRUE</span>)</span>
 <span id="cb3-4"><a href="post-processing-of-raw-eddy-covariance-data.html#cb3-4" aria-hidden="true"></a>nf=<span class="kw">length</span>(files)</span></code></pre></div>
-<p>Each given file contains 30 minutes of measurements, such that we just need to average over one file to get the 30 minutes averages and fluxes. In the notebook <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/04_multiresolution-decomposition.ipynb">04_multiresolution-decomposition.ipynb</a> we will have a look at a method that allows to determine suitable averaging times more accurately. In our example routine, the data is first despiked, than the wind is rotated and the sonic measurements are averaged. For the gas analyzer measurements, the unit is converted to a density. Then the turbulence intensities (standard deviation) and the fluxes (covariances) are calculated. For the sensible heat flux, we need to apply the SND correction additionally, the WPL correction can be applied to the latent heat flux. <br>
+<p>Each given file contains 30 minutes of measurements, such that we just need to average over one file to get the 30 minutes averages and fluxes. In the notebook <a href="https://github.com/noctiluc3nt/ec_analyze/blob/main/notebooks/04_multiresolution-decomposition.ipynb">04_multiresolution-decomposition.ipynb</a> we will have a look at a method that allows to determine suitable averaging times more accurately. In our example routine, the data is first despiked, than the wind is rotated and the sonic measurements are averaged. For the gas analyzer measurements, the unit is converted to a density. Then the turbulence intensities (standard deviations) and the fluxes (covariances) are calculated. For the sensible heat flux, we need to apply the SND correction additionally, the WPL correction can be applied to the latent heat flux. <br>
 Here, the temperature is given directly in <span class="math inline">\(^\circ\)</span>C, however, in the direct output of the LI-COR systems (.ghg-files) usually the speed of sound (sos in m/s) is stored, which can be easily converted to temperature with the function <code>sos2Ts</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb4-1" aria-hidden="true"></a><span class="co">#allocate output</span></span>
 <span id="cb4-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb4-2" aria-hidden="true"></a>var_out=<span class="kw">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;u_mean&quot;</span>,<span class="st">&quot;v_mean&quot;</span>,<span class="st">&quot;w_mean&quot;</span>,<span class="st">&quot;ws_mean&quot;</span>,<span class="st">&quot;wd_mean&quot;</span>,<span class="st">&quot;T_mean&quot;</span>,<span class="st">&quot;h2o_mean&quot;</span>,<span class="st">&quot;co2_mean&quot;</span>,</span>
@@ -343,7 +343,7 @@ Here, the temperature is given directly in <span class="math inline">\(^\circ\)<
 <span id="cb5-50"><a href="post-processing-of-raw-eddy-covariance-data.html#cb5-50" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The calculated covariances have to be converted to the fluxes (unit W/m<span class="math inline">\(^2\)</span>), for example with the functions <code>cov2sh</code>and <code>cov2lh</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb6-1" aria-hidden="true"></a><span class="co">#calculate fluxes</span></span>
-<span id="cb6-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb6-2" aria-hidden="true"></a>dat<span class="op">$</span>sh=<span class="kw">cov2sh</span>(dat<span class="op">$</span>cov_wT_snd)</span>
+<span id="cb6-2"><a href="post-processing-of-raw-eddy-covariance-data.html#cb6-2" aria-hidden="true"></a>dat<span class="op">$</span>sh=<span class="kw">cov2sh</span>(dat<span class="op">$</span>cov_wT) <span class="co">#dat$sh=cov2sh(dat$cov_wT_snd)</span></span>
 <span id="cb6-3"><a href="post-processing-of-raw-eddy-covariance-data.html#cb6-3" aria-hidden="true"></a>dat<span class="op">$</span>lh=<span class="kw">cov2lh</span>(dat<span class="op">$</span>cov_h2ow)</span></code></pre></div>
 <p>The output now contains the 30 minutes averages, standard deviations and covariances of the measured quantities, which will be used in the following notebooks for some more detailed analysis.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb7-1" aria-hidden="true"></a><span class="co">#look at output</span></span>
@@ -551,7 +551,7 @@ NA
 NA
 </td>
 <td>
-9.738087
+80.49175
 </td>
 <td>
 66.62497
@@ -619,7 +619,7 @@ NA
 NA
 </td>
 <td>
-8.883217
+122.26788
 </td>
 <td>
 107.00304
@@ -687,7 +687,7 @@ NA
 NA
 </td>
 <td>
-9.180034
+123.00260
 </td>
 <td>
 84.88036
@@ -755,7 +755,7 @@ NA
 NA
 </td>
 <td>
--8.078518
+123.44803
 </td>
 <td>
 83.31937
@@ -823,7 +823,7 @@ NA
 NA
 </td>
 <td>
--2.247637
+145.37751
 </td>
 <td>
 138.66441
@@ -891,7 +891,7 @@ NA
 NA
 </td>
 <td>
--5.909810
+116.60730
 </td>
 <td>
 94.20120
@@ -900,7 +900,7 @@ NA
 </tbody>
 </table>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="post-processing-of-raw-eddy-covariance-data.html#cb8-1" aria-hidden="true"></a><span class="kw">saveRDS</span>(dat,<span class="dt">file=</span><span class="st">&quot;../data/ec-data_30min_processed/processed_data_example.rds&quot;</span>)</span></code></pre></div>
-<p>Additionally, the data can be gap-filled with <code>gapfilling</code> or averaged to other customized averaging intervals with <code>averaging</code>. The function <code>averaging</code> is based on the RcppRoll package, which provides fast and efficient “rolling” functions utilizing a C++ interface. <br>
+<p>Additionally, the data can be gap-filled with <code>gapfilling</code> or averaged to other customized averaging intervals with <code>accumulate_timeseries</code>. The function <code>accumulate_timeseries</code> is based on the RcppRoll package, which provides fast and efficient “rolling” functions utilizing a C++ interface. <br>
 Generally, it should be noted that different sensors may require different correction methods, see e.g. <span class="citation">Foken (<a href="#ref-Foken2017" role="doc-biblioref">2017</a>)</span> for a discussion, so a detailed knowledge of the instrumentation is required.</p>
 
 </div>

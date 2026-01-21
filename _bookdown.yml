@@ -9,7 +9,7 @@ rmd_files: [
   "03_quadrant-analysis.Rmd",
   "04_spectra.Rmd",
   "06_reynolds-stress-tensor.Rmd",
-  "05_flux-footprint.Rmd",
+  "05_flux-footprint-estimation.Rmd",
   "07_surface-energy-balance.Rmd",
   "08_turbulence-parameterizations.Rmd",
   "99_end.Rmd"]

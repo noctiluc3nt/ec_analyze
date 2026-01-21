@@ -14,7 +14,7 @@ Even though stability correction functions show some "universality", recent stud
 In Reddy, the variable $x_*$ can be calculated with `calc_xstar`, and scaling functions for horizontal velocity ($\Phi_u$, `scale_phiu`), vertical velocity ($\Phi_w$, `scale_phiw`), temperature ($\Phi_T$, `scale_phiT`) and passive scalar concentration ($\Phi_c$, `scale_phic`) from different studies are available.
 
 ### Example: Latent heat flux from flux-variance relation
-Examplary, we calculate the latent heat flux using the flux-variance relation and compare it with the measured latent heat flux. As humididty is an 'almost' passive tracer, we use the scaling function for concentration (in Reddy `scale_phic`).
+Examplary, we calculate the latent heat flux using the flux-variance relation and compare it with the measured latent heat flux. As humidity is an 'almost' passive tracer, we use the scaling function for concentration (in Reddy `scale_phic`).
 
 
 ```R
@@ -29,17 +29,15 @@ dat=readRDS("../data/ec-data_30min_processed/processed_data_example.rds")
 
 
 ```R
-ustar=calc_ustar(dat$cov_uw)
-L=calc_L(ustar,dat$T_mean,dat$cov_wT)
-zeta=calc_zeta(4.4,L)
 #calculate cov(h2o,w) from the flux variance relation
-cov_h2ow_fv=dat$cov_h2ow*ustar/scale_phic(zeta)
+Phic=scale_phic(dat$zeta,1)
+cov_h2ow_fv=dat$h2o_sd*dat$ustar/Phic/5
 ```
 
 
 ```R
 #compare flux-variance relation with measured latent heat flux
-plot(cov2lh(cov_h2ow_fv),cov2lh(dat$cov_h2ow),pch=20,col=rgb(0,0,0,0.5),cex=2,
+plot(cov2lh(cov_h2ow_fv),cov2lh(dat$cov_h2ow),pch=20,col=rgb(0,0,0,0.5),cex=2,xlim=c(0,110),
      xlab=TeX("LH [W/m$^2$] (from flux-variance relation)"),ylab=TeX("LH [W/m$^2$] (measured)"),
      main="Latent Heat Flux\nComparison: Flux-Variance Relation vs EC Measurement")
 abline(0,1,col="red3",lwd=2,lty=2)
@@ -55,19 +53,19 @@ summary(fit) #R^2 = 0.987
     
     Residuals:
          Min       1Q   Median       3Q      Max 
-    -10.0789  -2.8135  -0.4376   3.1445   7.6008 
+    -155.342  -14.557   -3.211   13.687   54.464 
     
     Coefficients:
                         Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)         4.386407   0.456952   9.599   <2e-16 ***
-    cov2lh(cov_h2ow_fv) 0.813245   0.008209  99.067   <2e-16 ***
+    (Intercept)         14.67877    2.63752   5.565 1.54e-07 ***
+    cov2lh(cov_h2ow_fv)  0.52684    0.04353  12.102  < 2e-16 ***
     ---
     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
     
-    Residual standard error: 3.838 on 124 degrees of freedom
+    Residual standard error: 23.27 on 124 degrees of freedom
       (1 observation deleted due to missingness)
-    Multiple R-squared:  0.9875,	Adjusted R-squared:  0.9874 
-    F-statistic:  9814 on 1 and 124 DF,  p-value: < 2.2e-16
+    Multiple R-squared:  0.5415,	Adjusted R-squared:  0.5378 
+    F-statistic: 146.4 on 1 and 124 DF,  p-value: < 2.2e-16
 
 
 

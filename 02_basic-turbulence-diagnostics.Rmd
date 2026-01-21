@@ -29,7 +29,7 @@ Now, we use some of the Reddy functions to calculate and plot time series of the
 
 ```R
 #loading Reddy package
-install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 library(latex2exp)
 ```
@@ -51,6 +51,8 @@ dat$ustar=calc_ustar(dat$cov_uw,dat$cov_vw)
 dat$L=calc_L(dat$ustar,dat$T_mean,dat$cov_wT)
 dat$zeta=calc_zeta(4.4,dat$L)
 dat$alpha_uw=calc_dshear(dat$cov_uw,dat$cov_vw)
+#store them in file
+saveRDS(dat,file="../data/ec-data_30min_processed/processed_data_example.rds")
 ```
 
 
@@ -73,9 +75,9 @@ plot(dat$cov_uw,type="l",ylab=TeX("cov(u,w) [$m^2/s^2$]"))
 grid()
 plot(dat$cov_wT,type="l",ylab=TeX("cov(T,w) [$K m/s$]"),col="red")
 grid()
-plot(dat$cov_h2ow,type="l",ylab=TeX("cov(q,w) [$mmol m/s$]"),col="blue")
+plot(dat$cov_h2ow,type="l",ylab=TeX("cov(q,w) [mmol m/s]"),col="blue")
 grid()
-plot(dat$cov_co2w,type="l",ylab=TeX("cov(c,w) [$ppm m/s$]"),col="orange")
+plot(dat$cov_co2w,type="l",ylab=TeX("cov(c,w) [ppm m/s]"),col="orange")
 grid()
 ```
 
@@ -96,7 +98,7 @@ zeta_bins=c(-10^(2:-2),10^(-2:2))
 sh_binned=binning(dat$sh,dat$zeta,zeta_bins)
 sh_binned #look at output
 xbins=c(-5^(2:-1),0,5^(-1:2))
-plot(xbins,sh_binned[,2],type="b",ylim=c(-20,150),lwd=2,col=2,pch=20,xlab="stability parameter [-]",ylab=TeX("SH [W/m$^2$]"))
+plot(xbins,sh_binned[,2],type="b",ylim=c(-20,120),lwd=2,col=2,pch=20,xlab="stability parameter [-]",ylab=TeX("SH [W/m$^2$]"))
 points(xbins,sh_binned[,3],type="l",lty=2,col=2)
 points(xbins,sh_binned[,4],type="l",lty=2,col=2)
 #polygon(c(xbins,rev(xbins)),c(sh_binned[,3],rev(sh_binned[,4])),lty=0,col=rgb(0.8,0,0,0.2) )
@@ -109,15 +111,15 @@ grid()
 <table class="dataframe">
 <caption>A matrix: 9 × 4 of type dbl</caption>
 <tbody>
-	<tr><td>122.045246</td><td>116.804837</td><td>109.052920</td><td>129.797163</td></tr>
-	<tr><td>120.620398</td><td>125.471467</td><td> 75.448402</td><td>167.986972</td></tr>
-	<tr><td> 17.306097</td><td> 12.061651</td><td>  5.647776</td><td> 24.415438</td></tr>
-	<tr><td>  1.823135</td><td>  1.864732</td><td>  1.093005</td><td>  2.574063</td></tr>
-	<tr><td>        NA</td><td>        NA</td><td>        NA</td><td>        NA</td></tr>
-	<tr><td> -3.564331</td><td> -3.564331</td><td> -3.564331</td><td> -3.564331</td></tr>
-	<tr><td>-11.192381</td><td>-12.213284</td><td>-13.937180</td><td> -8.561890</td></tr>
-	<tr><td>-18.102981</td><td>-19.201199</td><td>-22.358905</td><td>-14.674265</td></tr>
-	<tr><td> -8.655841</td><td>-10.389901</td><td>-11.853905</td><td> -6.324807</td></tr>
+	<tr><td>98.478286</td><td>106.304109</td><td> 78.304007</td><td>112.924636</td></tr>
+	<tr><td>70.983867</td><td> 71.092753</td><td> 42.781914</td><td>101.963983</td></tr>
+	<tr><td> 7.549193</td><td>  5.478099</td><td>  1.904821</td><td> 10.784041</td></tr>
+	<tr><td> 1.303564</td><td>  1.303564</td><td>  1.303564</td><td>  1.303564</td></tr>
+	<tr><td>       NA</td><td>        NA</td><td>        NA</td><td>        NA</td></tr>
+	<tr><td>-1.423699</td><td> -1.423699</td><td> -1.423699</td><td> -1.423699</td></tr>
+	<tr><td>-4.880663</td><td> -5.534620</td><td> -6.844104</td><td> -3.571180</td></tr>
+	<tr><td>-8.987205</td><td> -9.804536</td><td>-10.276137</td><td> -5.852241</td></tr>
+	<tr><td>-6.890053</td><td> -5.906051</td><td> -9.847449</td><td> -4.119589</td></tr>
 </tbody>
 </table>
 
@@ -133,7 +135,7 @@ Based on our short example data, we can see that the sensible heat flux is posit
 
 ## Turbulence regimes and "Hockey-stick" model
 The above shown example for stability dependence can be extended to arbitrary variables and is often used to characterize different turbulence regimes. 
-To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, @Sun2012 investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this simple model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like our) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.
+To diagnose different turbulence regimes, scatter plots of different turbulence diagnostics can be considered, e.g. plotting wind speed vs TKE or stability parameter vs TKE. For example, @Sun2012 investigate turbulence regimes in stable boundary layers and distinguish between weak and strong turbulence regimes. For this, they plot wind speed versus TKE or $\sigma_w$ and find two different slopes corresponding to different turbulence generation mechanism (local instability versus bulk shear) -- this simple model is now commonly referred to as "Hockey-stick model" (@Sun2012, therein Fig. 2). However, this schematic is very simplified and especially at sites in complex terrain (like ours) versatile factors (e.g., the flux footprint) modify it. In our example data (3 summer days), we see the bulk shear dominated regime, which is indicated by the linear regression.
 
 
 ```R
@@ -153,10 +155,10 @@ grid()
 
 
 ## Decoupling metric
-During strongly stable stratification land and atmosphere can "decouple", meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (@Derbyshire1999). This processes represents particularly in numerical modelling a big problem, since then are atmospheric and land model also "decoupled" and the atmosphere does not "see" the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, @Peltola2021 introduced the decoupling metric $\Omega$:
+During strongly stable stratification land and atmosphere can "decouple", meaning that the turbulent fluxes are so low that the surface energy balance is determined by radiative and ground heat flux only (@Derbyshire1999). This process represents particularly in numerical modelling a big problem, since then atmospheric and land model are also "decoupled" and the atmosphere does not "see" the land surface anymore, resulting in a misrepresentation of cold temperature extremes. To learn more about this process and its impact on atmospehre-vegetation fluxes, @Peltola2021 introduced the decoupling metric $\Omega$:
 
 - **Decoupling metric** (`calc_omega`): $\Omega$ is defined as the dimensionless ratio between vertical turbulence intenisity and critical vertical wind speed that characterizes the wind speed needed to overcome the hindering force caused by static stability (based on the Brunt-Väisälä frequency $N^2:=g/T \partial T/\partial z$)
  $$ \Omega := \frac{\sigma_w}{\vert w_{crit}\vert}=\frac{\sigma_w}{\sqrt{2}zN}$$
 
 
-As can be seen, for calculating $N$ the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (`calc_ri`), eddy diffusivities of momentum (`calc_Km`) and heat (`calc_Kh`), the Prandtl number (`calc_Pr`) or the Ozmidov scale (`calc_ozmidov_scale`). 
+As can be seen, for calculating $N$ the vertical temperature gradient is needed, which could be calculated from vertically distributed temperature measurements. Additional bulk quantities of interest for turbulence analysis are bulk Richardson number (`calc_Ri`), eddy diffusivities of momentum (`calc_Km`) and heat (`calc_Kh`), the Prandtl number (`calc_Pr`) or the Ozmidov scale (`calc_ozmidov_scale`). 
