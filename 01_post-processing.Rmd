@@ -44,7 +44,7 @@ Now, we create an example post-processing routine. For this, we use 3 days of ra
 
 ```R
 #loading Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 ```
 
@@ -76,7 +76,7 @@ colnames(dat)=var_out
 #postprocessing per file (30 mins)
 for (i in 1:nf) {
     tmp=read.table(files[i],sep=",",header=T)
-    dat$time[i]=tmp$X[1]
+    dat$time[i]=as.character(tmp$X[1])
     #despiking
     tmp$T_degC=despiking(tmp$T_degC,-40,30)
     tmp$u_m.s=despiking(tmp$u_m.s,-25,25)
@@ -125,7 +125,7 @@ for (i in 1:nf) {
 }
 ```
 
-The calculated covariances have to be converted to the fluxes (unit W/m$^2$), for example with the functions `cov2sh`and `cov2lh`:
+The calculated covariances have to be converted to the fluxes (unit W/m$^2$), for example with the functions `cov2sh` and `cov2lh`:
 
 
 ```R

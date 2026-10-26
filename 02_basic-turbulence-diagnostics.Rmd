@@ -29,7 +29,7 @@ Now, we use some of the Reddy functions to calculate and plot time series of the
 
 ```R
 #loading Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 library(latex2exp)
 ```

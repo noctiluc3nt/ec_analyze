@@ -15,7 +15,7 @@ This assumption leads to a symmetric footprint in crosswind direction. For furth
 
 ```R
 #load Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 
 #read in processed example data
@@ -140,8 +140,8 @@ Flux footprint climatologies can be created as composites of single flux footpri
 
 ```R
 i=1:(dim(dat)[1]) #calculation takes some time
-ffp_clim=calc_flux_footprint_climatology(zm=zm,ws_mean=dat$ws_mean[i],wd_mean=dat$wd_mean[i],L=L[i],
-                                         v_sd=dat$v_sd[i],ustar=ustar[i],method="KM2001",plot=FALSE)
+ffp_clim=calc_flux_footprint_climatology(zm=zm,ws_mean=dat$ws_mean[i],wd_mean=dat$wd_mean[i],L=dat$L[i],
+                                         v_sd=dat$v_sd[i],ustar=dat$ustar[i],method="KM2001",nres=1000,dx=1,plot=FALSE)
 ```
 
 

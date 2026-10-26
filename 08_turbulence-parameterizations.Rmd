@@ -19,7 +19,7 @@ Examplary, we calculate the latent heat flux using the flux-variance relation an
 
 ```R
 #loading Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 library(latex2exp)
 

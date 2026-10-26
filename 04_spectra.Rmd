@@ -14,7 +14,7 @@ A related method used for flux calculations from eddy-covariance data is based o
 
 ```R
 #loading Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 
 #ec data files

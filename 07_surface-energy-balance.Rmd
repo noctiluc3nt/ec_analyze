@@ -30,7 +30,7 @@ with net radiation $R_{net} = SW\downarrow - SW\uparrow + LW\downarrow - LW\upar
 
 ```R
 #loading Reddy package
-#install.packages("../src/Reddy_0.0.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
+#install.packages("../src/Reddy_1.1.0.9000.tar.gz",repos=NULL,source=TRUE,quiet=TRUE)
 library(Reddy)
 library(dplyr)
 
